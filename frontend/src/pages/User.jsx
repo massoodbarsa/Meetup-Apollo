@@ -6,12 +6,19 @@ import { Button, Radio, RadioGroup, FormControlLabel, FormLabel, TextField } fro
 import { UserContext } from '../context/UserContextProvider'
 
 import { useQuery, gql } from '@apollo/client'
-// import { LOGIN } from './graphqlQuery/Queries'
+import { ADD_USER } from './graphqlQuery/Mutation'
+import { useMutation } from '@apollo/client'
+
 
 
 function User(props) {
 
     const context = useContext(UserContext);
+
+    const [addUser, { data ,error}] = useMutation(ADD_USER);
+
+    console.log(data);
+    console.log(error);
 
     const [signUp, setSignUp] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
@@ -21,6 +28,9 @@ function User(props) {
     const [email, setEmai] = useState(null)
     const [password, setPass] = useState(null)
     const [passRep, setPassRep] = useState(false)
+
+
+
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -71,50 +81,45 @@ function User(props) {
 
                 return
             }
-            reqBody = {
-                query: `
-                mutation{
-                    addUser(email:"${email}",password:"${password}",name:"amir"){
-                        email
-                        name
-                        password
-                        surename
-                        age
-                        profilePhoto 
-                      }
+
+            addUser({
+                variables: {
+                    email: email,
+                    password: password
                 }
-                `
-            }
+            })
         }
 
-        fetch('http://localhost:5000/graphql', {
-            method: 'POST',
-            body: JSON.stringify(reqBody),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => {
-                if (res.status !== 200 && res.status !== 201) {
-                    throw new Error('fetching failed')
-                }
-                return res.json()
-            })
-            .then(resData => {
-                if (resData.data.login.name) {
 
-                    // context.login(resData.data.login.token, resData.data.login.userId, resData.data.tokenExpiration)
 
-                    const { email, name, surename, age, photos, profilePhoto, abonnement } = resData.data.login
+        // fetch('http://localhost:5000/graphql', {
+        //     method: 'POST',
+        //     body: JSON.stringify(reqBody),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        //     .then(res => {
+        //         if (res.status !== 200 && res.status !== 201) {
+        //             throw new Error('fetching failed')
+        //         }
+        //         return res.json()
+        //     })
+        //     .then(resData => {
+        //         if (resData.data.login.name) {
 
-                    context.setUserState(name, email, surename, age, photos, profilePhoto, abonnement)
-                    context.login(email, name)
-                }
+        //             // context.login(resData.data.login.token, resData.data.login.userId, resData.data.tokenExpiration)
 
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        //             const { email, name, surename, age, photos, profilePhoto, abonnement } = resData.data.login
+
+        //             context.setUserState(name, email, surename, age, photos, profilePhoto, abonnement)
+        //             context.login(email, name)
+        //         }
+
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
 
         setSignUp(false)
         setTextField(false)

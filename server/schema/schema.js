@@ -203,7 +203,7 @@ const Mutation = new GraphQLObjectType({
                     type: new GraphQLNonNull(GraphQLString)
                 },
                 name: {
-                    type: new GraphQLNonNull(GraphQLString)
+                    type: GraphQLString
                 },
                 surename: {
                     type: GraphQLString
@@ -364,8 +364,8 @@ const Mutation = new GraphQLObjectType({
                     startDate: args.startDate,
                     days: args.days
                 });
+               
                 return abonnement.save()
-
             }
         }
     })

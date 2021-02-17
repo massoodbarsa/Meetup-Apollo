@@ -15,6 +15,12 @@ function Dashboard() {
 
     const { error, loading, data } = useQuery(GET_USERS)
 
+    useEffect(() => {
+        if (data) {
+            context.setUsers(data.getUsers)
+        }
+    }, [data])
+
     const [gender, setGender] = useState()
     const [anchorEl, setAnchorEl] = useState(null)
 
@@ -55,13 +61,6 @@ function Dashboard() {
     const photos = usersData.map(i => i.photos.map(item => item))
 
     const photo = photos.map(items => items.map(item => item))
-
-    useEffect(() => {
-        if (data) {
-            context.setUsers(data.getUsers)
-        }
-    }, [data])
-
     
     return (
         <Grid container spacing={3} className='dashboard'>
