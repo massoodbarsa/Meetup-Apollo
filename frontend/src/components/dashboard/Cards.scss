@@ -1,0 +1,38 @@
+.card-container {
+    margin: 10px;
+
+    &__image {
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+    }
+
+    &__icon {
+
+        &__fav {
+
+            color: var(--clr-green-dark);
+
+            &:hover {
+                color: var(--clr-green-light);
+                cursor: pointer;
+            }
+        }
+        
+
+        &__del {
+            color: var(--clr-primary-1);
+
+            &:hover {
+                color: var(--clr-red);
+                cursor: pointer;
+            }
+        }
+
+    }
+
+    .icon-container {
+        display: flex;
+        justify-content: space-around;
+    }
+}

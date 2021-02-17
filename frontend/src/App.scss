@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  
+}
+.main{
+  margin: 5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .MuiButton-root {
+    color: var(--clr-grey-1);
+    border-color: var(--clr-grey-1);
+  }
+  
+  .MuiButton-root:hover {
+    color: var(--clr-grey-9);
+    border-color: var(--clr-grey-1);
+    background-color: var(--clr-grey-1);
+  }
+
+  .MuiFormLabel-root {
+    // margin: 1rem 1rem 1rem .5rem;
+    color: var(--clr-grey-8);
+}
+  
+}
+

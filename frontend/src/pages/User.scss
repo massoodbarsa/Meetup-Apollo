@@ -1,0 +1,41 @@
+.user-form {
+    width: 40rem;
+    max-width: 80%;
+    margin: 5rem auto;
+    border-radius: 5px;
+
+    &__control {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        input {
+            width: 100%;
+            display: block;
+            line-height: 20px;
+            padding: 10px;
+            background-color: var(--clr-white);
+
+            &:focus {
+                background-color: var(--clr-white);
+            }
+
+        }
+
+        label {
+            width: 100%;
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--clr-white);
+        }
+
+    }
+
+}
+
+.modal-from {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 2rem .5rem;
+}
