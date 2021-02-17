@@ -5,6 +5,9 @@ import FadeBackground from '../components/modal/fadeBackground'
 import { Button, Radio, RadioGroup, FormControlLabel, FormLabel, TextField } from '@material-ui/core';
 import { UserContext } from '../context/UserContextProvider'
 
+import { useQuery, gql } from '@apollo/client'
+// import { LOGIN } from './graphqlQuery/Queries'
+
 
 function User(props) {
 

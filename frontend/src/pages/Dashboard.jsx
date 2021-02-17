@@ -6,9 +6,14 @@ import { NavLink } from 'react-router-dom'
 import { UserContext } from '../context/UserContextProvider'
 import ImageSlider from '../components/dashboard/Slider'
 
-function Dashboard(props) {
+import { useQuery, gql } from '@apollo/client'
+import { GET_USERS } from './graphqlQuery/Queries'
+
+function Dashboard() {
 
     const context = useContext(UserContext);
+
+    const { error, loading, data } = useQuery(GET_USERS)
 
     const [gender, setGender] = useState()
     const [anchorEl, setAnchorEl] = useState(null)
@@ -45,59 +50,19 @@ function Dashboard(props) {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    // const userData = () => {
-    //     const users = props.data.getUsers
-    //     context.setUsers(users)
-
-    // }
-
-    useEffect(() => {
-        // userData()
-        getAllUsers()
-    }, [])
-
-
-    async function getAllUsers() {
-
-        const reqBody = {
-            query: `
-            query  {
-                getUsers{
-                         email
-                        photos {
-                          email
-                            url
-                         }
-                   }
-                }
-              `
-        };
-
-        const response = await fetch('http://localhost:5000/graphql', {
-            method: 'POST',
-            body: JSON.stringify(reqBody),
-            headers: {
-                'Content-Type': 'application/json',
-                // Authorization: this.context.token
-
-            }
-
-        })
-
-        const json = await response.json()
-
-        const users = await json.data.getUsers
-
-        context.setUsers(users)
-
-    }
     const { usersData } = context
 
     const photos = usersData.map(i => i.photos.map(item => item))
 
     const photo = photos.map(items => items.map(item => item))
 
+    useEffect(() => {
+        if (data) {
+            context.setUsers(data.getUsers)
+        }
+    }, [data])
 
+    
     return (
         <Grid container spacing={3} className='dashboard'>
             <Grid item xs={3} sm={3} className='dashboard__left'>
@@ -126,7 +91,7 @@ function Dashboard(props) {
                 </section>
 
                 <section className='dashboard__middel__corossol'>
-                    <ImageSlider photo={photo} comp='dashboard'/>
+                    <ImageSlider photo={photo} comp='dashboard' />
                 </section>
             </Grid>
 
@@ -135,8 +100,8 @@ function Dashboard(props) {
                     <Avatar
                         variant='square'
                         alt='Profile'
-                        src={context.profilePhoto} 
-                        >
+                        src={context.profilePhoto}
+                    >
                     </Avatar>
                 </Button>
                 </NavLink>

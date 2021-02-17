@@ -170,7 +170,7 @@ function MyProfile(props) {
                     <FormLabel className='profile__left__info__label'>Location</FormLabel>
                     <input type="text" />
                     <FormLabel className='profile__left__info__label'>Age</FormLabel>
-                    <input type="number" value={age} onChange={(e) => { setAge(e.target.value) }} />
+                    <input type="number" value={age||'Say later'} onChange={(e) => { setAge(e.target.value) }} />
 
                     <FormLabel className='profile__left__info__label'>About me</FormLabel>
                     <TextareaAutosize aria-label="minimum height" rowsMin={5} className='profile__left__info__textarea' />

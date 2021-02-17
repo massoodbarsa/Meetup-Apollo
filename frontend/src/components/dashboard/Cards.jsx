@@ -28,7 +28,7 @@ export default function Cards({ favTitle, delTitle, url, handleProfilePic, handl
             <section className="icon-container">
                 <CardActions>
                     <Tooltip
-                        title={favTitle}
+                        title={favTitle||"Favorite"}
                         aria-label="add"
                         enterDelay={200}
                         leaveDelay={300}
@@ -41,7 +41,7 @@ export default function Cards({ favTitle, delTitle, url, handleProfilePic, handl
 
                 <CardActions>
                     <Tooltip
-                        title={delTitle}
+                        title={delTitle||'Delete'}
                         aria-label="add"
                         enterDelay={200}
                         leaveDelay={300}

@@ -1,1 +1,1 @@
-import {grq} from '@apollo/client'
+import { grq } from '@apollo/client'

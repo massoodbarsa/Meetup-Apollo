@@ -8,10 +8,6 @@ import Cards from '../dashboard/Cards'
 
 export default function Slider({ photo, comp }) {
 
-    console.log(comp);
-
-    console.log(photo);
-
     const context = useContext(UserContext);
 
     return (
@@ -58,8 +54,6 @@ export default function Slider({ photo, comp }) {
                         </Carousel>
                     }
 
-
-
                     {
                         comp === 'myprofile' && <Carousel slide={true}>
                             {
@@ -79,8 +73,8 @@ export default function Slider({ photo, comp }) {
                                                 key={index}
                                                 favTitle='Make it your profile picture'
                                                 delTitle='Delete!'
-                                                // handleProfilePic={handleProfilePic}
-                                                // handleDelPic={handleDelPic}
+                                            // handleProfilePic={handleProfilePic}
+                                            // handleDelPic={handleDelPic}
 
                                             />
                                         </Carousel.Item>
