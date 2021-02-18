@@ -32,7 +32,7 @@ const Mutation = new GraphQLObjectType({
                     type: new GraphQLNonNull(GraphQLString)
                 },
                 name: {
-                    type: new GraphQLNonNull(GraphQLString)
+                    type: GraphQLString
                 },
                 surename: {
                     type: GraphQLString

@@ -16,7 +16,6 @@ export default class UserContextProvider extends Component {
         photos: [],
         abonnement: [],
         usersData: []
-
     }
 
     setUserState = (email, name, surename, age, photos, profilePhoto, abonnement) => {

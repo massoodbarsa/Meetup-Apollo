@@ -4,8 +4,6 @@ import Modal from '../components/modal/modal'
 import FadeBackground from '../components/modal/fadeBackground'
 import { Button, Radio, RadioGroup, FormControlLabel, FormLabel, TextField } from '@material-ui/core';
 import { UserContext } from '../context/UserContextProvider'
-
-import { useQuery, gql } from '@apollo/client'
 import { ADD_USER } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 
@@ -15,9 +13,9 @@ function User(props) {
 
     const context = useContext(UserContext);
 
-    const [addUser, { data ,error}] = useMutation(ADD_USER);
+    const [addUser, { newUserData ,error}] = useMutation(ADD_USER);
 
-    console.log(data);
+    console.log(newUserData);
     console.log(error);
 
     const [signUp, setSignUp] = useState(false)
@@ -106,7 +104,7 @@ function User(props) {
                 return res.json()
             })
             .then(resData => {
-                if (resData.data.login.name) {
+                if (resData.data.login) {
 
                     // context.login(resData.data.login.token, resData.data.login.userId, resData.data.tokenExpiration)
 
