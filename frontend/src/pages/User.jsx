@@ -1,22 +1,27 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './User.scss'
 import Modal from '../components/modal/modal'
 import FadeBackground from '../components/modal/fadeBackground'
-import { Button, Radio, RadioGroup, FormControlLabel, FormLabel, TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { UserContext } from '../context/UserContextProvider'
-import { ADD_USER } from './graphqlQuery/Mutation'
+import { ADD_USER, LOGIN } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
-
 
 
 function User(props) {
 
     const context = useContext(UserContext);
 
-    const [addUser, { newUserData ,error}] = useMutation(ADD_USER);
+    const [addUser, { newUserData, }] = useMutation(ADD_USER);
+    const [login, { data }] = useMutation(LOGIN);
 
-    console.log(newUserData);
-    console.log(error);
+    useEffect(() => {
+        if (data) {
+
+            console.log(data.login);
+            context.setUserState(data.login)
+        }
+    }, [data])
 
     const [signUp, setSignUp] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
@@ -28,47 +33,11 @@ function User(props) {
     const [passRep, setPassRep] = useState(false)
 
 
-
-
     const submitHandler = (e) => {
         e.preventDefault()
 
         if (email.trim().length === 0 || password.trim().length === 0) {
             return
-        }
-
-        let reqBody = {
-            // query: `
-            // query{
-            //     login(email:"${email}", password:"${password}"){
-            //         userId 
-            //         token 
-            //         tokenExpiration   
-            //     }
-            // }
-            // `
-            query: `
-            query{
-                login(email:"${email}", password:"${password}"){
-                    name
-                    email 
-                    surename
-                    age
-                    profilePhoto
-                    photos{
-                        url
-                      }
-                    abonnement{
-                        name
-                        price
-                        discount
-                        tickets
-                        startDate
-                        days
-                      }
-                }
-            }
-            `
         }
 
         if (signUp) {
@@ -88,40 +57,15 @@ function User(props) {
             })
         }
 
-
-
-        fetch('http://localhost:5000/graphql', {
-            method: 'POST',
-            body: JSON.stringify(reqBody),
-            headers: {
-                'Content-Type': 'application/json'
+        login({
+            variables: {
+                email: email,
+                password: password
             }
         })
-            .then(res => {
-                if (res.status !== 200 && res.status !== 201) {
-                    throw new Error('fetching failed')
-                }
-                return res.json()
-            })
-            .then(resData => {
-                if (resData.data.login) {
-
-                    // context.login(resData.data.login.token, resData.data.login.userId, resData.data.tokenExpiration)
-
-                    const { email, name, surename, age, photos, profilePhoto, abonnement } = resData.data.login
-
-                    context.setUserState(name, email, surename, age, photos, profilePhoto, abonnement)
-                    context.login(email, name)
-                }
-
-            })
-            .catch(err => {
-                console.log(err);
-            })
 
         setSignUp(false)
         setTextField(false)
-
     }
 
     const modalCancelHandler = () => {
@@ -134,7 +78,6 @@ function User(props) {
         setSignUp(true)
     }
 
-    // console.log(props);
     return (
         <>
             <form className='user-form' onSubmit={submitHandler}>

@@ -14,3 +14,26 @@ mutation addUser($email : String! , $password:String!){
       }
 }
 `
+
+export const LOGIN = gql`
+mutation login($email : String! , $password:String!){
+    login(email:$email, password:$password){
+        name
+        email 
+        surename
+        age
+        profilePhoto
+        photos{
+            url
+          }
+        abonnement{
+            name
+            price
+            discount
+            tickets
+            startDate
+            days
+          }
+    }
+}
+`

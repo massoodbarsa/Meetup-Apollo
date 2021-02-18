@@ -16,9 +16,11 @@ import Modal from '../components/modal/modal'
 import Slider from '../components/dashboard/Slider';
 
 
-function MyProfile(props) {
+function MyProfile() {
 
     const context = useContext(UserContext);
+
+    console.log(context.state);
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [progress, setProgress] = useState(20)
@@ -64,8 +66,6 @@ function MyProfile(props) {
         const json = await response.json()
         context.deletePhoto(url)
     }
-
-
 
     //search how to add image file and get url back 
 
@@ -160,6 +160,7 @@ function MyProfile(props) {
     }
 
     const { name, surename, photos, abonnement, profilePhoto } = context
+
 
     return (
         <Grid container spacing={3} className='profile'>
