@@ -92,34 +92,34 @@ function User(props) {
 
 
 
-        // fetch('http://localhost:5000/graphql', {
-        //     method: 'POST',
-        //     body: JSON.stringify(reqBody),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
-        //     .then(res => {
-        //         if (res.status !== 200 && res.status !== 201) {
-        //             throw new Error('fetching failed')
-        //         }
-        //         return res.json()
-        //     })
-        //     .then(resData => {
-        //         if (resData.data.login.name) {
+        fetch('http://localhost:5000/graphql', {
+            method: 'POST',
+            body: JSON.stringify(reqBody),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => {
+                if (res.status !== 200 && res.status !== 201) {
+                    throw new Error('fetching failed')
+                }
+                return res.json()
+            })
+            .then(resData => {
+                if (resData.data.login.name) {
 
-        //             // context.login(resData.data.login.token, resData.data.login.userId, resData.data.tokenExpiration)
+                    // context.login(resData.data.login.token, resData.data.login.userId, resData.data.tokenExpiration)
 
-        //             const { email, name, surename, age, photos, profilePhoto, abonnement } = resData.data.login
+                    const { email, name, surename, age, photos, profilePhoto, abonnement } = resData.data.login
 
-        //             context.setUserState(name, email, surename, age, photos, profilePhoto, abonnement)
-        //             context.login(email, name)
-        //         }
+                    context.setUserState(name, email, surename, age, photos, profilePhoto, abonnement)
+                    context.login(email, name)
+                }
 
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
         setSignUp(false)
         setTextField(false)
