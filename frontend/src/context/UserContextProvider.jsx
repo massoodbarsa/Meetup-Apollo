@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { createContext } from 'react'
 
-
 export const UserContext = createContext()
-
 
 export default class UserContextProvider extends Component {
 
@@ -18,8 +16,7 @@ export default class UserContextProvider extends Component {
         usersData: []
     }
 
-    setUserState = ({email, name, surename, age, photos, profilePhoto, abonnement}) => {
-        
+    setUserState = ({ email, name, surename, age, photos, profilePhoto, abonnement }) => {
         this.setState({
             email,
             name,
@@ -46,7 +43,6 @@ export default class UserContextProvider extends Component {
     }
 
     addNewPhoto = (url) => {
-
         const photos = {
             url: url
         }
@@ -54,15 +50,11 @@ export default class UserContextProvider extends Component {
         this.setState({
             photos: [...this.state.photos, photos]
         })
-
     }
 
     deletePhoto = (url) => {
-
         //now if you have 2 pic with same url delete both because of knowing it by url .later use imageId from database
         const photos = this.state.photos.filter(item => item.url !== url)
-
-        console.log(photos);
 
         this.setState({
             photos

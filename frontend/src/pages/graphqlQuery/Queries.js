@@ -10,6 +10,6 @@ export const GET_USERS = gql`
                     url
                 }
         }
-        }
+     }
   `
 
