@@ -14,7 +14,7 @@ import BuyTicket from '../components/profile/BuyTicket';
 import FadeBackground from '../components/modal/fadeBackground'
 import Modal from '../components/modal/modal'
 import Slider from '../components/dashboard/Slider';
-import { ADD_PHOTO ,DEL_PHOTO} from './graphqlQuery/Mutation'
+import { ADD_PHOTO, DEL_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 
 
@@ -23,8 +23,8 @@ function MyProfile() {
 
     const context = useContext(UserContext);
 
-    const [addPhoto, { data:addPhotoData }] = useMutation(ADD_PHOTO);
-    const [deletePhoto, { data:delPhotoData }] = useMutation(DEL_PHOTO);
+    const [addPhoto, { data: addPhotoData }] = useMutation(ADD_PHOTO);
+    const [deletePhoto, { data: delPhotoData }] = useMutation(DEL_PHOTO);
 
 
     useEffect(() => {
@@ -155,9 +155,6 @@ function MyProfile() {
                         style={{ backgroundColor: '#424242', color: '#fff' }}
                     />
                     <div className='profile__middel__pics__cards'>
-
-                        {/* <Slider photo={photos} comp='myprofile'/> */}
-
                         {
                             photos.map((item, index) => {
                                 return (

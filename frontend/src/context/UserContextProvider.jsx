@@ -17,6 +17,8 @@ export default class UserContextProvider extends Component {
     }
 
     setUserState = ({ email, name, surename, age, photos, profilePhoto, abonnement }) => {
+
+        console.log(email);
         this.setState({
             email,
             name,
@@ -62,8 +64,7 @@ export default class UserContextProvider extends Component {
 
     }
 
-    login = (email, name, tokenExpiration) => {
-
+    login = ({email, name}, tokenExpiration) => {
         this.setState({
             email,
             name
