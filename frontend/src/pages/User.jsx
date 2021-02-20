@@ -17,8 +17,6 @@ function User(props) {
 
     useEffect(() => {
         if (data) {
-
-            console.log(data.login);
             context.setUserState(data.login)
         }
     }, [data])

@@ -1,7 +1,5 @@
 const express = require('express')
-const {
-  graphqlHTTP
-} = require('express-graphql')
+const { graphqlHTTP } = require('express-graphql')
 const schema = require('./schema/resolvers/index')
 const bodyParser = require('body-parser');
 const cors = require('cors')
@@ -15,7 +13,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization')
   if (req.method === 'OPTIONS') {
-      return res.sendStatus(200)
+    return res.sendStatus(200)
   }
   next()
 })
@@ -35,9 +33,9 @@ app.use('/graphql', graphqlHTTP(req => {
 
 
 mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.rkikv.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => {
     app.listen(5000, () => {
       console.log('Connected');

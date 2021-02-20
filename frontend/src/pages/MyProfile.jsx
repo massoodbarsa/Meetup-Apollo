@@ -126,7 +126,6 @@ function MyProfile() {
 
     const { name, surename, photos, abonnement, profilePhoto } = context
 
-
     return (
         <Grid container spacing={3} className='profile'>
             <Grid item xs={3} sm={3} className='profile__left'>

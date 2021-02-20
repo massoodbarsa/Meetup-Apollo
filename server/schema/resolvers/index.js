@@ -4,15 +4,7 @@ const Mutation = require('./mutationRes')
 const graphql = require('graphql')
 
 
-const {
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLInt,
-    GraphQLSchema,
-    GraphQLList,
-    GraphQLNonNull
-
-} = graphql
+const { GraphQLSchema } = graphql
 
 module.exports = new GraphQLSchema({
     query: RootQuery,
