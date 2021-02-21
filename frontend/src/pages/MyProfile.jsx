@@ -53,7 +53,7 @@ function MyProfile() {
     const handleDelPic = async (url) => {
         deletePhoto({
             variables: {
-                email: context.email,
+                user: context.userId,
                 url: url
             }
         })
@@ -70,7 +70,7 @@ function MyProfile() {
 
         addPhoto({
             variables: {
-                email: context.email,
+                user: context.userId,
                 url: url
             }
         })
@@ -198,7 +198,7 @@ function MyProfile() {
                         variant='outlined'
                         style={{ backgroundColor: '#424242', color: '#fff', borderColor: "hsl(209, 23%, 60%)" }}
                     />
-                    {
+                    {/* {
                         abonnement.map((item, index) => {
                             return (
                                 <div key={index}>
@@ -239,7 +239,7 @@ function MyProfile() {
 
                             )
                         })
-                    }
+                    } */}
                 </section>
 
                 <section className='profile__middel__survey'>

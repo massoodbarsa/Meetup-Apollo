@@ -10,6 +10,7 @@ import { useMutation } from '@apollo/client'
 
 function User(props) {
 
+    
     const context = useContext(UserContext);
 
     const [addUser, { newUserData, }] = useMutation(ADD_USER);
@@ -18,10 +19,10 @@ function User(props) {
     useEffect(() => {
         if (data) {
             context.login(data.login)
-
             context.setUserState(data.login)
         }
     }, [data])
+
 
     const [signUp, setSignUp] = useState(false)
     const [isLogin, setIsLogin] = useState(false)

@@ -5,7 +5,7 @@ const Images = require('../../models/image')
 
 
 module.exports = {
-    
+
     Query: {
 
         users: async () => {
@@ -40,9 +40,7 @@ module.exports = {
                 throw new Error('user does not exist')
             }
 
-            return {
-                ...user._doc, _id: user._doc._id.toString()
-            };
+            return user
         },
 
         register: async (root, args, { req }, info) => {
