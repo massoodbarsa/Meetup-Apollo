@@ -7,7 +7,18 @@ const Images = require('../../models/image')
 module.exports =
 {
     Query: {
-        users: () => { },
+        users: async () => {
+            try {
+
+                const users = await User.find()
+                return users
+
+            } catch (err) {
+                console.log(err);
+                throw new Error(err)
+            }
+        },
+
         refreshToken: () => { },
 
     },
@@ -15,31 +26,55 @@ module.exports =
     Mutation: {
 
         addPhoto: (root, args, { req }, info) => {
-            let photo = new Images({
-                user: "6031786f184bf918924b0521",
-                url: args.url,
-            });
-            let createdPhoto
-            return photo.save()
-                .then(result => {
-                    createdPhoto = { ...result._doc, _id: result._doc._id.toString() }
-                    return User.findById('6031786f184bf918924b0521')
-                })
-                .then(user => {
-                    if (!user) {
-                        throw new Error('user exist') 
-                    }
-                    user.photos.push(photo)
-                    return user.save()
-                })
-                .then(result=>{
-                    return createdPhoto
-                })
-                .catch(err => {
-                    console.log(err);
-                    throw err
-                })
+
+
+
+
+
+
+
+
+
+            // let photo = new Images({
+            //     user: "6031786f184bf918924b0521",
+            //     url: args.url,
+            // });
+            // let createdPhoto
+            // return photo.save()
+            //     .then(result => {
+            //         createdPhoto = { ...result._doc, _id: result._doc._id.toString() }
+            //         return User.findById('6031786f184bf918924b0521')
+            //     })
+            //     .then(user => {
+            //         if (!user) {
+            //             throw new Error('user exist') 
+            //         }
+            //         user.photos.push(photo)
+            //         return user.save()
+            //     })
+            //     .then(result=>{
+            //         return createdPhoto
+            //     })
+            //     .catch(err => {
+            //         console.log(err);
+            //         throw err
+            //     })
+
+
         },
+
+
+
+
+
+
+
+
+
+
+
+
+
         //done
         login: async (root, args, { req }, info) => {
             // console.log('10 data',args);
@@ -56,6 +91,8 @@ module.exports =
                 ...user._doc, _id: user._doc._id.toString()
             };
         },
+
+
         //done
         register: async (root, args, { req }, info) => {
             const existingUser = await User.findOne({
