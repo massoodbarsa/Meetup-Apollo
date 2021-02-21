@@ -1,12 +1,10 @@
 
-
 const User = require('../../models/user')
 const Images = require('../../models/image')
 
 
 
-module.exports =
-{
+module.exports = {
     Query: {
 
         refreshToken: () => {
@@ -18,42 +16,19 @@ module.exports =
 
     Mutation: {
 
-        addImage:(root, args, { req }, info) => {
+        addImage: async (root, { user, url }, { req }, info) => {
 
+            const existImage = await Images.findOne({url})
 
-            console.log(args);
+            if (existImage) {
+                throw new Error('photo already exist')
+            }
 
-
-
-
-
-
-            // let photo = new Images({
-            //     user: "6031786f184bf918924b0521",
-            //     url: args.url,
-            // });
-            // let createdPhoto
-            // return photo.save()
-            //     .then(result => {
-            //         createdPhoto = { ...result._doc, _id: result._doc._id.toString() }
-            //         return User.findById('6031786f184bf918924b0521')
-            //     })
-            //     .then(user => {
-            //         if (!user) {
-            //             throw new Error('user exist') 
-            //         }
-            //         user.photos.push(photo)
-            //         return user.save()
-            //     })
-            //     .then(result=>{
-            //         return createdPhoto
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-            //         throw err
-            //     })
-
-
+            const newImage = new Images({
+                user,
+                url
+            })
+            return newImage.save()
         },
 
     }

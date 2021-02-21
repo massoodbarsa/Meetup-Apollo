@@ -12,9 +12,8 @@ module.exports = gql`
   type Mutation{
     login(email:String!,password:String!): User
     register(email:String,password:String,name:String):User
-    addImage(url:String,user:String):[Photo]
+    addImage(url:String,user:String):Photo
   }
-
 
 
   type User{

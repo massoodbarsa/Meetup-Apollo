@@ -4,9 +4,10 @@ const Images = require('../../models/image')
 
 
 
-module.exports =
-{
+module.exports = {
+    
     Query: {
+
         users: async () => {
             try {
 
@@ -28,8 +29,6 @@ module.exports =
 
     Mutation: {
 
-
-        //done
         login: async (root, args, { req }, info) => {
             // console.log('10 data',args);
             const user = await User.findOne({
@@ -46,8 +45,6 @@ module.exports =
             };
         },
 
-
-        //done
         register: async (root, args, { req }, info) => {
             const existingUser = await User.findOne({
                 email: args.email
