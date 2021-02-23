@@ -40,6 +40,24 @@ module.exports = {
             })
         },
 
+        addProfilePhoto: async (root, { user, url }, { req }, info) => {
+            return User.findOneAndUpdate({
+                "_id": user
+            }, {
+                "$set": {
+                    profilePhoto: url
+                }
+            }, {
+                "new": true
+            } //returns new document
+            ).exec((err, res) => {
+                console.log('test', res)
+                return 
+                if (err) reject(err)
+                
+            })
+        },
+
     }
 }
 

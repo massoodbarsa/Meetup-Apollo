@@ -38,7 +38,7 @@ mutation login($email : String! , $password:String!){
 }
 `
 export const ADD_PHOTO = gql`
-mutation addPhoto($user : String! , $url:String!){
+mutation addPhoto($user : ID! , $url:String!){
     addPhoto(user:$user,url:$url){
       user,
       url
@@ -47,11 +47,20 @@ mutation addPhoto($user : String! , $url:String!){
 `
 
 export const DEL_PHOTO = gql`
-mutation deletePhoto($user : String! , $url:String!){
+mutation deletePhoto($user : ID! , $url:String!){
   deletePhoto(user:$user,url:$url){
       user,
       url
       }
 }
-`
 
+`
+export const SET_PROFILE_PHOTO = gql`
+mutation addProfilePhoto($user : ID! , $url:String!){
+  addProfilePhoto(user:$user,url:$url){
+      user,
+      url
+      }
+}
+
+`

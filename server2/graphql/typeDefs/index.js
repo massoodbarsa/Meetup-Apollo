@@ -12,8 +12,9 @@ module.exports = gql`
   type Mutation{
     login(email:String!,password:String!): User
     register(email:String,password:String,name:String):User
-    addPhoto(url:String,user:String):Photo
-    deletePhoto(url:String,user:String):Photo
+    addPhoto(url:String,user:ID):Photo
+    deletePhoto(url:String,user:ID):Photo
+    addProfilePhoto(url:String,user:ID):Photo
   }
 
 

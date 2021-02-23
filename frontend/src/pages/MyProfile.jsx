@@ -14,7 +14,7 @@ import BuyTicket from '../components/profile/BuyTicket';
 import FadeBackground from '../components/modal/fadeBackground'
 import Modal from '../components/modal/modal'
 import Slider from '../components/dashboard/Slider';
-import { ADD_PHOTO, DEL_PHOTO } from './graphqlQuery/Mutation'
+import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 
 
@@ -25,14 +25,23 @@ function MyProfile() {
 
     const [addPhoto, { data: addPhotoData }] = useMutation(ADD_PHOTO);
     const [deletePhoto, { data: delPhotoData }] = useMutation(DEL_PHOTO);
+    const [addProfilePhoto, { data: profilePhotoData }] = useMutation(SET_PROFILE_PHOTO);
 
 
     useEffect(() => {
         if (addPhotoData) {
-            console.log(addPhotoData);
             context.addNewPhoto(addPhotoData.addPhoto.url)
         }
     }, [addPhotoData])
+
+    useEffect(() => {
+        if (profilePhotoData) {
+            console.log(profilePhotoData);
+            // context.setProfilePic(profilePhoto)
+        }
+    }, [profilePhotoData])
+
+
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [progress, setProgress] = useState(20)
@@ -62,11 +71,11 @@ function MyProfile() {
 
     //search how to add image file and get url back 
 
-    async function onImageChange(event) {
+    function onImageChange(event) {
 
         let img = event.target.files[0];
 
-        const url = 'https://z-p3-scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/126121370_4102785083069706_4348566771372785185_o.jpg?_nc_cat=105&ccb=3&_nc_sid=8bfeb9&_nc_ohc=o8uJAbBaIvUAX9OZpbt&_nc_ht=z-p3-scontent-amt2-1.xx&oh=0b37063643d4268a21f0d4b16900faab&oe=604EAE76'
+        const url = 'https://www.madametussauds.com/wien/media/tb5ptmg5/angelina-jolie-3.jpg?center=0.32980706286822209,0.54666666666666663&mode=crop&width=700&height=700'
 
         addPhoto({
             variables: {
@@ -77,35 +86,44 @@ function MyProfile() {
 
     };
 
-    async function handleProfilePic(url) {
+    function handleProfilePic(url) {
 
-        const reqBody = {
-            query: `
-            mutation  {
-                addProfilePhoto(email:"${context.email}",profilePhoto:"${url}") {
-                    email,
-                    profilePhoto
-                  }
-                }
-              `
-        };
-
-        const response = await fetch('http://localhost:5000/graphql', {
-            method: 'POST',
-            body: JSON.stringify(reqBody),
-            headers: {
-                'Content-Type': 'application/json',
-                // Authorization: this.context.token
-
+        addProfilePhoto({
+            variables: {
+                user: context.userId,
+                url: url
             }
-
         })
 
-        const json = await response.json()
+        context.setProfilePic(url)
 
-        const { profilePhoto, email } = await json.data.addProfilePhoto
+        // const reqBody = {
+        //     query: `
+        //     mutation  {
+        //         addProfilePhoto(email:"${context.email}",profilePhoto:"${url}") {
+        //             email,
+        //             profilePhoto
+        //           }
+        //         }
+        //       `
+        // };
 
-        context.setProfilePic(profilePhoto)
+        // const response = await fetch('http://localhost:5000/graphql', {
+        //     method: 'POST',
+        //     body: JSON.stringify(reqBody),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         // Authorization: this.context.token
+
+        //     }
+
+        // })
+
+        // const json = await response.json()
+
+        // const { profilePhoto, email } = await json.data.addProfilePhoto
+
+        // context.setProfilePic(profilePhoto)
 
     }
 
