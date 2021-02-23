@@ -94,36 +94,8 @@ function MyProfile() {
                 url: url
             }
         })
-
+        //later take it from addProfilePhoto because it only update DB and return null
         context.setProfilePic(url)
-
-        // const reqBody = {
-        //     query: `
-        //     mutation  {
-        //         addProfilePhoto(email:"${context.email}",profilePhoto:"${url}") {
-        //             email,
-        //             profilePhoto
-        //           }
-        //         }
-        //       `
-        // };
-
-        // const response = await fetch('http://localhost:5000/graphql', {
-        //     method: 'POST',
-        //     body: JSON.stringify(reqBody),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         // Authorization: this.context.token
-
-        //     }
-
-        // })
-
-        // const json = await response.json()
-
-        // const { profilePhoto, email } = await json.data.addProfilePhoto
-
-        // context.setProfilePic(profilePhoto)
 
     }
 
