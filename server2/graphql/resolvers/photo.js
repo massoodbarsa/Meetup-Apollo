@@ -7,16 +7,23 @@ const Images = require('../../models/image')
 module.exports = {
     Query: {
 
-        refreshToken: () => {
+        photos: async () => {
+            try {
 
-            console.log('selam');
+                const photos = await Images.find()
+                return photos
+
+            } catch (err) {
+                console.log(err);
+                throw new Error(err)
+            }
         },
 
     },
 
     Mutation: {
 
-        addPhoto: async (root, { user, url }, { req }, info) => {
+        addPhoto: async (root, { userId, url }, { req }, info) => {
 
             // const existImage = await Images.findOne({ url })
 
@@ -25,24 +32,25 @@ module.exports = {
             // }
 
             const newImage = new Images({
-                user,
+                userId,
                 url
             })
+
+            console.log(userId);
             return newImage.save()
         },
 
-        deletePhoto: async (root, { user, url }, { req }, info) => {
+        deletePhoto: async (root, { userId, url }, { req }, info) => {
 
             return Images.deleteOne({
-                user,
+                userId,
                 url
-
             })
         },
 
-        addProfilePhoto: async (root, { user, url }, { req }, info) => {
+        addProfilePhoto: async (root, { userId, url }, { req }, info) => {
             return User.findOneAndUpdate({
-                "_id": user
+                "_id": userId
             }, {
                 "$set": {
                     profilePhoto: url

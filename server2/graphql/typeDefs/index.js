@@ -6,15 +6,15 @@ module.exports = gql`
     # user(email:String,password:String): User
     users: [User!]!
     refreshToken: Auth!
-    
+    photos:[Photo]
   }
 
   type Mutation{
     login(email:String!,password:String!): User
     register(email:String,password:String,name:String):User
-    addPhoto(url:String,user:ID):Photo
-    deletePhoto(url:String,user:ID):Photo
-    addProfilePhoto(url:String,user:ID):Photo
+    addPhoto(url:String,userId:ID):Photo
+    deletePhoto(url:String,userId:ID):Photo
+    addProfilePhoto(url:String,userId:ID):Photo
   }
 
 
@@ -56,7 +56,8 @@ module.exports = gql`
   type Photo{
     _id: ID,
     url: String
-    user: String
+    userId: String
+    user:User
   },
 
   type Favorite{

@@ -1,6 +1,7 @@
 
 const User = require('../../models/user')
 const Images = require('../../models/image')
+const { findById } = require('../../models/user')
 
 
 
@@ -12,6 +13,7 @@ module.exports = {
             try {
 
                 const users = await User.find()
+                // console.log(users);
                 return users
 
             } catch (err) {
@@ -26,6 +28,11 @@ module.exports = {
         },
 
     },
+
+
+    // User:{
+    //     photos:async(root,{userId})=> await Images.findById(userId)
+    // },
 
     Mutation: {
 

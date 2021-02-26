@@ -6,7 +6,7 @@ export const UserContext = createContext()
 export default class UserContextProvider extends Component {
 
     state = {
-        userId:null,
+        // userId:null,
         email: null,
         name: null,
         surename: null,
@@ -17,11 +17,12 @@ export default class UserContextProvider extends Component {
         usersData: []
     }
 
-    setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
+    // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
+    setUserState = ({ email, name, surename, age, photos, profilePhoto, abonnement }) => {
 
         console.log(email);
         this.setState({
-            userId:_id,
+            // userId: _id,
             email,
             name,
             surename,
@@ -66,7 +67,7 @@ export default class UserContextProvider extends Component {
 
     }
 
-    login = ({email, name}, tokenExpiration) => {
+    login = ({ email, name }, tokenExpiration) => {
         this.setState({
             email,
             name

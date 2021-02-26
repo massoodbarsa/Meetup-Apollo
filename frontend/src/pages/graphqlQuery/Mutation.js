@@ -17,7 +17,6 @@ export const LOGIN = gql`
 mutation login($email : String! , $password:String!){
     login(email:$email, password:$password){
       
-        _id
         name
         email 
         surename
@@ -38,28 +37,36 @@ mutation login($email : String! , $password:String!){
 }
 `
 export const ADD_PHOTO = gql`
-mutation addPhoto($user : ID! , $url:String!){
-    addPhoto(user:$user,url:$url){
-      user,
-      url
-      }
+# mutation addPhoto($user : ID! , $url:String!){
+
+
+#     addPhoto(user:$user,url:$url){
+#       user,
+#       url
+#       }
+
+mutation addPhoto($email : String! , $url:String!){
+addPhoto(email:$email,url:$url){
+  email,
+  url
+  }
 }
 `
 
 export const DEL_PHOTO = gql`
-mutation deletePhoto($user : ID! , $url:String!){
-  deletePhoto(user:$user,url:$url){
-      user,
+mutation deletePhoto($email : String! , $url:String!){
+  deletePhoto(email:$email,url:$url){
+      email,
       url
       }
 }
 
 `
 export const SET_PROFILE_PHOTO = gql`
-mutation addProfilePhoto($user : ID! , $url:String!){
-  addProfilePhoto(user:$user,url:$url){
-      user,
-      url
+mutation addProfilePhoto($email : String! , $profilePhoto:String!){
+  addProfilePhoto(email:$email,profilePhoto:$profilePhoto){
+      email,
+      profilePhoto
       }
 }
 

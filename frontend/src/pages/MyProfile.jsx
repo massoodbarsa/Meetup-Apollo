@@ -37,7 +37,7 @@ function MyProfile() {
     useEffect(() => {
         if (profilePhotoData) {
             console.log(profilePhotoData);
-            // context.setProfilePic(profilePhoto)
+            context.setProfilePic(profilePhoto)
         }
     }, [profilePhotoData])
 
@@ -62,7 +62,8 @@ function MyProfile() {
     const handleDelPic = async (url) => {
         deletePhoto({
             variables: {
-                user: context.userId,
+                // user: context.userId,
+                email: context.email,
                 url: url
             }
         })
@@ -79,7 +80,7 @@ function MyProfile() {
 
         addPhoto({
             variables: {
-                user: context.userId,
+                email: context.email,
                 url: url
             }
         })
@@ -90,8 +91,8 @@ function MyProfile() {
 
         addProfilePhoto({
             variables: {
-                user: context.userId,
-                url: url
+                email: context.email,
+                profilePhoto: url
             }
         })
         //later take it from addProfilePhoto because it only update DB and return null
