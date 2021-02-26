@@ -36,7 +36,8 @@ function MyProfile() {
 
     useEffect(() => {
         if (profilePhotoData) {
-            console.log(profilePhotoData);
+            const {profilePhoto}=profilePhotoData.addProfilePhoto
+            console.log(profilePhoto);
             context.setProfilePic(profilePhoto)
         }
     }, [profilePhotoData])
@@ -95,9 +96,6 @@ function MyProfile() {
                 profilePhoto: url
             }
         })
-        //later take it from addProfilePhoto because it only update DB and return null
-        context.setProfilePic(url)
-
     }
 
     const LinearProgressWithLabel = (props) => {
