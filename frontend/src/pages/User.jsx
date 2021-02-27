@@ -48,6 +48,7 @@ function User(props) {
     const [password, setPass] = useState(null)
     const [passRep, setPassRep] = useState(false)
     const [messageInfo, setMessageInfo] = useState(null);
+    const [name, setName] = useState(null)
 
 
 
@@ -81,7 +82,8 @@ function User(props) {
             addUser({
                 variables: {
                     email: email,
-                    password: password
+                    password: password,
+                    name:name
                 }
             })
         }
@@ -165,8 +167,7 @@ function User(props) {
                                 size='medium'
                                 error={textField}
                                 onChange={(e) => setEmai(e.target.value)}
-
-
+                                required
                             />
                             <TextField
                                 id="textfield"
@@ -176,7 +177,7 @@ function User(props) {
                                 size='medium'
                                 error={textField}
                                 onChange={(e) => setPass(e.target.value)}
-
+                                required
                             />
 
                             <TextField
@@ -187,9 +188,18 @@ function User(props) {
                                 size='medium'
                                 error={textField}
                                 onChange={(e) => setPassRep(e.target.value)}
-
+                                required
                             />
-
+                            <TextField
+                                id="textfield"
+                                label="Name"
+                                margin='normal'
+                                type='text'
+                                size='medium'
+                                error={textField}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
                         </div>
 
                         <div>
