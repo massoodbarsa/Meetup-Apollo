@@ -83,7 +83,7 @@ function User(props) {
                 variables: {
                     email: email,
                     password: password,
-                    name:name
+                    name: name
                 }
             })
         }

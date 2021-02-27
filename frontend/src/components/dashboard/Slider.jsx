@@ -6,9 +6,8 @@ import Cards from '../dashboard/Cards'
 
 
 
-export default function Slider({ photo, comp }) {
+export default function Slider({ usersData, comp }) {
 
-    const context = useContext(UserContext);
 
     return (
         <div>
@@ -24,52 +23,43 @@ export default function Slider({ photo, comp }) {
 
 
                             {
-                                photo.map((items => items.map((item, index) => {
-                                    const { userId, url } = item
+                                usersData.map((item, index) => {
+                                    const { email, profilePhoto, name } = item
                                     return (
 
                                         <Carousel.Item key={index} className='section-center__img-container'>
+                                            <Carousel.Caption>
+                                                <h1>{name}</h1>
+                                            </Carousel.Caption>
                                             <img
                                                 className="d-block w-100 section-center__img"
-                                                src={url}
+                                                src={profilePhoto}
                                                 alt="First slide"
                                             />
-                                            <Carousel.Caption>
-                                                {/* <h3>First slide label</h3> */}
-                                                <p>{userId}</p>
-                                            </Carousel.Caption>
-
-                                            <Carousel.Caption>
-                                                <h3>Third slide label</h3>
-                                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                            </Carousel.Caption>
+                                            <h5>{email}</h5>
                                         </Carousel.Item>
                                     )
-
                                 })
-                                ))
                             }
-
-
                         </Carousel>
                     }
 
                     {
                         comp === 'myprofile' && <Carousel slide={true}>
                             {
-                                photo.map((item, index) => {
-                                    const { url } = item
+                                usersData.map((item, index) => {
+                                    const { email, profilePhoto } = item
                                     return (
 
                                         <Carousel.Item key={index} className='section-center__img-container'>
                                             <img
                                                 className="d-block w-100 section-center__img"
-                                                src={url}
+                                                src={profilePhoto}
                                                 alt="First slide"
                                             />
 
                                             <Cards
-                                                url={url}
+                                                url={profilePhoto}
                                                 key={index}
                                                 favTitle='Make it your profile picture'
                                                 delTitle='Delete!'

@@ -58,10 +58,6 @@ function Dashboard() {
 
     const { usersData } = context
 
-    const photos = usersData.map(i => i.photos.map(item => item))
-
-    const photo = photos.map(items => items.map(item => item))
-    
     return (
         <Grid container spacing={3} className='dashboard'>
             <Grid item xs={3} sm={3} className='dashboard__left'>
@@ -90,7 +86,7 @@ function Dashboard() {
                 </section>
 
                 <section className='dashboard__middel__corossol'>
-                    <ImageSlider photo={photo} comp='dashboard' />
+                    <ImageSlider usersData={usersData} comp='dashboard' />
                 </section>
             </Grid>
 

@@ -36,7 +36,7 @@ function MyProfile() {
 
     useEffect(() => {
         if (profilePhotoData) {
-            const {profilePhoto}=profilePhotoData.addProfilePhoto
+            const { profilePhoto } = profilePhotoData.addProfilePhoto
             console.log(profilePhoto);
             context.setProfilePic(profilePhoto)
         }
@@ -77,7 +77,7 @@ function MyProfile() {
 
         let img = event.target.files[0];
 
-        const url = 'https://www.madametussauds.com/wien/media/tb5ptmg5/angelina-jolie-3.jpg?center=0.32980706286822209,0.54666666666666663&mode=crop&width=700&height=700'
+        const url = 'https://thumb-p1.xhcdn.com/a/-xyt5Kl_i34-GQC3k_itlA/000/475/221/101_1000.jpg'
 
         addPhoto({
             variables: {
