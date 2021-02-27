@@ -60,18 +60,33 @@ const Mutation = new GraphQLObjectType({
                 },
 
             },
-            resolve(parent, args) {
+            async resolve(parent, args) {
 
-                user = new User({
-                    email: args.email,
-                    password: args.password,
-                    name: args.name,
-                    surename: args.surename,
-                    age: args.age,
-                    profilePhoto: args.profilePhoto
-                });
+                const existUser = await User.findOne({ email: args.email })
 
-                return user.save()
+                console.log(existUser);
+                let user
+                try {
+                    if (!existUser) {
+                        console.log(existUser);
+                        user = new User({
+                            email: args.email,
+                            password: args.password,
+                            name: args.name,
+                            surename: args.surename,
+                            age: args.age,
+                            profilePhoto: args.profilePhoto
+                        });
+
+                    }
+                    if (user) {
+                        return user.save()
+                    }
+
+
+                } catch (error) {
+                    throw error
+                }
 
             }
         },

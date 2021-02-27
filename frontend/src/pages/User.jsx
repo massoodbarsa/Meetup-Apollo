@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import './User.scss'
 import Modal from '../components/modal/modal'
 import FadeBackground from '../components/modal/fadeBackground'
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, Snackbar } from '@material-ui/core';
 import { UserContext } from '../context/UserContextProvider'
 import { ADD_USER, LOGIN } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
@@ -10,10 +10,10 @@ import { useMutation } from '@apollo/client'
 
 function User(props) {
 
-    
+
     const context = useContext(UserContext);
 
-    const [addUser, { newUserData, }] = useMutation(ADD_USER);
+    const [addUser, { data: newUserData }] = useMutation(ADD_USER);
     const [login, { data }] = useMutation(LOGIN);
 
     useEffect(() => {
@@ -23,15 +23,43 @@ function User(props) {
         }
     }, [data])
 
+    useEffect(() => {
+        if (newUserData) {
+            const { addUser } = newUserData
+            if (!addUser) {
+                setMessageInfo('User is already exist')
+                setSnackbar(true)
+            } else {
+                setSignUp(false)
+            }
+        }
+    }, [newUserData])
+
+
+
+
 
     const [signUp, setSignUp] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
-    const [open, setOpen] = useState(false)
+    const [snackbar, setSnackbar] = useState(false)
     const [gender, setGender] = useState('')
     const [textField, setTextField] = useState(false)
     const [email, setEmai] = useState(null)
     const [password, setPass] = useState(null)
     const [passRep, setPassRep] = useState(false)
+    const [messageInfo, setMessageInfo] = useState(null);
+
+
+
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackbar(false);
+    };
+
 
 
     const submitHandler = (e) => {
@@ -57,15 +85,14 @@ function User(props) {
                 }
             })
         }
-
-        login({
-            variables: {
-                email: email,
-                password: password
-            }
-        })
-
-        setSignUp(false)
+        else {
+            login({
+                variables: {
+                    email: email,
+                    password: password
+                }
+            })
+        }
         setTextField(false)
     }
 
@@ -199,7 +226,17 @@ function User(props) {
                             >Signup</Button>
                         </div>
                     </form>
-
+                    <section className='snackbarOnerror'>
+                        <Snackbar
+                            // anchorOrigin={{ vertical, horizontal }}
+                            message={messageInfo}
+                            key={'top' + 'center'}
+                            open={snackbar}
+                            autoHideDuration={3000}
+                            onClose={handleCloseSnackbar}
+                        >
+                        </Snackbar>
+                    </section>
                 </Modal>
                 }
             </div>
