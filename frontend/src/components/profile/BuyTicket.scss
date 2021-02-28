@@ -3,10 +3,12 @@
     &__container {
         display: flex;
         padding: 1rem;
+        
     }
 
     &__items {
-        margin: 2px;
+        margin: 5px;
+        width: 100%;
 
         .MuiButtonBase-root {
             outline: none;

@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         maxWidth: 345,
     },
     media: {
-        height: 140,
+        height: 300,
     },
 });
 
@@ -20,8 +20,7 @@ export default function BuyTicket() {
         {
             amount: 5,
             price: 5,
-            image:'https://www.google.com/url?sa=i&url=http%3A%2F%2Fmetalheartpromotions.com%2F%3Fpage_id%3D27&psig=AOvVaw0zOX4m9sorqz2D2dB7_Hh_&ust=1614555796305000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDc5J2fi-8CFQAAAAAdAAAAABAh'
-
+            image: 'https://carrollwoodpta.org/wp-content/uploads/2018/01/ticket-clipart-purge-clipart-ticket-85041.jpg'
         },
         {
             amount: 10,
@@ -31,13 +30,12 @@ export default function BuyTicket() {
         {
             amount: 50,
             price: 40,
-            image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2FDouble-Raffle-Tickets-500ct-Colors%2Fdp%2FB00QYHNLIQ&psig=AOvVaw0zOX4m9sorqz2D2dB7_Hh_&ust=1614555796305000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDc5J2fi-8CFQAAAAAdAAAAABAK'
+            image: 'https://worm.org/wp-content/uploads/2016/04/tickets_worm.jpg'
         },
         {
             amount: 100,
             price: 70,
-            image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.eventbrite.co.uk%2Fblog%2Fticket-giveaways-on-social-media-ds00%2F&psig=AOvVaw0zOX4m9sorqz2D2dB7_Hh_&ust=1614555796305000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMDc5J2fi-8CFQAAAAAdAAAAABAD'
-
+            image: 'https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2016/09/06105011/ticket-giveaways.jpg'
         },
     ])
 
@@ -59,11 +57,10 @@ export default function BuyTicket() {
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        Lizard
+                                        {amount} Tickets
                                     </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                        across all continents except Antarctica
+                                    <Typography color="secondray" component="h1">
+                                        {price} $
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
