@@ -37,7 +37,6 @@ function MyProfile() {
     useEffect(() => {
         if (profilePhotoData) {
             const { profilePhoto } = profilePhotoData.addProfilePhoto
-            console.log(profilePhoto);
             context.setProfilePic(profilePhoto)
         }
     }, [profilePhotoData])
@@ -263,9 +262,11 @@ function MyProfile() {
                     />
                 </div>
                 <div className='profile__right__buttons'>
-                    <Button variant="outlined" color="primary" onClick={(e) => { setBuyPrem(true) }}>
-                        Buy Premium
+                    <div className=' button-white'>
+                        <Button variant="outlined" color="primary" onClick={(e) => { setBuyPrem(true) }}>
+                            Buy Premium
                     </Button>
+                    </div>
 
                     {buyPrem && <FadeBackground />}
 
@@ -277,10 +278,11 @@ function MyProfile() {
                         <BuyPrem />
                     </Modal>}
 
-                    <Button variant="outlined" color="primary" onClick={(e) => { setTicket(true) }}>
-                        Buy Ticket
+                    <div className=' button-white'>
+                        <Button variant="outlined" color="primary" onClick={(e) => { setTicket(true) }}>
+                            Buy Ticket
                         </Button>
-
+                    </div>
                     {ticket && <FadeBackground />}
 
                     {ticket && <Modal

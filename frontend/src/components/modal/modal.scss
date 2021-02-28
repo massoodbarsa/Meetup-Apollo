@@ -1,11 +1,11 @@
 .modal {
-    width: 50%;
-    height: 75%;
+    width: 60%;
+    height: 80vh;
     background: var(--bck-color-2);
     box-shadow: 0 2px 2px rgb(170, 221, 217);
     position: fixed;
-    top: 15vh;
-    left: 25%;
+    top: 10vh;
+    left: 20%;
     display: block;
 
     &__header {
@@ -27,19 +27,8 @@
         display: flex;
         justify-content: flex-end;
         padding: 1rem;
-
-        .MuiButton-root {
-            margin-right: 30px;
-            color: var(--clr-red);
-            border-color: var(--clr-red);
-        }
-
-        .MuiButton-root:hover {
-            color: var(--clr-grey-9);
-            border-color: var(--clr-grey-9);
-            background-color: var(--clr-red);
-        }
-
+        position: relative;
+        align-items: center;
     }
 
     &__btn {

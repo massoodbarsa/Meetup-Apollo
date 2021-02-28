@@ -2,6 +2,7 @@
     margin: 10px 0;
     background-color: var(--bck-color-2);
 
+
     .MuiFormLabel-root {
         margin: 1rem 1rem 1rem .5rem;
         color: var(--clr-grey-8);
@@ -111,17 +112,7 @@
         &__buttons {
             display: flex;
             flex-direction: column;
-
-            .MuiButton-root {
-                color: var(--clr-grey-9);
-                border-color: var(--clr-grey-9);
-            }
-
-            .MuiButton-root:hover {
-                color: var(--clr-grey-1);
-                border-color: var(--clr-grey-9);
-                background-color: var(--clr-grey-9);
-            }
+            align-items: center;
 
             Button {
                 margin-top: .8rem;

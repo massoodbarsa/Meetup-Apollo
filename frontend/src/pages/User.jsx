@@ -130,7 +130,7 @@ function User(props) {
                     />
 
                 </div>
-                <div >
+                <div className='button-gray'>
                     <Button
                         variant="contained"
                         type='submit'
@@ -139,7 +139,8 @@ function User(props) {
                     </Button>
                 </div>
             </form>
-            <div >
+            <div className='button-gray'
+            >
                 <Button
                     variant="contained"
                     // color="primary"

@@ -1,0 +1,17 @@
+.ticket {
+
+    &__container {
+        display: flex;
+        padding: 1rem;
+    }
+
+    &__items {
+        margin: 2px;
+
+        .MuiButtonBase-root {
+            outline: none;
+        }
+
+    }
+
+}

@@ -102,7 +102,7 @@ function Dashboard() {
                 </NavLink>
                 <Divider className='divider' />
 
-                <div className='dashboard__right__buttons'>
+                <div className='dashboard__right__buttons  button-white'>
                     <Button variant="outlined" color="primary" onClick={(e) => setAnchorEl(e.currentTarget)}>
                         Viewers
                         </Button>
