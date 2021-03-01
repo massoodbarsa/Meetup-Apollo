@@ -35,10 +35,6 @@ function User(props) {
         }
     }, [newUserData])
 
-
-
-
-
     const [signUp, setSignUp] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
     const [snackbar, setSnackbar] = useState(false)
@@ -51,8 +47,6 @@ function User(props) {
     const [name, setName] = useState(null)
 
 
-
-
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -60,8 +54,6 @@ function User(props) {
 
         setSnackbar(false);
     };
-
-
 
     const submitHandler = (e) => {
         e.preventDefault()

@@ -12,6 +12,7 @@ export default class UserContextProvider extends Component {
         surename: null,
         age: null,
         profilePhoto: '',
+        ticket: null,
         photos: [],
         abonnement: [],
         usersData: [],
@@ -19,7 +20,7 @@ export default class UserContextProvider extends Component {
     }
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
-    setUserState = ({ email, name, surename, age, photos, profilePhoto, abonnement }) => {
+    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement }) => {
         this.setState({
             // userId: _id,
             email,
@@ -28,7 +29,8 @@ export default class UserContextProvider extends Component {
             age,
             photos,
             profilePhoto,
-            abonnement
+            abonnement,
+            ticket
         })
     }
 
@@ -80,14 +82,20 @@ export default class UserContextProvider extends Component {
         })
     }
 
-
     setPayPal = (payPal) => {
         this.setState({
-           payPal:payPal
+            payPal: payPal
         })
     }
 
-    valueObj = {    
+    updateTicketAmount = ({ ticket }) => {
+        this.setState({
+            ticket
+        })
+    }
+
+
+    valueObj = {
         login: this.login,
         logout: this.logout,
         setUserState: this.setUserState,
@@ -95,7 +103,8 @@ export default class UserContextProvider extends Component {
         setUsers: this.setUsers,
         addNewPhoto: this.addNewPhoto,
         deletePhoto: this.deletePhoto,
-        setPayPal:this.setPayPal
+        setPayPal: this.setPayPal,
+        updateTicketAmount: this.updateTicketAmount
     }
 
     render() {

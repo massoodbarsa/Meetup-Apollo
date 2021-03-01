@@ -9,6 +9,7 @@ mutation login($email : String! , $password:String!){
         surename
         age
         profilePhoto
+        ticket
         photos{
             url
           }
@@ -36,7 +37,18 @@ mutation addUser($email : String! , $password:String!, $name:String!){
       }
 }
 `
-
+export const UPDATE_USER = gql`
+mutation updateUser($email : String! , $name:String, $ticket:Int){
+    updateUser(email:$email,name:$name,ticket:$ticket){
+        email
+        name
+        surename
+        age
+        profilePhoto 
+        ticket
+      }
+}
+`
 
 
 //photo 

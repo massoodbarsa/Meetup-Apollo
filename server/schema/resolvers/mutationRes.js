@@ -90,6 +90,43 @@ const Mutation = new GraphQLObjectType({
 
             }
         },
+
+        updateUser: {
+            type: UserType,
+            args: {
+                email: {
+                    type: new GraphQLNonNull(GraphQLString)
+                },
+
+                name: {
+                    type: GraphQLString
+                },
+                surename: {
+                    type: GraphQLString
+                },
+                age: {
+                    type: GraphQLInt
+                },
+                profilePhoto: {
+                    type: GraphQLString
+                },
+                ticket: {
+                    type: GraphQLInt
+                },
+
+            },
+            async resolve(parent, args) {
+                //last ticket amount plus new ?
+                const updatedUser = User.findOneAndUpdate(
+                    { email: args.email },
+                    { $set: { ...args } },
+                    { new: true }
+                );
+                return updatedUser
+            }
+        },
+
+
         addFavorite: {
             type: FavoriteType,
             args: {

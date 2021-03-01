@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import Cards from '../components/dashboard/Cards'
 import './Profile.scss'
-import { Grid, Chip, Button, Tooltip, FormLabel, Popover, Divider, Box, LinearProgress, Paper, Typography, TextareaAutosize, Input } from '@material-ui/core/';
+import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography, TextareaAutosize, Input } from '@material-ui/core/';
 import DoneIcon from '@material-ui/icons/Done';
 import FaceIcon from '@material-ui/icons/Face';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
@@ -16,7 +16,6 @@ import Modal from '../components/modal/modal'
 import Slider from '../components/dashboard/Slider';
 import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
-
 
 
 function MyProfile() {
@@ -40,7 +39,6 @@ function MyProfile() {
             context.setProfilePic(profilePhoto)
         }
     }, [profilePhotoData])
-
 
 
     const [anchorEl, setAnchorEl] = useState(null)
@@ -163,7 +161,6 @@ function MyProfile() {
 
                     </div>
 
-
                     <Button
                         variant="contained"
                         component="label"
@@ -186,7 +183,7 @@ function MyProfile() {
                         variant='outlined'
                         style={{ backgroundColor: '#424242', color: '#fff', borderColor: "hsl(209, 23%, 60%)" }}
                     />
-                    {/* {
+                    {
                         abonnement.map((item, index) => {
                             return (
                                 <div key={index}>
@@ -213,21 +210,22 @@ function MyProfile() {
                                         />
                                     </section>
 
-                                    <section className='profile__middel__account__section'>
-                                        <FormLabel htmlFor="" >Tickets</FormLabel>
-                                        <Chip
-                                            icon={<ConfirmationNumberIcon />}
-                                            label={item.tickets}
-                                            color="primary"
-                                            variant="outlined"
-                                            size='medium'
-                                        />
-                                    </section>
+
                                 </div>
 
                             )
                         })
-                    } */}
+                    }
+                    <section className='profile__middel__account__section'>
+                        <FormLabel htmlFor="" >Tickets</FormLabel>
+                        <Chip
+                            icon={<ConfirmationNumberIcon />}
+                            label={context.ticket}
+                            color="primary"
+                            variant="outlined"
+                            size='medium'
+                        />
+                    </section>
                 </section>
 
                 <section className='profile__middel__survey'>

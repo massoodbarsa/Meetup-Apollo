@@ -37,6 +37,9 @@ const UserType = new GraphQLObjectType({
         profilePhoto: {
             type: GraphQLString
         },
+        ticket: {
+            type: GraphQLInt
+        },
         abonnement: {
             type: GraphQLList(AbonnementType),
             resolve(parent, args) {

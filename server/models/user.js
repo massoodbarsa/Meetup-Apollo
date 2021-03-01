@@ -11,7 +11,8 @@ const userSchema = MongoSchema({
     name: String,
     surename: String,
     age: Number,
-    profilePhoto: String
+    profilePhoto: String,
+    ticket:Number
 })
 
 module.exports = mongoose.model('User', userSchema)

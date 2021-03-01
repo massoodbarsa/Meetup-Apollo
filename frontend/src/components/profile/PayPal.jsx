@@ -1,7 +1,8 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
 import { UserContext } from '../../context/UserContextProvider'
 import { Snackbar } from '@material-ui/core';
-
+import { useMutation } from '@apollo/client'
+import { UPDATE_USER } from '../../pages/graphqlQuery/Mutation'
 export default function PayPal(props) {
 
     const context = useContext(UserContext);
@@ -11,7 +12,18 @@ export default function PayPal(props) {
 
     const paypalRef = useRef()
 
-    const { price, amount } = context.payPal
+    const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
+
+    useEffect(() => {
+
+        if (updateUserData) {
+            console.log(updateUserData.updateUser.ticket);
+            const ticket = updateUserData.updateUser
+            context.updateTicketAmount(ticket)
+        }
+    }, [updateUserData])
+
+    const { price, amount, desc, type } = context.payPal
 
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -28,7 +40,7 @@ export default function PayPal(props) {
                 return actions.order.create({
                     intent: 'CAPTURE',
                     purchase_units: [{
-                        description: `${amount} tickets is bought`,
+                        description: `${desc}`,
                         amount: {
                             currency_code: 'USD',
                             value: price
@@ -39,6 +51,15 @@ export default function PayPal(props) {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
                 setSnackbarSuccess(true)
+                if (type === 'ticket') {
+                    updateUser({
+                        variables: {
+                            email: context.email,
+                            ticket: amount
+                        }
+                    })
+                }
+
                 setTimeout(() => {
                     props.history.push({
                         pathname: "/profile",
