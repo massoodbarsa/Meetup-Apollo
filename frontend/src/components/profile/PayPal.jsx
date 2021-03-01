@@ -1,16 +1,30 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
 import { UserContext } from '../../context/UserContextProvider'
+import { Button, TextField, Snackbar } from '@material-ui/core';
 
 export default function PayPal() {
 
     const context = useContext(UserContext);
     const [paidFor, setPaidFor] = useState(false)
     const [error, setError] = useState(null)
+    const [message, setMessage] = useState(null);
+    const [snackbarSuccess, setSnackbarSuccess] = useState(false)
+    const [snackbarError, setSnackbarError] = useState(false)
+
+
 
     const paypalRef = useRef()
 
     const { price, image, amount } = context.payPal
 
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackbarError(false);
+        setSnackbarSuccess(false)
+    };
 
     useEffect(() => {
         window.paypal.Buttons({
@@ -29,40 +43,43 @@ export default function PayPal() {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
                 setPaidFor(true)
+                setSnackbarSuccess(true)
+
                 console.log(order);
             },
             onError: err => {
-                setError(err)
+                setSnackbarError(true)
                 console.log(err);
             }
         }).render(paypalRef.current)
     }, [amount])
 
-
-
-
-    if (paidFor) {
-        return (
-            <div>
-                Thanks for making the purchase
-            </div>
-        )
-    }
-
-    if (error) {
-        return (
-            <div>
-                Error in processing payment , please try again
-            </div>
-        )
-    }
-
-
-
     return (
         <div>
             <p>To be paid:{price}</p>
             <div ref={paypalRef} />
+            <section className='snackbarOnSuccess'>
+                <Snackbar
+                    message='Thanks for making the purchase'
+                    key={'top' + 'center'}
+                    open={snackbarSuccess}
+                    autoHideDuration={3000}
+                    onClose={handleCloseSnackbar}
+                >
+                </Snackbar>
+            </section>
+
+            <section className='snackbarOnError'>
+                <Snackbar
+                    message='  Error in processing payment , please try again'
+                    key={'top' + 'center'}
+                    open={snackbarError}
+                    autoHideDuration={3000}
+                    onClose={handleCloseSnackbar}
+                >
+                </Snackbar>
+
+            </section>
         </div>
     )
 }

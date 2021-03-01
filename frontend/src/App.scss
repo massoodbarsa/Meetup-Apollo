@@ -24,9 +24,15 @@
     color: var(--clr-grey-8);
   }
 
-  .snackbarOnerror {
+  .snackbarOnError {
     .MuiSnackbarContent-root {
       background-color: var(--clr-red);
+    }
+  }
+
+  .snackbarOnSuccess {
+    .MuiSnackbarContent-root {
+      background-color: var( --clr-green-light);
     }
   }
 }

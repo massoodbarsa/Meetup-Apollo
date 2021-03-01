@@ -237,7 +237,7 @@ function User(props) {
                             >Signup</Button>
                         </div>
                     </form>
-                    <section className='snackbarOnerror'>
+                    <section className='snackbarOnError'>
                         <Snackbar
                             // anchorOrigin={{ vertical, horizontal }}
                             message={messageInfo}
