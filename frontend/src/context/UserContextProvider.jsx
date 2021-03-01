@@ -14,7 +14,8 @@ export default class UserContextProvider extends Component {
         profilePhoto: '',
         photos: [],
         abonnement: [],
-        usersData: []
+        usersData: [],
+        payPal: null
     }
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
@@ -79,14 +80,22 @@ export default class UserContextProvider extends Component {
         })
     }
 
-    valueObj = {
+
+    setPayPal = (payPal) => {
+        this.setState({
+           payPal:payPal
+        })
+    }
+
+    valueObj = {    
         login: this.login,
         logout: this.logout,
         setUserState: this.setUserState,
         setProfilePic: this.setProfilePic,
         setUsers: this.setUsers,
         addNewPhoto: this.addNewPhoto,
-        deletePhoto: this.deletePhoto
+        deletePhoto: this.deletePhoto,
+        setPayPal:this.setPayPal
     }
 
     render() {

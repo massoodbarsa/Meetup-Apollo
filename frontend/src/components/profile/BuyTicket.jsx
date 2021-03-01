@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardMedia, Button, CardContent, Typography } from '@material-ui/core';
 import './BuyTicket.scss'
+import PayPal from './PayPal';
+import { Link } from 'react-router-dom'
+import { UserContext } from '../../context/UserContextProvider'
+
+
 
 const useStyles = makeStyles({
     root: {
@@ -13,6 +18,8 @@ const useStyles = makeStyles({
 });
 
 export default function BuyTicket() {
+
+    const context = useContext(UserContext);
 
     const classes = useStyles();
 
@@ -39,43 +46,39 @@ export default function BuyTicket() {
         },
     ])
 
-    const hnadleTicket = () => {
-        console.log('ticket');
+    const handleTicket = (item) => {
+        context.setPayPal(item)
     }
     return (
-        <div className='ticket__container'>
-            {
-                ticket.map((item, index) => {
-                    const { image, amount, price } = item
-                    return (
-                        < Card className='ticket__items' key={index} >
-                            <CardActionArea>
-                                <CardMedia
-                                    className={classes.media}
-                                    image={image}
-                                    title={amount}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {amount} Tickets
+        <>
+            <div className='ticket__container'>
+                {
+                    ticket.map((item, index) => {
+                        const { image, amount, price } = item
+                        return (
+                            <Link to='/paypal' className='ticket__items' onClick={() => handleTicket(item)}>
+                                < Card key={index} >
+                                    <CardActionArea >
+                                        <CardMedia
+                                            className={classes.media}
+                                            image={image}
+                                            title={amount}
+                                        />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {amount} Tickets
                                     </Typography>
-                                    <Typography color="secondray" component="h1">
-                                        {price} $
+                                            <Typography component="h1">
+                                                {price} $
                                     </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            {/* <CardActions>
-                                <Button size="small" color="primary">
-                                    Share
-                                 </Button>
-                                <Button size="small" color="primary">
-                                    Learn More
-                                  </Button>
-                            </CardActions> */}
-                        </Card>
-                    )
-                })
-            }
-        </div>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Link>
+                        )
+                    })
+                }
+            </div>
+        </>
     )
 }

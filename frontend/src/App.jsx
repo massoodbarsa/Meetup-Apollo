@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import MyProfile from './pages/MyProfile'
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error'
+import PayPal from './components/profile/PayPal';
 
 
 
@@ -41,14 +42,16 @@ export default function App() {
           <main className='main'>
             <Switch>
 
-              {/* {context.email && <Redirect from='/' to='/profile' exact />} */}
-              {/* {context.email && <Redirect from='/users' to='/profile' exact />} */}
+              {/* {context.email && <Redirect from='/' to='/profile' exact />}
+              {context.email && <Redirect from='/users' to='/profile' exact />}
 
-              {/* {!context.email && <Route path='/users' component={userPage} />} */}
-              {/* {!context.email && <Redirect to='/users' exact />} */}
+              {!context.email && <Route path='/users' component={userPage} />}
+              {!context.email && <Redirect to='/users' exact />} */}
               <Route path='/profile' component={MyProfile} />
 
               <Route path='/dashboard' component={Dashboard} />
+              <Route path='/paypal' component={PayPal} />
+
 
               {/* {context.token && <Route path='/profile' component={Profile} />} */}
             </Switch>
