@@ -1,21 +1,17 @@
 import React, { useContext, useState, useRef, useEffect } from 'react'
 import { UserContext } from '../../context/UserContextProvider'
-import { Button, TextField, Snackbar } from '@material-ui/core';
+import { Snackbar } from '@material-ui/core';
 
-export default function PayPal() {
+export default function PayPal(props) {
 
     const context = useContext(UserContext);
-    const [paidFor, setPaidFor] = useState(false)
-    const [error, setError] = useState(null)
-    const [message, setMessage] = useState(null);
+
     const [snackbarSuccess, setSnackbarSuccess] = useState(false)
     const [snackbarError, setSnackbarError] = useState(false)
 
-
-
     const paypalRef = useRef()
 
-    const { price, image, amount } = context.payPal
+    const { price, amount } = context.payPal
 
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -42,10 +38,14 @@ export default function PayPal() {
             },
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture()
-                setPaidFor(true)
                 setSnackbarSuccess(true)
+                setTimeout(() => {
+                    props.history.push({
+                        pathname: "/profile",
 
-                console.log(order);
+                    });
+                }, 3500)
+
             },
             onError: err => {
                 setSnackbarError(true)
@@ -56,7 +56,7 @@ export default function PayPal() {
 
     return (
         <div>
-            <p>To be paid:{price}</p>
+            <p>To be paid : {price}$</p>
             <div ref={paypalRef} />
             <section className='snackbarOnSuccess'>
                 <Snackbar
