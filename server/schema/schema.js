@@ -44,7 +44,7 @@ const UserType = new GraphQLObjectType({
             type: GraphQLList(AbonnementType),
             resolve(parent, args) {
                 return Abonnement.find({
-                    userId: parent.id
+                    email: parent.email
                 })
             }
 
@@ -82,19 +82,13 @@ const UserType = new GraphQLObjectType({
 const AbonnementType = new GraphQLObjectType({
     name: 'Abonnement',
     fields: () => ({
-        userId: {
+        email: {
             type: GraphQLString
         },
-        name: {
+        type: {
             type: GraphQLString
         },
         price: {
-            type: GraphQLInt
-        },
-        discount: {
-            type: GraphQLInt
-        },
-        tickets: {
             type: GraphQLInt
         },
         startDate: {

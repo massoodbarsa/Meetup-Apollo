@@ -3,6 +3,7 @@ import Cards from '../components/dashboard/Cards'
 import './Profile.scss'
 import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography, TextareaAutosize, Input } from '@material-ui/core/';
 import DoneIcon from '@material-ui/icons/Done';
+import ClearIcon from '@material-ui/icons/Clear';
 import FaceIcon from '@material-ui/icons/Face';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
@@ -184,37 +185,34 @@ function MyProfile() {
                         style={{ backgroundColor: '#424242', color: '#fff', borderColor: "hsl(209, 23%, 60%)" }}
                     />
                     {
-                        abonnement.map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <section className='profile__middel__account__section'>
-                                        <FormLabel >Account type</FormLabel>
+                        // abonnement.map((item, index) => {
+                        //     return (
+                        abonnement && <div >
+                            <section className='profile__middel__account__section'>
+                                <FormLabel >Account type</FormLabel>
+                                <Chip
+                                    icon={abonnement.type ? <DoneIcon /> : <ClearIcon />}
+                                    label={abonnement.type}
+                                    color="primary"
+                                    variant="outlined"
+                                    size='medium'
+                                />
+                            </section>
 
-                                        <Chip
-                                            icon={<DoneIcon />}
-                                            label={item.name}
-                                            color="primary"
-                                            variant="outlined"
-                                            size='medium'
-                                        />
-                                    </section>
+                            <section className='profile__middel__account__section'>
+                                <FormLabel htmlFor="" >Remaining time</FormLabel>
+                                <Chip
+                                    icon={<HourglassFullIcon />}
+                                    label={abonnement.days}
+                                    color="primary"
+                                    variant="outlined"
+                                    size='medium'
+                                />
+                            </section>
+                        </div>
 
-                                    <section className='profile__middel__account__section'>
-                                        <FormLabel htmlFor="" >Remaining time</FormLabel>
-                                        <Chip
-                                            icon={<HourglassFullIcon />}
-                                            label={item.days}
-                                            color="primary"
-                                            variant="outlined"
-                                            size='medium'
-                                        />
-                                    </section>
-
-
-                                </div>
-
-                            )
-                        })
+                        //     )
+                        // })
                     }
                     <section className='profile__middel__account__section'>
                         <FormLabel htmlFor="" >Tickets</FormLabel>

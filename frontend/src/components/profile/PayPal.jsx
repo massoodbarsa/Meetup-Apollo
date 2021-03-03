@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef, useEffect } from 'react'
 import { UserContext } from '../../context/UserContextProvider'
 import { Snackbar } from '@material-ui/core';
 import { useMutation } from '@apollo/client'
-import { UPDATE_USER } from '../../pages/graphqlQuery/Mutation'
+import { UPDATE_USER, ADD_ABONNEMENT } from '../../pages/graphqlQuery/Mutation'
 export default function PayPal(props) {
 
     const context = useContext(UserContext);
@@ -13,15 +13,26 @@ export default function PayPal(props) {
     const paypalRef = useRef()
 
     const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
+    const [addAbonnement, { data: abonnementData }] = useMutation(ADD_ABONNEMENT);
+
 
     useEffect(() => {
 
         if (updateUserData) {
-            console.log(updateUserData.updateUser.ticket);
             const ticket = updateUserData.updateUser
             context.updateTicketAmount(ticket)
         }
     }, [updateUserData])
+
+    useEffect(() => {
+
+        if (abonnementData) {
+            console.log(abonnementData);
+            // const abonnement = abonnementData.abonnementData
+            context.updateAbonnement(abonnementData.addAbonnement)
+        }
+    }, [abonnementData])
+
 
     const { price, amount, desc, type } = context.payPal
 
@@ -56,6 +67,17 @@ export default function PayPal(props) {
                         variables: {
                             email: context.email,
                             ticket: amount
+                        }
+                    })
+                }
+
+                if (type === 'premium') {
+                    addAbonnement({
+                        variables: {
+                            email: context.email,
+                            type: type,
+                            price: price,
+                            days: amount * 30
                         }
                     })
                 }

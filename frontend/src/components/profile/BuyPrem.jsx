@@ -4,6 +4,7 @@ import { Card, CardActionArea, CardActions, CardMedia, Button, CardContent, Typo
 import './BuyTicket.scss'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContextProvider'
+import { Snackbar } from '@material-ui/core';
 
 
 
@@ -28,43 +29,63 @@ export default function BuyPrem() {
             price: 15,
             image: 'https://galaxytv.network/wp-content/uploads/2020/01/1-month.png',
             desc: ' 1 month premium ',
-            type:'prem'
-            
+            type: 'premium'
+
         },
         {
             amount: 3,
             price: 40,
             image: 'http://www.medzsoft.com/public/assets/images/3m.png',
             desc: ' 3 month premium ',
-            type:'prem'
+            type: 'premium'
         },
         {
             amount: 6,
             price: 80,
             image: 'http://www.medzsoft.com/public/assets/images/6m.png',
             desc: ' 6 month premium ',
-            type:'prem'
+            type: 'premium'
         },
         {
             amount: 12,
             price: 140,
             image: 'http://www.medzsoft.com/public/assets/images/12.png',
             desc: ' One year premium',
-            type:'prem'
+            type: 'premium'
         },
     ])
 
-    const handleTicket = (item) => {
-        context.setPayPal(item)
+    const [snackbarError, setSnackbarError] = useState(false)
+
+
+    const handleCheckOut = (item) => {
+        if (context.abonnement.length === 0) {
+
+            context.setPayPal(item)
+        } else {
+            setSnackbarError(true)
+        }
     }
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbarError(false);
+    };
     return (
         <>
             <div className='ticket__container'>
                 {
                     premium.map((item, index) => {
-                        const { image, amount, price,desc } = item
+                        const { image, amount, price, desc } = item
                         return (
-                            <Link to='/paypal' className='ticket__items' onClick={() => handleTicket(item)}>
+                            <Link
+                                key={index}
+                                to={context.abonnement.length === 0 ? '/paypal' : '/profile'}
+                                className='ticket__items'
+                                onClick={() => handleCheckOut(item)}
+                            >
                                 < Card key={index} >
                                     <CardActionArea >
                                         <CardMedia
@@ -74,7 +95,7 @@ export default function BuyPrem() {
                                         />
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="h2">
-                                                {desc} 
+                                                {desc}
                                             </Typography>
                                             <Typography component="h1">
                                                 {price} $
@@ -86,6 +107,17 @@ export default function BuyPrem() {
                         )
                     })
                 }
+                <section className='snackbarOnError'>
+                    <Snackbar
+                        message='  You have already an Premium account'
+                        key={'top' + 'center'}
+                        open={snackbarError}
+                        autoHideDuration={3000}
+                        onClose={handleCloseSnackbar}
+                    >
+                    </Snackbar>
+
+                </section>
             </div>
         </>
     )

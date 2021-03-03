@@ -14,10 +14,8 @@ mutation login($email : String! , $password:String!){
             url
           }
         abonnement{
-            name
             price
-            discount
-            tickets
+            type
             startDate
             days
           }
@@ -86,4 +84,16 @@ mutation addProfilePhoto($email : String! , $profilePhoto:String!){
       }
 }
 
+`
+
+//abonnement
+export const ADD_ABONNEMENT = gql`
+mutation addAbonnement($email : String! , $type:String, $price:Int , $days:Int){
+    addAbonnement(email:$email, type:$type, price:$price, days:$days){
+        email
+        type
+        price
+        days
+      }
+}
 `

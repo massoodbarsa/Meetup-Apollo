@@ -14,7 +14,7 @@ export default class UserContextProvider extends Component {
         profilePhoto: '',
         ticket: null,
         photos: [],
-        abonnement: [],
+        abonnement: null,
         usersData: [],
         payPal: null
     }
@@ -93,6 +93,12 @@ export default class UserContextProvider extends Component {
             ticket
         })
     }
+    updateAbonnement = (abonnement) => {
+        console.log(abonnement);
+        this.setState({
+            abonnement
+        })
+    }
 
 
     valueObj = {
@@ -104,7 +110,8 @@ export default class UserContextProvider extends Component {
         addNewPhoto: this.addNewPhoto,
         deletePhoto: this.deletePhoto,
         setPayPal: this.setPayPal,
-        updateTicketAmount: this.updateTicketAmount
+        updateTicketAmount: this.updateTicketAmount,
+        updateAbonnement: this.updateAbonnement
     }
 
     render() {

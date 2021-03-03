@@ -3,6 +3,7 @@ const schema = require('../schema')
 const User = require('../../models/user')
 const Favorites = require('../../models/favorites')
 const Images = require('../../models/image')
+const Abonnement = require('../../models/abonnement')
 
 
 const {
@@ -11,7 +12,6 @@ const {
     GraphQLInt,
     GraphQLNonNull
 } = graphql
-
 
 const { UserType, FavoriteType, AbonnementType, GoldenMatchType, PhotoType } = schema
 
@@ -64,11 +64,9 @@ const Mutation = new GraphQLObjectType({
 
                 const existUser = await User.findOne({ email: args.email })
 
-                console.log(existUser);
                 let user
                 try {
                     if (!existUser) {
-                        console.log(existUser);
                         user = new User({
                             email: args.email,
                             password: args.password,
@@ -77,17 +75,13 @@ const Mutation = new GraphQLObjectType({
                             age: args.age,
                             profilePhoto: args.profilePhoto
                         });
-
                     }
                     if (user) {
                         return user.save()
                     }
-
-
                 } catch (error) {
                     throw error
                 }
-
             }
         },
 
@@ -97,7 +91,6 @@ const Mutation = new GraphQLObjectType({
                 email: {
                     type: new GraphQLNonNull(GraphQLString)
                 },
-
                 name: {
                     type: GraphQLString
                 },
@@ -116,16 +109,18 @@ const Mutation = new GraphQLObjectType({
 
             },
             async resolve(parent, args) {
-                //last ticket amount plus new ?
-                const updatedUser = User.findOneAndUpdate(
+
+                const user = await User.find({ email: args.email })
+
+                const updatedUser = await User.findOneAndUpdate(
                     { email: args.email },
-                    { $set: { ...args } },
+                    { $set: { ...args, ticket: args.ticket + user[0].ticket } },
                     { new: true }
                 );
                 return updatedUser
             }
         },
-
+        //favorite
 
         addFavorite: {
             type: FavoriteType,
@@ -144,11 +139,10 @@ const Mutation = new GraphQLObjectType({
                     userId: args.userId,
                 });
                 return favorite.save()
-
             }
         },
 
-
+        //photo
         addPhoto: {
             type: PhotoType,
             args: {
@@ -185,9 +179,7 @@ const Mutation = new GraphQLObjectType({
                 return Images.deleteOne({
                     "email": args.email,
                     "url": args.url
-
                 })
-
             }
         },
 
@@ -223,22 +215,17 @@ const Mutation = new GraphQLObjectType({
             }
         },
 
+        //abonnement
         addAbonnement: {
             type: AbonnementType,
             args: {
-                userId: {
+                email: {
                     type: new GraphQLNonNull(GraphQLString)
                 },
-                name: {
-                    type: new GraphQLNonNull(GraphQLString)
+                type: {
+                    type: GraphQLString
                 },
                 price: {
-                    type: GraphQLInt
-                },
-                discount: {
-                    type: GraphQLInt
-                },
-                tickets: {
                     type: GraphQLInt
                 },
                 startDate: {
@@ -246,21 +233,27 @@ const Mutation = new GraphQLObjectType({
                 },
                 days: {
                     type: GraphQLInt
-
                 }
-
             },
-            resolve(parent, args) {
-                let abonnement = new Abonnement({
-                    userId: args.userId,
-                    name: args.name,
-                    price: args.price,
-                    discount: args.discount,
-                    tickets: args.tickets,
-                    startDate: args.startDate,
-                    days: args.days
-                });
-                return abonnement.save()
+            async resolve(parent, args) {
+                const abonnement = await Abonnement.find({ email: args.email })
+
+                try {
+                    if (abonnement.length === 0) {
+                        let abonnement = new Abonnement({
+                            email: args.email,
+                            type: args.type,
+                            price: args.price,
+                            startDate: args.startDate,
+                            days: args.days
+                        });
+                        return abonnement.save()
+                    } 
+
+                } catch (error) {
+                    throw new Error('ridi')
+                    console.log(error);
+                }
 
             }
         }
