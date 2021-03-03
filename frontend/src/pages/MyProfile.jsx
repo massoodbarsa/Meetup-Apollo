@@ -200,7 +200,7 @@ function MyProfile() {
                                 <FormLabel htmlFor="" >Remaining time</FormLabel>
                                 <Chip
                                     icon={<HourglassFullIcon />}
-                                    label={abonnement ? abonnement.days : '0'}
+                                    label={abonnement ? abonnement.days + ' Days' : '0 Days'}
                                     color="primary"
                                     variant="outlined"
                                     size='medium'
