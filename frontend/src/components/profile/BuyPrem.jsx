@@ -59,8 +59,7 @@ export default function BuyPrem() {
 
 
     const handleCheckOut = (item) => {
-        if (context.abonnement.length === 0) {
-
+        if (context.abonnement === undefined) {
             context.setPayPal(item)
         } else {
             setSnackbarError(true)
@@ -82,7 +81,7 @@ export default function BuyPrem() {
                         return (
                             <Link
                                 key={index}
-                                to={context.abonnement.length === 0 ? '/paypal' : '/profile'}
+                                to={context.abonnement === undefined ? '/paypal' : '/profile'}
                                 className='ticket__items'
                                 onClick={() => handleCheckOut(item)}
                             >

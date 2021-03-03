@@ -21,6 +21,7 @@ export default class UserContextProvider extends Component {
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
     setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement }) => {
+        console.log(abonnement);
         this.setState({
             // userId: _id,
             email,
@@ -29,7 +30,7 @@ export default class UserContextProvider extends Component {
             age,
             photos,
             profilePhoto,
-            abonnement,
+            abonnement:abonnement[0],
             ticket
         })
     }

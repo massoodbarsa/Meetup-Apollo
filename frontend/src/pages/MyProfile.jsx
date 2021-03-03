@@ -159,7 +159,6 @@ function MyProfile() {
                             })
                         }
 
-
                     </div>
 
                     <Button
@@ -185,14 +184,12 @@ function MyProfile() {
                         style={{ backgroundColor: '#424242', color: '#fff', borderColor: "hsl(209, 23%, 60%)" }}
                     />
                     {
-                        // abonnement.map((item, index) => {
-                        //     return (
-                        abonnement && <div >
+                        <div >
                             <section className='profile__middel__account__section'>
                                 <FormLabel >Account type</FormLabel>
                                 <Chip
-                                    icon={abonnement.type ? <DoneIcon /> : <ClearIcon />}
-                                    label={abonnement.type}
+                                    icon={abonnement ? <DoneIcon /> : <ClearIcon />}
+                                    label={abonnement ? abonnement.type : 'Basic'}
                                     color="primary"
                                     variant="outlined"
                                     size='medium'
@@ -203,17 +200,15 @@ function MyProfile() {
                                 <FormLabel htmlFor="" >Remaining time</FormLabel>
                                 <Chip
                                     icon={<HourglassFullIcon />}
-                                    label={abonnement.days}
+                                    label={abonnement ? abonnement.days : '0'}
                                     color="primary"
                                     variant="outlined"
                                     size='medium'
                                 />
                             </section>
                         </div>
-
-                        //     )
-                        // })
                     }
+
                     <section className='profile__middel__account__section'>
                         <FormLabel htmlFor="" >Tickets</FormLabel>
                         <Chip
@@ -259,7 +254,7 @@ function MyProfile() {
                 </div>
                 <div className='profile__right__buttons'>
                     <div className=' button-white'>
-                        <Button variant="outlined" color="primary" onClick={(e) => { setBuyPrem(true) }}>
+                        <Button variant="outlined" color="primary" onClick={() => { setBuyPrem(true) }}>
                             Buy Premium
                     </Button>
                     </div>
@@ -275,7 +270,7 @@ function MyProfile() {
                     </Modal>}
 
                     <div className=' button-white'>
-                        <Button variant="outlined" color="primary" onClick={(e) => { setTicket(true) }}>
+                        <Button variant="outlined" color="primary" onClick={() => { setTicket(true) }}>
                             Buy Ticket
                         </Button>
                     </div>
