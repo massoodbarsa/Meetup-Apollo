@@ -17,13 +17,13 @@
         margin: 1rem;
 
         :hover {
-            color: rgb(85, 160, 204);
+            color: var(--clr-green-light);
             cursor: pointer;
         }
     }
-.active-btn{
-    color: rgb(158, 187, 31);
 
-}
+    .active-btn {
+        color: var(--clr-green-light)
+    }
 
 }
