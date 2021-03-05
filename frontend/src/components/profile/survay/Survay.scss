@@ -1,0 +1,29 @@
+.survay-container {
+    // width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // background-color: #443f3f;
+    padding: 1rem;
+}
+
+.slide-container {
+    display: flex;
+
+    &__section {
+        padding: 10rem;
+        margin: 1rem;
+
+        :hover {
+            color: rgb(85, 160, 204);
+            cursor: pointer;
+        }
+    }
+.active-btn{
+    color: rgb(158, 187, 31);
+
+}
+
+}
