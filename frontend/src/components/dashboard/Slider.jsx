@@ -25,14 +25,14 @@ export default function Slider({ usersData, comp }) {
                                     const { email, profilePhoto, name } = item
 
                                     return (
-                                        profilePhoto.length &&
+                                        profilePhoto &&
                                         <Carousel.Item key={index} className='section-center__img-container'>
                                             <Carousel.Caption>
                                                 <h1>{name}</h1>
                                             </Carousel.Caption>
                                             <img
                                                 className="d-block w-100 section-center__img"
-                                                src={profilePhoto}
+                                                src={profilePhoto }
                                                 alt="First slide"
                                             />
                                             <h5>{email}</h5>
