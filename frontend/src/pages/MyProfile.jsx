@@ -53,8 +53,8 @@ function MyProfile() {
     const id = open ? 'simple-popover' : undefined;
 
 
-    const handleSurvay = () => {
-        console.log('survay');
+    const handleSurvey = () => {
+        console.log('survey');
     };
 
     //later get image.id and delete by id "now with email and url"
@@ -230,19 +230,19 @@ function MyProfile() {
                         enterDelay={500}
                         leaveDelay={200}
                     >
-                        <Link to='/survay'>
+                        <Link to='/survey'>
                             <Button
                             variant="contained"
                             // color="primary"
-                            onClick={handleSurvay}
+                            onClick={handleSurvey}
                         >
-                            Survay
+                            Survey
                          </Button>
                          </Link>
                     </Tooltip>
                     <LinearProgressWithLabel value={progress} />
 
-                    {/* <Survay/> */}
+                    {/* <Survey/> */}
                 </section>
 
             </Grid>

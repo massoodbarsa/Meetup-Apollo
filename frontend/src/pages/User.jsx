@@ -68,6 +68,8 @@ function User(props) {
             if (passRep !== password) {
 
                 setTextField(true)
+                setMessageInfo('The password is not match')
+                setSnackbar(true)
 
                 return
             }
