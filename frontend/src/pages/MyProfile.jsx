@@ -75,7 +75,7 @@ function MyProfile() {
 
         let img = event.target.files[0];
 
-        const url = 'https://thumb-p1.xhcdn.com/a/-xyt5Kl_i34-GQC3k_itlA/000/475/221/101_1000.jpg'
+        const url = 'https://ath2.unileverservices.com/wp-content/uploads/sites/4/2020/02/IG-annvmariv-1024x1016.jpg'
 
         addPhoto({
             variables: {

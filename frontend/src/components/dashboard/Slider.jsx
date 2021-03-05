@@ -20,13 +20,12 @@ export default function Slider({ usersData, comp }) {
                 <div className="section-center">
                     {
                         comp === 'dashboard' && <Carousel slide={true}>
-
-
                             {
                                 usersData.map((item, index) => {
                                     const { email, profilePhoto, name } = item
-                                    return (
 
+                                    return (
+                                        profilePhoto.length &&
                                         <Carousel.Item key={index} className='section-center__img-container'>
                                             <Carousel.Caption>
                                                 <h1>{name}</h1>
@@ -69,16 +68,10 @@ export default function Slider({ usersData, comp }) {
                                             />
                                         </Carousel.Item>
                                     )
-
                                 })
-
                             }
-
-
                         </Carousel>
                     }
-
-
                 </div>
             </section>
 
