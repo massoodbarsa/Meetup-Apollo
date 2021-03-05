@@ -119,7 +119,9 @@ function MyProfile() {
                 {profilePhoto ? <img src={profilePhoto} className='profile__left__img' /> : <CircularProgress color="secondary"></CircularProgress>}
 
                 <section className='profile__left__info'>
-                    <FormLabel className='profile__left__info__label'>Location</FormLabel>
+                    <FormLabel className='profile__left__info__label'>Firstname</FormLabel>
+                    <input type="text" />
+                    <FormLabel className='profile__left__info__label'>Surename</FormLabel>
                     <input type="text" />
                     <FormLabel className='profile__left__info__label'>Age</FormLabel>
                     <input type="number" value={age || 'Say later'} onChange={(e) => { setAge(e.target.value) }} />
@@ -228,15 +230,19 @@ function MyProfile() {
                         enterDelay={500}
                         leaveDelay={200}
                     >
-                        <Button
+                        <Link to='/survay'>
+                            <Button
                             variant="contained"
                             // color="primary"
                             onClick={handleSurvay}
                         >
                             Survay
                          </Button>
+                         </Link>
                     </Tooltip>
                     <LinearProgressWithLabel value={progress} />
+
+                    {/* <Survay/> */}
                 </section>
 
             </Grid>
