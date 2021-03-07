@@ -35,7 +35,6 @@ export default function PayPal(props) {
 
 
     const { price, amount, desc, type } = context.payPal
-    const castAmount = parseInt(amount)
 
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -67,7 +66,7 @@ export default function PayPal(props) {
                     updateUser({
                         variables: {
                             email: context.email,
-                            ticket: castAmount
+                            ticket: amount
                         }
                     })
                 }
