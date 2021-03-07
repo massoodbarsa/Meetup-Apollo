@@ -1,22 +1,30 @@
 import React, { useState, useContext, useEffect } from 'react'
-import Cards from '../components/dashboard/Cards'
+import { UserContext } from '../context/UserContextProvider'
 import './Profile.scss'
+import { Link } from 'react-router-dom'
+
+import BuyPrem from '../components/profile/BuyPrem';
+import BuyTicket from '../components/profile/BuyTicket';
+import FadeBackground from '../components/modal/fadeBackground'
+import Modal from '../components/modal/modal'
+import Slider from '../components/dashboard/Slider';
+import Cards from '../components/dashboard/Cards'
+import GoogleMapContainer from '../components/profile/GoogleMapContainer';
+
+import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
+import { useMutation } from '@apollo/client'
+
 import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography, TextareaAutosize, Input } from '@material-ui/core/';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import FaceIcon from '@material-ui/icons/Face';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
-import { Link } from 'react-router-dom'
-import { UserContext } from '../context/UserContextProvider'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import BuyPrem from '../components/profile/BuyPrem';
-import BuyTicket from '../components/profile/BuyTicket';
-import FadeBackground from '../components/modal/fadeBackground'
-import Modal from '../components/modal/modal'
-import Slider from '../components/dashboard/Slider';
-import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
-import { useMutation } from '@apollo/client'
+
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+
+
 
 
 function MyProfile() {
@@ -116,7 +124,25 @@ function MyProfile() {
     return (
         <Grid container spacing={3} className='profile'>
             <Grid item xs={3} sm={3} className='profile__left'>
-                {profilePhoto ? <img src={profilePhoto} className='profile__left__img' /> : <CircularProgress color="secondary"></CircularProgress>}
+                <GoogleMapContainer />
+
+                {profilePhoto
+                    ?
+                    <div>
+                        <Chip
+                            label="Your Location"
+                            className='profile__left__location'
+                            size='medium'
+                            // variant='outlined'
+                            color="secondary"
+                        // style={{ backgroundColor: '#424242', color: '#fff' }}
+
+                        />
+                        <img src={profilePhoto} className='profile__left__img' />
+
+                    </div>
+                    : <CircularProgress color="secondary"></CircularProgress>
+                }
 
                 <section className='profile__left__info'>
                     <FormLabel className='profile__left__info__label'>Firstname</FormLabel>
@@ -232,13 +258,13 @@ function MyProfile() {
                     >
                         <Link to='/survey'>
                             <Button
-                            variant="contained"
-                            // color="primary"
-                            onClick={handleSurvey}
-                        >
-                            Survey
+                                variant="contained"
+                                // color="primary"
+                                onClick={handleSurvey}
+                            >
+                                Survey
                          </Button>
-                         </Link>
+                        </Link>
                     </Tooltip>
                     <LinearProgressWithLabel value={progress} />
 

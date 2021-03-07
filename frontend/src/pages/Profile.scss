@@ -17,6 +17,12 @@
         border-right: 2px solid var(--clr-grey-6);
         text-align: center;
 
+        &__location{
+            background-color:red;
+            color: red;
+            position: absolute;
+        }
+
         &__img {
             width: 90%;
             height: 400px;

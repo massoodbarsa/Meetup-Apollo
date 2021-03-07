@@ -37,6 +37,7 @@ const Mutation = new GraphQLObjectType({
                 })
             }
         },
+
         addUser: {
             type: UserType,
             args: {
@@ -58,9 +59,14 @@ const Mutation = new GraphQLObjectType({
                 profilePhoto: {
                     type: GraphQLString
                 },
+                gender: {
+                    type: GraphQLString
+                },
 
             },
             async resolve(parent, args) {
+
+                console.log(args);
 
                 const existUser = await User.findOne({ email: args.email })
 
@@ -73,7 +79,8 @@ const Mutation = new GraphQLObjectType({
                             name: args.name,
                             surename: args.surename,
                             age: args.age,
-                            profilePhoto: args.profilePhoto
+                            profilePhoto: args.profilePhoto,
+                            gender: args.gender,
                         });
                     }
                     if (user) {
@@ -248,7 +255,7 @@ const Mutation = new GraphQLObjectType({
                             days: args.days
                         });
                         return abonnement.save()
-                    } 
+                    }
 
                 } catch (error) {
                     throw new Error('ridi')

@@ -31,12 +31,17 @@
 
     }
 
-}
+    .gender {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: 1rem .5rem;
 
-.modal-from {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 2rem .5rem;
-}
+        &__radio {
+            right: 400px;
+            position: relative;
+        }
+    }
 
+}

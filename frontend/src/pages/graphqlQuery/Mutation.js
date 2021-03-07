@@ -10,6 +10,7 @@ mutation login($email : String! , $password:String!){
         age
         profilePhoto
         ticket
+        gender
         photos{
             url
           }
@@ -24,14 +25,15 @@ mutation login($email : String! , $password:String!){
 `
 
 export const ADD_USER = gql`
-mutation addUser($email : String! , $password:String!, $name:String!){
-    addUser(email:$email,password:$password,name:$name){
+mutation addUser($email : String! , $password:String!, $name:String!, $gender:String){
+    addUser(email:$email,password:$password,name:$name,gender:$gender){
         email
         name
         password
         surename
         age
         profilePhoto 
+        gender
       }
 }
 `

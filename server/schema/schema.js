@@ -40,6 +40,9 @@ const UserType = new GraphQLObjectType({
         ticket: {
             type: GraphQLInt
         },
+        gender: {
+            type: GraphQLString
+        },
         abonnement: {
             type: GraphQLList(AbonnementType),
             resolve(parent, args) {

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import './User.scss'
 import Modal from '../components/modal/modal'
 import FadeBackground from '../components/modal/fadeBackground'
-import { Button, TextField, Snackbar } from '@material-ui/core';
+import { Button, TextField, Snackbar, FormLabel, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import { UserContext } from '../context/UserContextProvider'
 import { ADD_USER, LOGIN } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
@@ -16,11 +16,30 @@ function User(props) {
     const [addUser, { data: newUserData }] = useMutation(ADD_USER);
     const [login, { data }] = useMutation(LOGIN);
 
+    const [signUp, setSignUp] = useState(false)
+    const [isLogin, setIsLogin] = useState(false)
+    const [snackbar, setSnackbar] = useState(false)
+    const [gender, setGender] = useState('')
+    const [textField, setTextField] = useState(false)
+    const [email, setEmai] = useState(null)
+    const [password, setPass] = useState(null)
+    const [passRep, setPassRep] = useState(false)
+    const [messageInfo, setMessageInfo] = useState(null);
+    const [name, setName] = useState(null)
+
     useEffect(() => {
         if (data) {
-            context.login(data.login)
-            console.log(data.login);
-            context.setUserState(data.login)
+            if (data.login === null) {
+                console.log(data.login === null)
+
+                setMessageInfo("Username or Password is not correct !")
+                setSnackbar(true)
+            } else {
+                console.log(data.login);
+                context.login(data.login)
+                context.setUserState(data.login)
+            }
+
         }
     }, [data])
 
@@ -35,18 +54,6 @@ function User(props) {
             }
         }
     }, [newUserData])
-
-    const [signUp, setSignUp] = useState(false)
-    const [isLogin, setIsLogin] = useState(false)
-    const [snackbar, setSnackbar] = useState(false)
-    const [gender, setGender] = useState('')
-    const [textField, setTextField] = useState(false)
-    const [email, setEmai] = useState(null)
-    const [password, setPass] = useState(null)
-    const [passRep, setPassRep] = useState(false)
-    const [messageInfo, setMessageInfo] = useState(null);
-    const [name, setName] = useState(null)
-
 
     const handleCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -74,13 +81,15 @@ function User(props) {
                 return
             }
 
-            addUser({
-                variables: {
-                    email: email,
-                    password: password,
-                    name: name
-                }
-            })
+            addUser(
+                {
+                    variables: {
+                        email: email,
+                        password: password,
+                        name: name,
+                        gender: gender
+                    }
+                })
         }
         else {
             login({
@@ -133,6 +142,17 @@ function User(props) {
                         Login
                     </Button>
                 </div>
+                <section className='snackbarOnError'>
+                    <Snackbar
+                        // anchorOrigin={{ vertical, horizontal }}
+                        message={messageInfo}
+                        key={'top' + 'center'}
+                        open={snackbar}
+                        autoHideDuration={3000}
+                        onClose={handleCloseSnackbar}
+                    >
+                    </Snackbar>
+                </section>
             </form>
             <div className='button-gray'
             >
@@ -198,31 +218,18 @@ function User(props) {
                             />
                         </div>
 
-                        <div>
-                            <div className='modal-from'>
-                                {/* <div >
-                                    <FormLabel component="legend">Gender</FormLabel>
-                                    <RadioGroup
-                                        aria-label="gender"
-                                        name="gender1"
-                                        gender={gender}
-                                        onChange={(e, value) => { setGender(value) }}>
-                                        <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                    </RadioGroup>
-                                </div>
-                                <div>
-                                    <FormLabel component="legend">Looking for</FormLabel>
-                                    <RadioGroup
-                                        aria-label="gender"
-                                        name="gender2"
-                                        gender={gender}
-                                        onChange={(e, value) => { setGender(value) }}>
-                                        <FormControlLabel value="female" control={<Radio color="primary" />} label="Female" />
-                                        <FormControlLabel value="male" control={<Radio color="primary" />} label="Male" />
-                                    </RadioGroup>
-                                </div> */}
-                            </div>
+                        <div className='gender' >
+                            <FormLabel component="legend">Gender</FormLabel>
+                            <RadioGroup
+                                className="gender__radio"
+                                aria-label="gender"
+                                name="gender"
+                                gender={gender}
+                                onChange={(e, value) => { setGender(value) }}
+                            >
+                                <FormControlLabel value="female" control={<Radio required/>} label="Female" />
+                                <FormControlLabel value="male" control={<Radio required/>} label="Male" />
+                            </RadioGroup>
                         </div>
                         <div >
                             <Button
