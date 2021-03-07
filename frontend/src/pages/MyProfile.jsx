@@ -22,6 +22,9 @@ import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMars, faVenus } from '@fortawesome/free-solid-svg-icons'
+
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 
@@ -119,7 +122,9 @@ function MyProfile() {
         );
     }
 
-    const { name, surename, photos, abonnement, profilePhoto } = context
+    const { name, surename, photos, abonnement, profilePhoto, gender } = context
+
+    console.log(gender);
 
     return (
         <Grid container spacing={3} className='profile'>
@@ -275,9 +280,18 @@ function MyProfile() {
 
             <Grid item xs={3} sm={3} className='profile__right'>
                 <div className='profile__right__title'>
-
+                    {context.gender === 'female' &&
+                        < section className='profile__right__gender-icon'>
+                            <FontAwesomeIcon icon={faVenus} size='3x' />
+                        </section>
+                    }
+                    {context.gender === 'male' &&
+                        < section className='profile__right__gender-icon'>
+                            <FontAwesomeIcon icon={faMars} size='3x' />
+                        </section>
+                    }
                     <Chip
-                        icon={<FaceIcon />}
+                        icon={!context.gender && <FaceIcon />}
                         label={`${name} ${surename} `}
                         color="secondary"
                         variant="outlined"
@@ -334,7 +348,7 @@ function MyProfile() {
                 </div>
 
             </Grid>
-        </Grid>
+        </Grid >
 
     )
 }

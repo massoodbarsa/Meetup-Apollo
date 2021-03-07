@@ -17,8 +17,8 @@
         border-right: 2px solid var(--clr-grey-6);
         text-align: center;
 
-        &__location{
-            background-color:red;
+        &__location {
+            background-color: red;
             color: red;
             position: absolute;
         }
@@ -149,6 +149,14 @@
 
             padding: 1rem;
             width: fit-content;
+        }
+
+        &__gender-icon {
+            color: var(--clr-red);
+            position: relative;
+            right: 40px;
+            padding: 5px;
+            top: 40px;
         }
 
         .divider {
