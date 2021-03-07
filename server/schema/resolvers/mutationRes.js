@@ -66,8 +66,6 @@ const Mutation = new GraphQLObjectType({
             },
             async resolve(parent, args) {
 
-                console.log(args);
-
                 const existUser = await User.findOne({ email: args.email })
 
                 let user
@@ -119,9 +117,11 @@ const Mutation = new GraphQLObjectType({
 
                 const user = await User.find({ email: args.email })
 
+                const lastTicket = user[0].ticket ? user[0].ticket : 0
+
                 const updatedUser = await User.findOneAndUpdate(
                     { email: args.email },
-                    { $set: { ...args, ticket: args.ticket + user[0].ticket } },
+                    { $set: { ...args, ticket: args.ticket + lastTicket } },
                     { new: true }
                 );
                 return updatedUser
@@ -162,7 +162,6 @@ const Mutation = new GraphQLObjectType({
 
             },
             resolve(parent, args) {
-                console.log(args.url)
                 let photo = new Images({
                     email: args.email,
                     url: args.url,

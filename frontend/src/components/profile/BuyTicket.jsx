@@ -26,29 +26,29 @@ export default function BuyTicket() {
             amount: 5,
             price: 5,
             image: 'https://carrollwoodpta.org/wp-content/uploads/2018/01/ticket-clipart-purge-clipart-ticket-85041.jpg',
-            desc:' 5 tickets',
-            type:'ticket'
+            desc: ' 5 tickets',
+            type: 'ticket'
         },
         {
             amount: 10,
             price: 8,
             image: 'https://media.istockphoto.com/vectors/ticket-set-on-white-background-vector-id858867552?k=6&m=858867552&s=612x612&w=0&h=6GjxIjUfwZ6E4ZSOrbqlh4P6J53u6NUCgnNhm3hSCG8=',
-            desc:' 10 tickets',
-            type:'ticket'
+            desc: ' 10 tickets',
+            type: 'ticket'
         },
         {
             amount: 50,
             price: 40,
             image: 'https://worm.org/wp-content/uploads/2016/04/tickets_worm.jpg',
-            desc:' 50 tickets',
-            type:'ticket'
+            desc: ' 50 tickets',
+            type: 'ticket'
         },
         {
             amount: 100,
             price: 70,
             image: 'https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/8/2016/09/06105011/ticket-giveaways.jpg',
-            desc:' 100 tickets',
-            type:'ticket'
+            desc: ' 100 tickets',
+            type: 'ticket'
         },
     ])
 
@@ -62,25 +62,29 @@ export default function BuyTicket() {
                     ticket.map((item, index) => {
                         const { image, amount, price } = item
                         return (
-                            <Link to='/paypal' className='ticket__items' onClick={() => handleTicket(item)}>
-                                < Card key={index} >
-                                    <CardActionArea >
-                                        <CardMedia
-                                            className={classes.media}
-                                            image={image}
-                                            title={amount}
-                                        />
-                                        <CardContent>
-                                            <Typography gutterBottom variant="h5" component="h2">
-                                                {amount} Tickets
+                            <div key={index} className='ticket__items'>
+                                <Link
+                                    to='/paypal'
+                                    onClick={() => handleTicket(item)}>
+                                    < Card >
+                                        <CardActionArea >
+                                            <CardMedia
+                                                className={classes.media}
+                                                image={image}
+                                                title={amount}
+                                            />
+                                            <CardContent>
+                                                <Typography gutterBottom variant="h5" component="h2">
+                                                    {amount} Tickets
                                             </Typography>
-                                            <Typography component="h1">
-                                                {price} $
+                                                <Typography component="h1">
+                                                    {price} $
                                           </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Link>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </Link>
+                            </div>
                         )
                     })
                 }

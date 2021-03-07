@@ -124,12 +124,11 @@ function MyProfile() {
 
     const { name, surename, photos, abonnement, profilePhoto, gender } = context
 
-    console.log(gender);
 
     return (
         <Grid container spacing={3} className='profile'>
             <Grid item xs={3} sm={3} className='profile__left'>
-                <GoogleMapContainer />
+                {/* <GoogleMapContainer /> */}
 
                 {profilePhoto
                     ?
@@ -343,7 +342,7 @@ function MyProfile() {
                     <Link to='/dashboard' style={{ textDecoration: 'none' }}>
                         <Button variant="outlined" >
                             Dashboard
-                            </Button>
+                         </Button>
                     </Link>
                 </div>
 
