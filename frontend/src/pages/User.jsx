@@ -26,6 +26,10 @@ function User(props) {
     const [passRep, setPassRep] = useState(false)
     const [messageInfo, setMessageInfo] = useState(null);
     const [name, setName] = useState(null)
+    const [surename, setSurename] = useState(null)
+
+
+    
 
     useEffect(() => {
         if (data) {
@@ -87,6 +91,7 @@ function User(props) {
                         email: email,
                         password: password,
                         name: name,
+                        surename:surename,
                         gender: gender
                     }
                 })
@@ -154,11 +159,9 @@ function User(props) {
                     </Snackbar>
                 </section>
             </form>
-            <div className='button-gray'
-            >
+            <div className='button-gray signup-btn'>
                 <Button
                     variant="contained"
-                    // color="primary"
                     onClick={modalOpenHandler}
                 >
                     Signup
@@ -214,6 +217,16 @@ function User(props) {
                                 size='medium'
                                 error={textField}
                                 onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                              <TextField
+                                id="textfield"
+                                label="Surename"
+                                margin='normal'
+                                type='text'
+                                size='medium'
+                                error={textField}
+                                onChange={(e) => setSurename(e.target.value)}
                                 required
                             />
                         </div>
