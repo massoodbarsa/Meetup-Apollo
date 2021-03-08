@@ -71,14 +71,15 @@ export default function ProfileLeft() {
                         <Button variant="outlined" onClick={() => setEditMode(true)}>
                             <FontAwesomeIcon icon={faEdit} size='1x' />
                         </Button>
-                    </span>  <span className='button-white button-red profile__left__info__btn'>
+                    </span>
+                    <span className='button-white button-red profile__left__info__btn'>
                         <Button variant="outlined" onClick={() => updateInputs()}>
                             <FontAwesomeIcon icon={faSave} size='1x' />
                         </Button>
                     </span>
                 </section>
 
-                <section className={editMode?'editmode':'profile__left__info__inputs-container'}>
+                <section className={editMode ? 'editmode' : 'profile__left__info__inputs-container'}>
                     <FormLabel className='profile__left__info__label' >Firstname</FormLabel>
                     <input
                         type="text"
