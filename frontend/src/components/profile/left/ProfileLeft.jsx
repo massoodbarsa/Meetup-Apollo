@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { UserContext } from '../../../context/UserContextProvider'
 import { UPDATE_USER } from '../../../pages/graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
-import { faEdit, faSave } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faSave, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -25,8 +25,8 @@ export default function ProfileLeft() {
 
         if (updateUserData) {
             console.log(updateUserData.updateUser);
-            const { name, surename, age,aboutMe } = updateUserData.updateUser
-            context.updateUser({ name, surename, age ,aboutMe})
+            const { name, surename, age, aboutMe } = updateUserData.updateUser
+            context.updateUser({ name, surename, age, aboutMe })
         }
     }, [updateUserData])
 
@@ -45,7 +45,7 @@ export default function ProfileLeft() {
                 name: firstName,
                 surename: lastName,
                 age: parseInt(age),
-                aboutMe:aboutMe
+                aboutMe: aboutMe
             }
         })
     }
@@ -73,8 +73,8 @@ export default function ProfileLeft() {
             <section className='profile__left__info'>
                 <section className='profile__left__info__btns' >
                     <span className='button-red profile__left__info__btn'>
-                        <Button variant="outlined" onClick={() => setEditMode(true)}>
-                            <FontAwesomeIcon icon={faEdit} size='1x' />
+                        <Button variant="outlined" onClick={() => setEditMode(!editMode)}>
+                            <FontAwesomeIcon icon={!editMode ? faEdit : faWindowClose} size='1x' />
                         </Button>
                     </span>
                     <span className='button-white button-red profile__left__info__btn'>
