@@ -35,6 +35,7 @@ export default class UserContextProvider extends Component {
             gender
         })
     }
+//whole update methodes should be use updateuser?
 
     setProfilePic = (profilePhoto) => {
         this.setState({
@@ -83,22 +84,31 @@ export default class UserContextProvider extends Component {
             name: null
         })
     }
-
+//whole update methodes should be use updateuser?
     setPayPal = (payPal) => {
         this.setState({
             payPal: payPal
         })
     }
+//whole update methodes should be use updateuser?
 
     updateTicketAmount = ({ ticket }) => {
         this.setState({
             ticket
         })
     }
+    //whole update methodes should be use updateuser?
+
     updateAbonnement = (abonnement) => {
         console.log(abonnement);
         this.setState({
             abonnement
+        })
+    }
+
+    updateUser = (data) => {
+        this.setState({
+            ...this.state={...data}
         })
     }
 
@@ -113,7 +123,8 @@ export default class UserContextProvider extends Component {
         deletePhoto: this.deletePhoto,
         setPayPal: this.setPayPal,
         updateTicketAmount: this.updateTicketAmount,
-        updateAbonnement: this.updateAbonnement
+        updateAbonnement: this.updateAbonnement,
+        updateUser:this.updateUser
     }
 
     render() {
