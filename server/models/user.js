@@ -13,7 +13,8 @@ const userSchema = MongoSchema({
     age: Number,
     profilePhoto: String,
     ticket: Number,
-    gender: String
+    gender: String,
+    aboutMe: String
 })
 
 module.exports = mongoose.model('User', userSchema)

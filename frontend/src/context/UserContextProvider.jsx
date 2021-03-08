@@ -13,7 +13,8 @@ export default class UserContextProvider extends Component {
         age: null,
         profilePhoto: '',
         ticket: null,
-        gender:null,
+        gender: null,
+        aboutMe: '',
         photos: [],
         abonnement: null,
         usersData: [],
@@ -21,7 +22,7 @@ export default class UserContextProvider extends Component {
     }
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
-    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement,gender }) => {
+    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement, gender, aboutMe }) => {
         this.setState({
             // userId: _id,
             email,
@@ -30,12 +31,13 @@ export default class UserContextProvider extends Component {
             age,
             photos,
             profilePhoto,
-            abonnement:abonnement[0],
+            abonnement: abonnement[0],
             ticket,
-            gender
+            gender,
+            aboutMe
         })
     }
-//whole update methodes should be use updateuser?
+    //whole update methodes should be use updateuser?
 
     setProfilePic = (profilePhoto) => {
         this.setState({
@@ -84,13 +86,13 @@ export default class UserContextProvider extends Component {
             name: null
         })
     }
-//whole update methodes should be use updateuser?
+    //whole update methodes should be use updateuser?
     setPayPal = (payPal) => {
         this.setState({
             payPal: payPal
         })
     }
-//whole update methodes should be use updateuser?
+    //whole update methodes should be use updateuser?
 
     updateTicketAmount = ({ ticket }) => {
         this.setState({
@@ -108,7 +110,7 @@ export default class UserContextProvider extends Component {
 
     updateUser = (data) => {
         this.setState({
-            ...this.state={...data}
+            ...this.state = { ...data }
         })
     }
 
@@ -124,7 +126,7 @@ export default class UserContextProvider extends Component {
         setPayPal: this.setPayPal,
         updateTicketAmount: this.updateTicketAmount,
         updateAbonnement: this.updateAbonnement,
-        updateUser:this.updateUser
+        updateUser: this.updateUser
     }
 
     render() {

@@ -15,6 +15,8 @@ export default function ProfileLeft() {
     const [age, setAge] = useState(context.age)
     const [firstName, setFirstName] = useState(context.name)
     const [lastName, setLastName] = useState(context.surename)
+    const [aboutMe, setAboutMe] = useState(context.aboutMe)
+
     const [editMode, setEditMode] = useState(false)
 
     const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
@@ -23,26 +25,27 @@ export default function ProfileLeft() {
 
         if (updateUserData) {
             console.log(updateUserData.updateUser);
-            const { name, surename, age } = updateUserData.updateUser
-            context.updateUser({ name, surename, age })
+            const { name, surename, age,aboutMe } = updateUserData.updateUser
+            context.updateUser({ name, surename, age ,aboutMe})
         }
     }, [updateUserData])
 
 
 
     const updateInputs = () => {
-    //prevent save if there is no change on inputs
+        //prevent save if there is no change on inputs
         setEditMode(false)
 
         if (context.name) {
-            
+
         }
         updateUser({
             variables: {
                 email: context.email,
                 name: firstName,
                 surename: lastName,
-                age: parseInt(age)
+                age: parseInt(age),
+                aboutMe:aboutMe
             }
         })
     }
@@ -107,7 +110,16 @@ export default function ProfileLeft() {
                     />
 
                     <FormLabel className='profile__left__info__label'>About me</FormLabel>
-                    <TextareaAutosize aria-label="minimum height" rowsMin={5} className='profile__left__info__textarea' />
+                    <TextareaAutosize
+                        aria-label="minimum height"
+                        rowsMin={5}
+                        className='profile__left__info__textarea'
+                        onChange={(e) => { setAboutMe(e.target.value) }}
+                        value={aboutMe}
+                        disabled={!editMode}
+
+
+                    />
                 </section>
                 {/* <Avatar alt="Cindy Baker" src="https://astrograph.com/free-horoscope/images/3GeminiHoroscope.png" /> */}
             </section>

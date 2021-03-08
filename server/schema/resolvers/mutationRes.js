@@ -111,6 +111,9 @@ const Mutation = new GraphQLObjectType({
                 ticket: {
                     type: GraphQLInt
                 },
+                aboutMe: {
+                    type: GraphQLString
+                },
 
             },
             async resolve(parent, args) {
