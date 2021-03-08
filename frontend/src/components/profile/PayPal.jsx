@@ -63,6 +63,7 @@ export default function PayPal(props) {
                 const order = await actions.order.capture()
                 setSnackbarSuccess(true)
                 if (type === 'ticket') {
+                    // console.log(amount);
                     updateUser({
                         variables: {
                             email: context.email,

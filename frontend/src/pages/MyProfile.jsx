@@ -10,6 +10,7 @@ import Modal from '../components/modal/modal'
 import Slider from '../components/dashboard/Slider';
 import Cards from '../components/dashboard/Cards'
 import GoogleMapContainer from '../components/profile/GoogleMapContainer';
+import ProfileLeft from '../components/profile/left/ProfileLeft';
 
 import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
@@ -55,7 +56,6 @@ function MyProfile() {
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [progress, setProgress] = useState(20)
-    const [age, setAge] = useState(context.age)
     const [buyPrem, setBuyPrem] = useState(false)
     const [ticket, setTicket] = useState(false)
 
@@ -124,43 +124,14 @@ function MyProfile() {
 
     const { name, surename, photos, abonnement, profilePhoto, gender } = context
 
+    console.log(abonnement);
+
 
     return (
         <Grid container spacing={3} className='profile'>
-            <Grid item xs={3} sm={3} className='profile__left'>
+            <Grid item xs={3} sm={3} >
                 {/* <GoogleMapContainer /> */}
-
-                {profilePhoto
-                    ?
-                    <div>
-                        <Chip
-                            label="Your Location"
-                            className='profile__left__location'
-                            size='medium'
-                            // variant='outlined'
-                            color="secondary"
-                        // style={{ backgroundColor: '#424242', color: '#fff' }}
-
-                        />
-                        <img src={profilePhoto} className='profile__left__img' />
-
-                    </div>
-                    : <CircularProgress color="secondary"></CircularProgress>
-                }
-
-                <section className='profile__left__info'>
-                    <FormLabel className='profile__left__info__label'>Firstname</FormLabel>
-                    <input type="text" />
-                    <FormLabel className='profile__left__info__label'>Surename</FormLabel>
-                    <input type="text" />
-                    <FormLabel className='profile__left__info__label'>Age</FormLabel>
-                    <input type="number" value={age || 'Say later'} onChange={(e) => { setAge(e.target.value) }} />
-
-                    <FormLabel className='profile__left__info__label'>About me</FormLabel>
-                    <TextareaAutosize aria-label="minimum height" rowsMin={5} className='profile__left__info__textarea' />
-                    {/* <Avatar alt="Cindy Baker" src="https://astrograph.com/free-horoscope/images/3GeminiHoroscope.png" /> */}
-                </section>
-
+                <ProfileLeft />
             </Grid>
 
             <Grid item xs={3} sm={6} className='profile__middel'>
@@ -345,7 +316,6 @@ function MyProfile() {
                          </Button>
                     </Link>
                 </div>
-
             </Grid>
         </Grid >
 

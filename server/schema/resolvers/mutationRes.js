@@ -118,10 +118,12 @@ const Mutation = new GraphQLObjectType({
                 const user = await User.find({ email: args.email })
 
                 const lastTicket = user[0].ticket ? user[0].ticket : 0
+                const NewTicket = args.ticket ? args.ticket : 0
+
 
                 const updatedUser = await User.findOneAndUpdate(
                     { email: args.email },
-                    { $set: { ...args, ticket: args.ticket + lastTicket } },
+                    { $set: { ...args, ticket: NewTicket + lastTicket } },
                     { new: true }
                 );
                 return updatedUser

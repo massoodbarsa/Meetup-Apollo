@@ -25,7 +25,7 @@ mutation login($email : String! , $password:String!){
 `
 
 export const ADD_USER = gql`
-mutation addUser($email : String! , $password:String!, $name:String!,$surename:String ,$gender:String){
+mutation addUser($email:String!, $password:String!, $name:String!, $surename:String, $gender:String){
     addUser(email:$email,password:$password,name:$name,surename:$surename,gender:$gender){
         email
         name
@@ -38,8 +38,8 @@ mutation addUser($email : String! , $password:String!, $name:String!,$surename:S
 }
 `
 export const UPDATE_USER = gql`
-mutation updateUser($email : String! , $name:String, $ticket:Int){
-    updateUser(email:$email,name:$name,ticket:$ticket){
+mutation updateUser($email:String!, $name:String, $surename:String, $age:Int, $ticket:Int){
+    updateUser(email:$email,name:$name,surename:$surename,age:$age,ticket:$ticket){
         email
         name
         surename

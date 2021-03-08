@@ -117,6 +117,8 @@ function User(props) {
         setSignUp(true)
     }
 
+
+    console.log(context);
     return (
         <>
             <form className='user-form' onSubmit={submitHandler}>
