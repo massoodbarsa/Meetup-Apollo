@@ -16,7 +16,6 @@ export default function ProfileLeft() {
     const [firstName, setFirstName] = useState(context.name)
     const [lastName, setLastName] = useState(context.surename)
     const [aboutMe, setAboutMe] = useState(context.aboutMe)
-
     const [editMode, setEditMode] = useState(false)
 
     const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
@@ -78,7 +77,8 @@ export default function ProfileLeft() {
                         </Button>
                     </span>
                     <span className='button-white button-red profile__left__info__btn'>
-                        <Button variant="outlined" onClick={() => updateInputs()}>
+                        <Button variant="outlined" onClick={() => updateInputs()} disabled={!editMode}
+                        >
                             <FontAwesomeIcon icon={faSave} size='1x' />
                         </Button>
                     </span>
