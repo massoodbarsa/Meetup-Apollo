@@ -16,32 +16,31 @@ export default function ProfileLeft() {
     const [firstName, setFirstName] = useState(context.name)
     const [lastName, setLastName] = useState(context.surename)
     const [editMode, setEditMode] = useState(false)
-    // const [saveMode, setSaveMode] = useState(false)
-
-
 
     const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
 
     useEffect(() => {
 
         if (updateUserData) {
-            // console.log(updateUserData);
+            console.log(updateUserData.updateUser);
+            const { name, surename, age } = updateUserData.updateUser
+            context.updateUser({ name, surename, age })
         }
     }, [updateUserData])
 
 
 
     const updateInputs = () => {
-        console.log(typeof(age));
+        console.log(typeof (age));
 
         setEditMode(false)
-     
+
         updateUser({
             variables: {
                 email: context.email,
                 name: firstName,
-                surename:lastName,
-                age:parseInt(age)
+                surename: lastName,
+                age: parseInt(age)
             }
         })
     }
@@ -78,31 +77,35 @@ export default function ProfileLeft() {
                         </Button>
                     </span>
                 </section>
-                <FormLabel className='profile__left__info__label'>Firstname</FormLabel>
-                <input
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => { setFirstName(e.target.value) }}
-                    disabled={!editMode}
-                />
-                <FormLabel className='profile__left__info__label'>Surename</FormLabel>
-                <input
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => { setLastName(e.target.value) }}
-                    disabled={!editMode}
-                />
 
-                <FormLabel className='profile__left__info__label'>Age</FormLabel>
-                <input
-                    type="number"
-                    value={age}
-                    onChange={(e) => { setAge(e.target.value) }}
-                    disabled={!editMode}
-                />
+                <section className={editMode?'editmode':'profile__left__info__inputs-container'}>
+                    <FormLabel className='profile__left__info__label' >Firstname</FormLabel>
+                    <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => { setFirstName(e.target.value) }}
+                        disabled={!editMode}
+                    />
+                    <FormLabel className='profile__left__info__label'>Surename</FormLabel>
+                    <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => { setLastName(e.target.value) }}
+                        disabled={!editMode}
 
-                <FormLabel className='profile__left__info__label'>About me</FormLabel>
-                <TextareaAutosize aria-label="minimum height" rowsMin={5} className='profile__left__info__textarea' />
+                    />
+
+                    <FormLabel className='profile__left__info__label'>Age</FormLabel>
+                    <input
+                        type="number"
+                        value={age}
+                        onChange={(e) => { setAge(e.target.value) }}
+                        disabled={!editMode}
+                    />
+
+                    <FormLabel className='profile__left__info__label'>About me</FormLabel>
+                    <TextareaAutosize aria-label="minimum height" rowsMin={5} className='profile__left__info__textarea' />
+                </section>
                 {/* <Avatar alt="Cindy Baker" src="https://astrograph.com/free-horoscope/images/3GeminiHoroscope.png" /> */}
             </section>
         </div>

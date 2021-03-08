@@ -124,8 +124,6 @@ function MyProfile() {
 
     const { name, surename, photos, abonnement, profilePhoto, gender } = context
 
-    console.log(abonnement);
-
 
     return (
         <Grid container spacing={3} className='profile'>
