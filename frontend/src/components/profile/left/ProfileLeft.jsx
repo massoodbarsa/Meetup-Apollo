@@ -31,10 +31,12 @@ export default function ProfileLeft() {
 
 
     const updateInputs = () => {
-        console.log(typeof (age));
-
+    //prevent save if there is no change on inputs
         setEditMode(false)
 
+        if (context.name) {
+            
+        }
         updateUser({
             variables: {
                 email: context.email,
@@ -98,7 +100,7 @@ export default function ProfileLeft() {
 
                     <FormLabel className='profile__left__info__label'>Age</FormLabel>
                     <input
-                        type="number"
+                        type="text"
                         value={age}
                         onChange={(e) => { setAge(e.target.value) }}
                         disabled={!editMode}
