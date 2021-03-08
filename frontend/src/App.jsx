@@ -42,12 +42,12 @@ export default function App() {
           <Navigation />
           <main className='main'>
             <Switch>
-{/* 
+
               {context.email && <Redirect from='/' to='/profile' exact />}
               {context.email && <Redirect from='/users' to='/profile' exact />}
 
               {!context.email && <Route path='/users' component={userPage} />}
-              {!context.email && <Redirect to='/users' exact />} */}
+              {!context.email && <Redirect to='/users' exact />}
               <Route path='/profile' component={MyProfile} />
 
               <Route path='/dashboard' component={Dashboard} />
