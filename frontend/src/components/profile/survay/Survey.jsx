@@ -2,20 +2,29 @@ import React, { useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import './Survey.scss'
 import Gender from './Gender'
+import Age from './Age'
+
 export default function Survey() {
 
     const [surveyState, setSurveyState] = useState({
         //all parameters from childeren collect here then call updateUser 
     })
 
+    // const survays = [<Gender />, <Age />]
+    const survays = [ <Age />]
+
+
+    const survay = survays.map((item, index) => {
+        return (
+            <Carousel.Item className='carousel-container'>
+                {item}
+            </Carousel.Item>
+        )
+    })
     return (
         <div className='survey-container'>
-            <Carousel>
-                <Carousel.Item>
-                    <Gender />
-
-
-                </Carousel.Item>
+            <Carousel >
+                {survay}
             </Carousel>
         </div>
     )

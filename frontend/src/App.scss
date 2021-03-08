@@ -24,6 +24,12 @@
     color: var(--clr-grey-8);
   }
 
+  .MuiSlider-markLabel {
+    color: var(--clr-white);
+    margin-top: 5px;
+}
+
+
   .snackbarOnError {
     .MuiSnackbarContent-root {
       background-color: var(--clr-red);
@@ -36,9 +42,6 @@
     }
   }
 }
-
-
-
 
 .button-gray {
   .MuiButton-root {

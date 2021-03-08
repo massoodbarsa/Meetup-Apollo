@@ -179,6 +179,8 @@ function Dashboard() {
                             step={1}
                             marks={ageMarks}
                             valueLabelDisplay="on"
+                            step={10}
+
                         />
 
                         <Chip
