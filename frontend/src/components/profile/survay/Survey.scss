@@ -1,11 +1,8 @@
 .survey-container {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: auto;
-
 }
 
 .slide-container {
@@ -30,9 +27,4 @@
     .active-btn {
         color: var(--clr-green-light)
     }
-}
-
-.carousel-container {
-    width: 700px;
-    height: 800px;
 }

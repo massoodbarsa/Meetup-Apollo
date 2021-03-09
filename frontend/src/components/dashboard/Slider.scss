@@ -29,12 +29,14 @@
     margin-top: 4rem;
     width: 50vw;
     height: 650px;
-    max-width: 60%;
+    max-width: 70%;
     position: relative;
     overflow: hidden;
-    &__img-container{
+
+    &__img-container {
         text-align: center;
     }
+
     &__img {
         border-radius: 5%;
         height: 60vh;
