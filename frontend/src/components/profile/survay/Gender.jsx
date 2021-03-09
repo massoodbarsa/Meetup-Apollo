@@ -10,7 +10,7 @@ export default function Gender() {
     }
     return (
         <>
-            <h2>Looking for? </h2>
+            <h2>Looking for ? </h2>
             <div className='slide-container'>
                 <section className={`slide-container__icon ${gender === 'female' && 'active-btn'}`}>
                     <FontAwesomeIcon icon={faFemale} size='10x' onClick={() => handleClick('female')} />

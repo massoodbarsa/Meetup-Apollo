@@ -4,7 +4,6 @@ import './Survey.scss'
 import Gender from './Gender'
 import Age from './Age'
 import Slider from '../../dashboard/Slider'
-import { Grid } from '@material-ui/core'
 
 export default function Survey() {
 
