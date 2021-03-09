@@ -85,9 +85,10 @@ export default function Age() {
 
     return (
         <>
-            <h2>Prefered Age? </h2>
+            <h2>Prreferd Age? </h2>
+
             <div className='slide-container'>
-                <section className={`slide-container__section`}>
+                <section className='slide-container__slider'>
                     <div className={classes.root}>
                         <PrettoSlider
                             valueLabelDisplay="auto"

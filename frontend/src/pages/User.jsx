@@ -29,7 +29,7 @@ function User(props) {
     const [surename, setSurename] = useState(null)
 
 
-    
+
 
     useEffect(() => {
         if (data) {
@@ -92,7 +92,7 @@ function User(props) {
                         email: email,
                         password: password,
                         name: name,
-                        surename:surename,
+                        surename: surename,
                         gender: gender
                     }
                 })
@@ -220,7 +220,7 @@ function User(props) {
                                 onChange={(e) => setName(e.target.value)}
                                 required
                             />
-                              <TextField
+                            <TextField
                                 id="textfield"
                                 label="Surename"
                                 margin='normal'
@@ -241,8 +241,8 @@ function User(props) {
                                 gender={gender}
                                 onChange={(e, value) => { setGender(value) }}
                             >
-                                <FormControlLabel value="female" control={<Radio required/>} label="Female" />
-                                <FormControlLabel value="male" control={<Radio required/>} label="Male" />
+                                <FormControlLabel value="female" control={<Radio required />} label="Female" />
+                                <FormControlLabel value="male" control={<Radio required />} label="Male" />
                             </RadioGroup>
                         </div>
                         <div >

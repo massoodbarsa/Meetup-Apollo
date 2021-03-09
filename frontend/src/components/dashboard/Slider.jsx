@@ -2,26 +2,23 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../context/UserContextProvider'
 import Carousel from 'react-bootstrap/Carousel';
 import './Slider.scss';
-import Cards from '../dashboard/Cards'
 
 
-
-export default function Slider({ usersData, comp }) {
-
+export default function Slider({ data, comp }) {
 
     return (
         <div>
             <section className="section">
-                <div className="title">
+                {comp === 'dashboard' && <div className="title">
                     <h2>
                         <span>/</span>Happy Sliding ...
                      </h2>
-                </div>
+                </div>}
                 <div className="section-center">
                     {
                         comp === 'dashboard' && <Carousel slide={true}>
                             {
-                                usersData.map((item, index) => {
+                                data.map((item, index) => {
                                     const { email, profilePhoto, name } = item
 
                                     return (
@@ -31,8 +28,8 @@ export default function Slider({ usersData, comp }) {
                                                 <h1>{name}</h1>
                                             </Carousel.Caption>
                                             <img
-                                                className="d-block w-100 section-center__img"
-                                                src={profilePhoto }
+                                                className="section-center__img"
+                                                src={profilePhoto}
                                                 alt="First slide"
                                             />
                                             <h5>{email}</h5>
@@ -44,28 +41,13 @@ export default function Slider({ usersData, comp }) {
                     }
 
                     {
-                        comp === 'myprofile' && <Carousel slide={true}>
+                        comp === 'survey' && <Carousel slide={true}>
                             {
-                                usersData.map((item, index) => {
-                                    const { email, profilePhoto } = item
+                                data.map((item, index) => {
                                     return (
 
                                         <Carousel.Item key={index} className='section-center__img-container'>
-                                            <img
-                                                className="d-block w-100 section-center__img"
-                                                src={profilePhoto}
-                                                alt="First slide"
-                                            />
-
-                                            <Cards
-                                                url={profilePhoto}
-                                                key={index}
-                                                favTitle='Make it your profile picture'
-                                                delTitle='Delete!'
-                                            // handleProfilePic={handleProfilePic}
-                                            // handleDelPic={handleDelPic}
-
-                                            />
+                                            {item}
                                         </Carousel.Item>
                                     )
                                 })

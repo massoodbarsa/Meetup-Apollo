@@ -27,17 +27,20 @@
 .section-center {
     margin: 0 auto;
     margin-top: 4rem;
-    width: 60vw;
+    width: 50vw;
     height: 650px;
-    max-width: 40%;
-    text-align: center;
+    max-width: 60%;
+    // text-align: center;
     position: relative;
-    display: flex;
-    overflow: hidden;
-
+    // display: flex;
+    // overflow: hidden;
+    &__img-container{
+        text-align: center;
+    }
     &__img {
         border-radius: 5%;
         height: 60vh;
+        width: 500px;
         margin-bottom: 1rem;
         object-fit: cover;
         border: 4px solid var(--clr-grey-8);
@@ -58,8 +61,8 @@
 
 
 
-@media screen and (min-width: 992px) {
-    .section {
-        width: 95vw;
-    }
-}
+// @media screen and (min-width: 992px) {
+//     .section {
+//         width: 95vw;
+//     }
+// }

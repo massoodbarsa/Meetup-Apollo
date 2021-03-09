@@ -86,7 +86,7 @@ function Dashboard() {
                 </section>
 
                 <section className='dashboard__middel__corossol'>
-                    <ImageSlider usersData={usersData} comp='dashboard' />
+                    <ImageSlider data={usersData} comp='dashboard' title='...Happy Sliding' />
                 </section>
             </Grid>
 

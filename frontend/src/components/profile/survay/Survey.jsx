@@ -3,6 +3,8 @@ import Carousel from 'react-bootstrap/Carousel'
 import './Survey.scss'
 import Gender from './Gender'
 import Age from './Age'
+import Slider from '../../dashboard/Slider'
+import { Grid } from '@material-ui/core'
 
 export default function Survey() {
 
@@ -10,8 +12,8 @@ export default function Survey() {
         //all parameters from childeren collect here then call updateUser 
     })
 
-    // const survays = [<Gender />, <Age />]
-    const survays = [ <Age />]
+    const survays = [<Gender />, <Age />]
+    // const survays = [ <Age />]
 
 
     const survay = survays.map((item, index) => {
@@ -22,10 +24,8 @@ export default function Survey() {
         )
     })
     return (
-        <div className='survey-container'>
-            <Carousel >
-                {survay}
-            </Carousel>
-        </div>
+
+        <Slider data={survays} comp='survey' title='' />
     )
+
 }

@@ -1,25 +1,30 @@
 .survey-container {
-margin-top: 1rem;    height: 100%;
+  
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // background-color: #443f3f;
-    padding: 1rem;
+    margin-right: auto; 
+
 }
 
 .slide-container {
     display: flex;
+    justify-content: center;
+    height: 500px;
 
-    &__section {
-        padding: 5rem;
-        margin: 200px auto;
-        width: 500px;
+    &__icon {
+        margin: 100px 70px;
 
         :hover {
             color: var(--clr-green-light);
             cursor: pointer;
         }
+    }
+
+    &__slider {
+        display: flex;
+        align-items: center;
     }
 
     .active-btn {
@@ -30,5 +35,5 @@ margin-top: 1rem;    height: 100%;
 .carousel-container {
     width: 700px;
     height: 800px;
-
 }
+

@@ -12,11 +12,11 @@ export default function Gender() {
         <>
             <h2>Looking for? </h2>
             <div className='slide-container'>
-                <section className={`slide-container__section  ${gender === 'female' && 'active-btn'}`}>
+                <section className={`slide-container__icon ${gender === 'female' && 'active-btn'}`}>
                     <FontAwesomeIcon icon={faFemale} size='10x' onClick={() => handleClick('female')} />
                 </section>
 
-                <section className={`slide-container__section  ${gender === 'male' && 'active-btn'}`}>
+                <section className={`slide-container__icon  ${gender === 'male' && 'active-btn'}`}>
                     <FontAwesomeIcon icon={faMale} size='10x' onClick={() => handleClick('male')} />
                 </section>
             </div>
