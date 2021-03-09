@@ -41,7 +41,8 @@ export default function Slider({ data, comp }) {
                     }
 
                     {
-                        comp === 'survey' && <Carousel slide={true}>
+                        comp === 'survey' &&
+                        <Carousel slide={true} interval={null} fade={true} wrap={false}>
                             {
                                 data.map((item, index) => {
                                     return (

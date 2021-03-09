@@ -85,7 +85,7 @@ export default function Age() {
 
     return (
         <>
-            <h2>Prreferd Age ? </h2>
+            <h2>Preferd Age ? </h2>
 
             <div className='slide-container'>
                 <section className='slide-container__slider'>
