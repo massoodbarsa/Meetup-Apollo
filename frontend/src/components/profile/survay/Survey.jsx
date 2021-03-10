@@ -5,6 +5,7 @@ import Gender from './Gender'
 import Age from './Age'
 import Slider from '../../dashboard/Slider'
 import Height from './Height'
+import Language from './Language'
 
 export default function Survey() {
 
@@ -12,8 +13,8 @@ export default function Survey() {
         //all parameters from childeren collect here then call updateUser 
     })
 
-    const survays = [<Gender />, <Age />, <Height />]
-    // const survays = [ <Age />]
+    const survays = [<Gender />, <Age />, <Height />, <Language />]
+    // const survays = [ <Language />]
 
 
     const survay = survays.map((item, index) => {

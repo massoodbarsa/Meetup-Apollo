@@ -6,7 +6,7 @@ export default function Height() {
     const heightMarks = [
         {
             value: 100,
-            label: '100 CM',
+            label: '100 cm',
         },
     ];
 
