@@ -122,6 +122,10 @@ const Mutation = new GraphQLObjectType({
         aboutMe: {
           type: GraphQLString
         },
+        place: {
+          type: GraphQLString
+        },
+
 
       },
       async resolve(parent, args) {

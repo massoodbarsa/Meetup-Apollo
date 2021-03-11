@@ -4,7 +4,7 @@ import { UPDATE_USER } from '../../../pages/graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 
 import { faEdit, faSave, faWindowClose } from '@fortawesome/free-solid-svg-icons'
-import { Chip, FormLabel, TextareaAutosize, Button, Select, MenuItem ,FormControl} from '@material-ui/core';
+import { Chip, FormLabel, TextareaAutosize, Button, Select, MenuItem, FormControl } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FemaleAvatar from '../../../assets/femAvatar.jpeg'
 import MaleAvatar from '../../../assets/maleAvatar.jpeg'
@@ -19,6 +19,7 @@ export default function ProfileLeft() {
     const [lastName, setLastName] = useState(context.surename)
     const [aboutMe, setAboutMe] = useState(context.aboutMe)
     const [editMode, setEditMode] = useState(false)
+    const [place, setPlace] = useState(context.place)
 
     const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
 
@@ -26,8 +27,8 @@ export default function ProfileLeft() {
 
         if (updateUserData) {
             console.log(updateUserData.updateUser);
-            const { name, surename, age, aboutMe } = updateUserData.updateUser
-            context.updateUser({ name, surename, age, aboutMe })
+            const { name, surename, age, aboutMe, place } = updateUserData.updateUser
+            context.updateUser({ name, surename, age, aboutMe, place })
         }
     }, [updateUserData])
 
@@ -46,14 +47,14 @@ export default function ProfileLeft() {
                 name: firstName,
                 surename: lastName,
                 age: parseInt(age),
-                aboutMe: aboutMe
+                aboutMe: aboutMe,
+                place: place
             }
         })
     }
 
     //countries
     const [allCountries, setAllCountries] = useState([])
-    const [country, setCountry] = React.useState('');
 
     useEffect(() => {
         fetchCountriesData()
@@ -66,7 +67,6 @@ export default function ProfileLeft() {
     }
 
     const countries = allCountries.map(item => {
-        console.log(item);
         return (
             <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>
         )
@@ -137,10 +137,12 @@ export default function ProfileLeft() {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
+                                value={place}
+                                onChange={(e) => setPlace(e.target.value)}
                                 variant='filled'
                                 autoWidth
+                                disabled={!editMode}
+
                             >
                                 {countries}
 

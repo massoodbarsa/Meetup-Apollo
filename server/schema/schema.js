@@ -46,6 +46,11 @@ const UserType = new GraphQLObjectType({
     aboutMe: {
       type: GraphQLString
     },
+    place: {
+      type: GraphQLString
+    },
+
+
     abonnement: {
       type: GraphQLList(AbonnementType),
       resolve(parent, args) {
