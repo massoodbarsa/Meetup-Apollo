@@ -106,13 +106,15 @@
             }
 
             .MuiSelect-filled {
-                color: var(--clr-grey-10);
+                color: var(--clr-white);
+                margin-bottom: 10px;
             }
 
             .MuiInputBase-input {
                 background-color: var(--bck-color-4);
                 letter-spacing: .15rem;
                 border-radius: 5px;
+                height: 10px;
             }
 
         }
