@@ -7,7 +7,6 @@ import BuyPrem from '../components/profile/BuyPrem';
 import BuyTicket from '../components/profile/BuyTicket';
 import FadeBackground from '../components/modal/fadeBackground'
 import Modal from '../components/modal/modal'
-import Slider from '../components/dashboard/Slider';
 import Cards from '../components/dashboard/Cards'
 import GoogleMapContainer from '../components/profile/GoogleMapContainer';
 import ProfileLeft from '../components/profile/left/ProfileLeft';
@@ -15,13 +14,12 @@ import ProfileLeft from '../components/profile/left/ProfileLeft';
 import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 
-import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography, TextareaAutosize, Input } from '@material-ui/core/';
+import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography } from '@material-ui/core/';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import FaceIcon from '@material-ui/icons/Face';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMars, faVenus } from '@fortawesome/free-solid-svg-icons'
@@ -86,7 +84,7 @@ function MyProfile() {
 
         let img = event.target.files[0];
 
-        const url = 'https://ath2.unileverservices.com/wp-content/uploads/sites/4/2020/02/IG-annvmariv-1024x1016.jpg'
+        const url = 'https://i.pinimg.com/originals/3c/90/19/3c9019de88f4d6b6d7ce74cdb3f548a6.jpg'
 
         addPhoto({
             variables: {
@@ -232,7 +230,6 @@ function MyProfile() {
                         <Link to='/survey'>
                             <Button
                                 variant="contained"
-                                // color="primary"
                                 onClick={handleSurvey}
                             >
                                 Survey

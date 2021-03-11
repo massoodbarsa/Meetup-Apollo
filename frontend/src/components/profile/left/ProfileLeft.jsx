@@ -176,7 +176,7 @@ export default function ProfileLeft() {
                     <FormLabel className='profile__left__info__label'>About me</FormLabel>
                     <TextareaAutosize
                         aria-label="minimum height"
-                        rowsMin={5}
+                        rowsMin={3}
                         className='profile__left__info__textarea'
                         onChange={(e) => setAboutMe(e.target.value)}
                         value={aboutMe}
