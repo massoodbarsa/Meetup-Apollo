@@ -15,7 +15,8 @@ const userSchema = MongoSchema({
     ticket: Number,
     gender: String,
     aboutMe: String,
-    place: String
+    place: String,
+    height:Number
 
 })
 

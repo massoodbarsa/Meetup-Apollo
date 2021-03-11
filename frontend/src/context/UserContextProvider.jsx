@@ -15,7 +15,8 @@ export default class UserContextProvider extends Component {
         ticket: null,
         gender: null,
         aboutMe: '',
-        place:null,
+        place: null,
+        height: null,
         photos: [],
         abonnement: null,
         usersData: [],
@@ -23,7 +24,7 @@ export default class UserContextProvider extends Component {
     }
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
-    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement, gender, aboutMe ,place}) => {
+    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement, gender, aboutMe, place, height }) => {
         this.setState({
             // userId: _id,
             email,
@@ -36,7 +37,8 @@ export default class UserContextProvider extends Component {
             ticket,
             gender,
             aboutMe,
-            place
+            place,
+            height
         })
     }
     //whole update methodes should be use updateuser?

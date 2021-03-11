@@ -19,7 +19,6 @@ export default function Country() {
     }
 
     const countries = all.map(item => {
-        console.log(item);
         return (
             <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>
         )

@@ -49,6 +49,10 @@ const UserType = new GraphQLObjectType({
     place: {
       type: GraphQLString
     },
+    height: {
+      type: GraphQLInt
+    },
+
 
 
     abonnement: {

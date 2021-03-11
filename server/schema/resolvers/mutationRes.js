@@ -125,6 +125,10 @@ const Mutation = new GraphQLObjectType({
         place: {
           type: GraphQLString
         },
+        height: {
+          type: GraphQLInt
+        },
+
 
 
       },

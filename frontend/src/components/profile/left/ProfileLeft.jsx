@@ -20,6 +20,7 @@ export default function ProfileLeft() {
     const [aboutMe, setAboutMe] = useState(context.aboutMe)
     const [editMode, setEditMode] = useState(false)
     const [place, setPlace] = useState(context.place)
+    const [height, setHeight] = useState(context.height)
 
     const [updateUser, { data: updateUserData }] = useMutation(UPDATE_USER);
 
@@ -48,7 +49,8 @@ export default function ProfileLeft() {
                 surename: lastName,
                 age: parseInt(age),
                 aboutMe: aboutMe,
-                place: place
+                place: place,
+                height: parseInt(height),
             }
         })
     }
@@ -72,7 +74,23 @@ export default function ProfileLeft() {
         )
     })
 
+    let numbersArray = new Array(220)
 
+    let numbers = []
+
+    for (var i = 100; i < numbersArray.length; i++) {
+        numbers.push(i)
+    }
+
+    const heights = numbers.map((item, index) => {
+
+        return (
+            <MenuItem value={item} key={index}>{item}</MenuItem>
+        )
+    })
+
+
+    console.log(numbers);
     const avatar = context.gender === 'female' ? FemaleAvatar : MaleAvatar
 
     return (
@@ -148,7 +166,23 @@ export default function ProfileLeft() {
 
                             </Select>
                         </FormControl>
+                    </section>
+                    <section className='profile__left__select-place'>
+                        <FormControl>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={height}
+                                onChange={(e) => setHeight(e.target.value)}
+                                variant='filled'
+                                autoWidth
+                                disabled={!editMode}
 
+                            >
+                                {heights}
+
+                            </Select>
+                        </FormControl>
                     </section>
                     <FormLabel className='profile__left__info__label'>About me</FormLabel>
                     <TextareaAutosize
