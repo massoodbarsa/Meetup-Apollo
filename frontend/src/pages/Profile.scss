@@ -102,20 +102,18 @@
             .MuiFormControl-root {
                 height: 40px;
                 width: 90%;
-                margin: 0 20px 30px 10px;
+                margin: 0 20px 0px 10px;
             }
 
             .MuiSelect-filled {
                 color: var(--clr-grey-10);
-                padding-bottom: 20px;
+                padding-top: 9px;
             }
 
             .MuiInputBase-input {
                 background-color: var(--bck-color-4);
                 letter-spacing: .15rem;
                 border-radius: 5px;
-
-
             }
 
         }

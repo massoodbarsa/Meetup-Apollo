@@ -33,8 +33,6 @@ export default function ProfileLeft() {
         }
     }, [updateUserData])
 
-
-
     const updateInputs = () => {
         //prevent save if there is no change on inputs
         setEditMode(false)
@@ -73,7 +71,7 @@ export default function ProfileLeft() {
             <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>
         )
     })
-
+    //height
     let numbersArray = new Array(220)
 
     let numbers = []
@@ -89,8 +87,6 @@ export default function ProfileLeft() {
         )
     })
 
-
-    console.log(numbers);
     const avatar = context.gender === 'female' ? FemaleAvatar : MaleAvatar
 
     return (
@@ -100,16 +96,11 @@ export default function ProfileLeft() {
                     label="Your Location"
                     className='profile__left__location'
                     size='medium'
-                    // variant='outlined'
                     color="secondary"
-                // style={{ backgroundColor: '#424242', color: '#fff' }}
-
                 />
                 <img src={context.profilePhoto ? context.profilePhoto : avatar} className='profile__left__img' />
 
             </div>
-
-
             <section className='profile__left__info'>
                 <section className='profile__left__info__btns' >
                     <span className='button-red profile__left__info__btn'>
@@ -141,7 +132,6 @@ export default function ProfileLeft() {
                         disabled={!editMode}
 
                     />
-
                     <FormLabel className='profile__left__info__label'>Age</FormLabel>
                     <input
                         type="text"
@@ -160,13 +150,13 @@ export default function ProfileLeft() {
                                 variant='filled'
                                 autoWidth
                                 disabled={!editMode}
-
                             >
                                 {countries}
 
                             </Select>
                         </FormControl>
                     </section>
+                    <FormLabel className='profile__left__info__label'>Height</FormLabel>
                     <section className='profile__left__select-place'>
                         <FormControl>
                             <Select
@@ -177,7 +167,6 @@ export default function ProfileLeft() {
                                 variant='filled'
                                 autoWidth
                                 disabled={!editMode}
-
                             >
                                 {heights}
 
