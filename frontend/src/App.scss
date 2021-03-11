@@ -12,7 +12,7 @@
     color: var(--clr-grey-1);
     border-color: var(--clr-grey-1);
   }
-  
+
   .MuiButton-root:hover {
     color: var(--clr-grey-9);
     border-color: var(--clr-grey-1);
@@ -27,7 +27,7 @@
   .MuiSlider-markLabel {
     color: var(--clr-white);
     margin-top: 5px;
-}
+  }
 
 
   .snackbarOnError {
@@ -38,9 +38,27 @@
 
   .snackbarOnSuccess {
     .MuiSnackbarContent-root {
-      background-color: var( --clr-green-light);
+      background-color: var(--clr-green-light);
     }
   }
+
+
+  .selectButton {
+    .MuiFormControl-root {
+      background-color: var(--clr-grey-10);
+      height: 80px;
+      width: 300px;
+      border-radius: 5px;
+      margin-top: 150px;
+    }
+
+    .MuiSelect-filled {
+      color: var(--clr-grey-1);
+      margin-top: 10px;
+    }
+  }
+
+
 }
 
 .button-gray {
@@ -62,25 +80,25 @@
     margin-right: 30px;
     color: var(--clr-red);
     border-color: var(--clr-red);
-}
+  }
 
-.MuiButton-root:hover {
+  .MuiButton-root:hover {
     color: var(--clr-grey-9);
     border-color: var(--clr-grey-9);
     background-color: var(--clr-red);
-}
+  }
 
 }
 
-.button-white{
+.button-white {
   .MuiButton-root {
     color: var(--clr-grey-9);
     border-color: var(--clr-grey-9);
-}
+  }
 
-.MuiButton-root:hover {
+  .MuiButton-root:hover {
     color: var(--clr-grey-1);
     border-color: var(--clr-grey-9);
     background-color: var(--clr-grey-9);
-}
+  }
 }
