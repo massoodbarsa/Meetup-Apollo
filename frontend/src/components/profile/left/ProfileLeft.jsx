@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Chip, FormLabel, TextareaAutosize, Button } from '@material-ui/core/';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { UserContext } from '../../../context/UserContextProvider'
 import { UPDATE_USER } from '../../../pages/graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
+
 import { faEdit, faSave, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { Chip, FormLabel, TextareaAutosize, Button, Select, MenuItem ,FormControl} from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import FemaleAvatar from '../../../assets/femAvatar.jpeg'
 import MaleAvatar from '../../../assets/maleAvatar.jpeg'
@@ -51,7 +51,30 @@ export default function ProfileLeft() {
         })
     }
 
+    //countries
+    const [allCountries, setAllCountries] = useState([])
+    const [country, setCountry] = React.useState('');
+
+    useEffect(() => {
+        fetchCountriesData()
+    }, [])
+
+    const fetchCountriesData = async () => {
+        const url = 'https://restcountries.eu/rest/v2/all'
+        const response = await (await fetch(url)).json()
+        setAllCountries(response)
+    }
+
+    const countries = allCountries.map(item => {
+        console.log(item);
+        return (
+            <MenuItem value={item.name} key={item.name}>{item.name}</MenuItem>
+        )
+    })
+
+
     const avatar = context.gender === 'female' ? FemaleAvatar : MaleAvatar
+
     return (
         <div className='profile__left'>
             <div>
@@ -89,14 +112,14 @@ export default function ProfileLeft() {
                     <input
                         type="text"
                         value={firstName}
-                        onChange={(e) => { setFirstName(e.target.value) }}
+                        onChange={(e) => setFirstName(e.target.value)}
                         disabled={!editMode}
                     />
                     <FormLabel className='profile__left__info__label'>Surename</FormLabel>
                     <input
                         type="text"
                         value={lastName}
-                        onChange={(e) => { setLastName(e.target.value) }}
+                        onChange={(e) => setLastName(e.target.value)}
                         disabled={!editMode}
 
                     />
@@ -105,20 +128,34 @@ export default function ProfileLeft() {
                     <input
                         type="text"
                         value={age}
-                        onChange={(e) => { setAge(e.target.value) }}
+                        onChange={(e) => setAge(e.target.value)}
                         disabled={!editMode}
                     />
+                    <FormLabel className='profile__left__info__label'>Place</FormLabel>
+                    <section className='profile__left__select-place'>
+                        <FormControl>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                                variant='filled'
+                                autoWidth
+                            >
+                                {countries}
 
+                            </Select>
+                        </FormControl>
+
+                    </section>
                     <FormLabel className='profile__left__info__label'>About me</FormLabel>
                     <TextareaAutosize
                         aria-label="minimum height"
                         rowsMin={5}
                         className='profile__left__info__textarea'
-                        onChange={(e) => { setAboutMe(e.target.value) }}
+                        onChange={(e) => setAboutMe(e.target.value)}
                         value={aboutMe}
                         disabled={!editMode}
-
-
                     />
                 </section>
                 {/* <Avatar alt="Cindy Baker" src="https://astrograph.com/free-horoscope/images/3GeminiHoroscope.png" /> */}

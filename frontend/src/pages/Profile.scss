@@ -82,10 +82,12 @@
                     box-shadow: 2px 5px 8px -2px rgb(235, 238, 229);
                 }
 
-                .profile__left__info__textarea {
+                .profile__left__info__textarea,
+                .MuiInputBase-input {
                     transition: all 1s ease-in-out;
                     box-shadow: 2px 5px 8px -3px rgb(212, 214, 208);
                 }
+
             }
 
             input {
@@ -93,12 +95,27 @@
                 margin-left: 10px;
             }
 
-
-
-
         }
 
+        &__select-place {
 
+            .MuiFormControl-root {
+                height: 40px;
+                width: 90%;
+                margin: 0 20px 15px 10px;
+            }
+
+            .MuiSelect-filled {
+                color: var(--clr-grey-10);
+            }
+
+            .MuiInputBase-input {
+                background-color: var(--bck-color-4);
+                letter-spacing: .15rem;
+                border-radius: 5px;
+            }
+
+        }
     }
 
     &__middel {

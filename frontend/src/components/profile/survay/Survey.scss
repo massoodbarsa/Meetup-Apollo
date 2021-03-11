@@ -27,4 +27,20 @@
     .active-btn {
         color: var(--clr-green-light)
     }
+
+}
+
+.selectButton {
+    .MuiFormControl-root {
+        background-color: var(--clr-grey-10);
+        height: 80px;
+        width: 300px;
+        border-radius: 5px;
+        margin-top: 150px;
+    }
+
+    .MuiSelect-filled {
+        color: var(--clr-grey-1);
+        margin-top: 10px;
+    }
 }
