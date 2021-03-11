@@ -4,6 +4,8 @@ const Favorites = require('../models/favorites')
 const GoldenMatch = require('../models/goldenMatch')
 const Abonnement = require('../models/abonnement')
 const Images = require('../models/image')
+const Preference = require('../models/preferences')
+
 
 
 const {
@@ -53,7 +55,14 @@ const UserType = new GraphQLObjectType({
       type: GraphQLInt
     },
 
-
+    preferences: {
+      type: GraphQLList(PreferencesType),
+      resolve(parent, args) {
+        return Preference.find({
+          email: parent.email
+        })
+      }
+    },
 
     abonnement: {
       type: GraphQLList(AbonnementType),
@@ -62,8 +71,8 @@ const UserType = new GraphQLObjectType({
           email: parent.email
         })
       }
-
     },
+
     photos: {
       type: GraphQLList(PhotoType),
       resolve(parent, args) {
@@ -90,6 +99,29 @@ const UserType = new GraphQLObjectType({
         })
       }
     }
+
+  })
+})
+
+
+const PreferencesType = new GraphQLObjectType({
+  name: 'Preference',
+  fields: () => ({
+    email: {
+      type: GraphQLString
+    },
+    gender: {
+      type: GraphQLString
+    },
+    location: {
+      type: GraphQLString
+    },
+    // ageRange: {
+    //   type: GraphQLString
+    // },
+    // heightRange: {
+    //   type: GraphQLObjectType
+    // },
 
   })
 })
@@ -166,5 +198,6 @@ module.exports = {
   PhotoType,
   AbonnementType,
   GoldenMatchType,
-  FavoriteType
+  FavoriteType,
+  PreferencesType
 }

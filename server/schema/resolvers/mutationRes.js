@@ -4,6 +4,7 @@ const User = require('../../models/user')
 const Favorites = require('../../models/favorites')
 const Images = require('../../models/image')
 const Abonnement = require('../../models/abonnement')
+const Preferences = require('../../models/preferences')
 
 
 const {
@@ -18,7 +19,8 @@ const {
   FavoriteType,
   AbonnementType,
   GoldenMatchType,
-  PhotoType
+  PhotoType,
+  PreferencesType
 } = schema
 
 
@@ -128,10 +130,8 @@ const Mutation = new GraphQLObjectType({
         height: {
           type: GraphQLInt
         },
-
-
-
       },
+
       async resolve(parent, args) {
 
         const user = await User.find({
@@ -292,7 +292,70 @@ const Mutation = new GraphQLObjectType({
         }
 
       }
-    }
+    },
+
+    //preferences
+    addPreferences: {
+      type: PreferencesType,
+      args: {
+        email: {
+          type: new GraphQLNonNull(GraphQLString)
+        },
+        gender: {
+          type: GraphQLString
+        },
+        location: {
+          type: GraphQLString
+        },
+
+      },
+      async resolve(parent, args) {
+
+        try {
+            let preference = new Preferences({
+              email: args.email,
+              gender: args.gender,
+              location: args.location,
+
+            });
+            return preference.save()
+
+        } catch (error) {
+          throw new Error('ridi')
+          console.log(error);
+        }
+      }
+    },
+
+    updatePreferences: {
+      type: PreferencesType,
+      args: {
+        email: {
+          type: new GraphQLNonNull(GraphQLString)
+        },
+        gender: {
+          type: GraphQLString
+        },
+        location: {
+          type: GraphQLString
+        },
+
+      },
+      async resolve(parent, args) {
+
+        const updatedPrefernce = await Preferences.findOneAndUpdate({
+          email: args.email
+        }, {
+          $set: {
+            ...args
+          }
+        }, {
+          new: true
+        });
+        return updatedPrefernce
+      }
+    },
+
   })
 })
 module.exports = Mutation
