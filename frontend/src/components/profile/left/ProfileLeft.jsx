@@ -6,6 +6,8 @@ import { UPDATE_USER } from '../../../pages/graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 import { faEdit, faSave, faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import FemaleAvatar from '../../../assets/femAvatar.jpeg'
+import MaleAvatar from '../../../assets/maleAvatar.jpeg'
 
 
 export default function ProfileLeft() {
@@ -48,26 +50,24 @@ export default function ProfileLeft() {
             }
         })
     }
+
+    const avatar = context.gender === 'female' ? FemaleAvatar : MaleAvatar
     return (
         <div className='profile__left'>
+            <div>
+                <Chip
+                    label="Your Location"
+                    className='profile__left__location'
+                    size='medium'
+                    // variant='outlined'
+                    color="secondary"
+                // style={{ backgroundColor: '#424242', color: '#fff' }}
 
-            {context.profilePhoto
-                ?
-                <div>
-                    <Chip
-                        label="Your Location"
-                        className='profile__left__location'
-                        size='medium'
-                        // variant='outlined'
-                        color="secondary"
-                    // style={{ backgroundColor: '#424242', color: '#fff' }}
+                />
+                <img src={context.profilePhoto ? context.profilePhoto : avatar} className='profile__left__img' />
 
-                    />
-                    <img src={context.profilePhoto} className='profile__left__img' />
+            </div>
 
-                </div>
-                : <CircularProgress color="secondary"></CircularProgress>
-            }
 
             <section className='profile__left__info'>
                 <section className='profile__left__info__btns' >

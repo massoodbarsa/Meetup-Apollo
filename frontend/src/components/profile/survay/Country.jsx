@@ -3,19 +3,14 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 
 
-
-
 export default function Country() {
-
 
     const [all, setAll] = useState([])
     const [country, setCountry] = React.useState('');
 
-
     useEffect(() => {
         fetchCountriesData()
     }, [])
-
 
     const fetchCountriesData = async () => {
         const url = 'https://restcountries.eu/rest/v2/all'
