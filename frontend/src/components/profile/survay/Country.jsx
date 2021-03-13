@@ -16,7 +16,7 @@ export default function Country({ handleLocation, location }) {
 
     useEffect(() => {
         fetchCountriesData()
-    }, [])
+    }, [country])
 
     const fetchCountriesData = async () => {
         const url = 'https://restcountries.eu/rest/v2/all'
