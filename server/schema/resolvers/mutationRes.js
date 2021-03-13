@@ -5,6 +5,10 @@ const Favorites = require('../../models/favorites')
 const Images = require('../../models/image')
 const Abonnement = require('../../models/abonnement')
 const Preferences = require('../../models/preferences')
+const AgeRange = require('../../models/age')
+const HeightRange = require('../../models/height')
+
+
 
 
 const {
@@ -20,7 +24,9 @@ const {
   AbonnementType,
   GoldenMatchType,
   PhotoType,
-  PreferencesType
+  PreferencesType,
+  AgeRangeType,
+  HeightRangeType
 } = schema
 
 
@@ -322,7 +328,6 @@ const Mutation = new GraphQLObjectType({
               email: args.email,
               gender: args.gender,
               location: args.location,
-
             });
 
           }
@@ -331,6 +336,85 @@ const Mutation = new GraphQLObjectType({
           }
         } catch (error) {
           throw new Error('preference exist')
+          console.log('sishmian');
+        }
+      }
+    },
+
+
+    addAgeRange: {
+      type: AgeRangeType,
+      args: {
+        email: {
+          type: GraphQLString
+        },
+        minAge: {
+          type: GraphQLInt
+        },
+        maxAge: {
+          type: GraphQLInt
+        },
+
+      },
+      async resolve(parent, args) {
+        const existAgeRange = await AgeRange.findOne({
+          email: args.email
+        })
+
+        let newAgeRange
+        try {
+          if (!existAgeRange) {
+            newAgeRange = new AgeRange({
+              email:args.email,
+              minAge: args.minAge,
+              maxAge: args.maxAge,
+            });
+
+          }
+          if (newAgeRange) {
+            return newAgeRange.save()
+          }
+        } catch (error) {
+          throw new Error('preference exist')
+          console.log('sishmian');
+        }
+      }
+    },
+
+    addHeightRange: {
+      type: HeightRangeType,
+      args: {
+        email: {
+          type: GraphQLString
+        },
+        minHeight: {
+          type: GraphQLInt
+        },
+        maxHeight: {
+          type: GraphQLInt
+        },
+
+      },
+      async resolve(parent, args) {
+        const existAgeRange = await HeightRange.findOne({
+          email: args.email
+        })
+
+        let newHeightRange
+        try {
+          if (!existAgeRange) {
+            newHeightRange = new HeightRange({
+              email:args.email,
+              minHeight: args.minHeight,
+              maxHeight: args.maxHeight,
+            });
+
+          }
+          if (newHeightRange) {
+            return newHeightRange.save()
+          }
+        } catch (error) {
+          throw new Error('hichi baba')
           console.log('sishmian');
         }
       }

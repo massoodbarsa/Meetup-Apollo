@@ -5,7 +5,8 @@ const GoldenMatch = require('../models/goldenMatch')
 const Abonnement = require('../models/abonnement')
 const Images = require('../models/image')
 const Preference = require('../models/preferences')
-
+const AgeRange = require('../models/age')
+const HeightRange= require('../models/height')
 
 
 const {
@@ -13,7 +14,8 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLInputObjectType
 
 } = graphql
 
@@ -116,15 +118,59 @@ const PreferencesType = new GraphQLObjectType({
     location: {
       type: GraphQLString
     },
-    // ageRange: {
-    //   type: GraphQLString
-    // },
-    // heightRange: {
-    //   type: GraphQLObjectType
-    // },
+    ageRange:{
+      type: GraphQLList(AgeRangeType),
+      resolve(parent, args) {
+        return AgeRange.find({
+          email: parent.email
+        })
+      }
+    },
+    heightRange: {
+      type: GraphQLList(HeightRangeType),
+      resolve(parent, args) {
+        return HeightRange.find({
+          email: parent.email
+        })
+      }
+    },
 
   })
 })
+
+const AgeRangeType = new GraphQLObjectType({
+  name: 'ageRange',
+  fields: () => ({
+    email: {
+      type: GraphQLString
+    },
+    minAge: {
+      type: GraphQLInt
+    },
+    maxAge: {
+      type: GraphQLInt
+    },
+
+  })
+})
+
+const HeightRangeType = new GraphQLObjectType({
+  name: 'heightRange',
+  fields: () => ({
+    email: {
+      type: GraphQLString
+    },
+    minHeight: {
+      type: GraphQLInt
+    },
+    maxHeight: {
+      type: GraphQLInt
+    },
+
+  })
+})
+
+
 
 const AbonnementType = new GraphQLObjectType({
   name: 'Abonnement',
@@ -199,5 +245,7 @@ module.exports = {
   AbonnementType,
   GoldenMatchType,
   FavoriteType,
-  PreferencesType
+  PreferencesType,
+  AgeRangeType,
+  HeightRangeType
 }
