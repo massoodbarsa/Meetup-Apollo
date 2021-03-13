@@ -9,12 +9,13 @@ import Slider from '../../dashboard/Slider'
 import Height from './Height'
 import Country from './Country'
 import { ADD_PREFERENCES, UPDATE_PREFERENCES } from '../../../pages/graphqlQuery/Mutation'
-import { Button } from '@material-ui/core/';
+import { Button, Snackbar } from '@material-ui/core/';
 import Carousel from 'react-bootstrap/Carousel'
 
 
 
-export default function Survey() {
+
+export default function Survey(props) {
 
 
     const context = useContext(UserContext)
@@ -27,7 +28,8 @@ export default function Survey() {
     const [height, setHeight] = useState(null)
     const [gender, setGender] = useState(gen)
     const [close, setClose] = useState(true)
-    const [preferenceExist, setPreferenceExist] = useState(true)
+    const [snackbarSuccess, setSnackbarSuccess] = useState(false)
+    const [message, setMessage] = useState('')
 
 
     const [addPreferences, { data: preferenceData }] = useMutation(ADD_PREFERENCES);
@@ -36,6 +38,15 @@ export default function Survey() {
     useEffect(() => {
         if (preferenceData) {
             context.updatePreferences(preferenceData.addPreferences)
+            setMessage('Your preferences is added')
+            setSnackbarSuccess(true)
+
+            setTimeout(() => {
+                props.history.push({
+                    pathname: "/profile",
+
+                });
+            }, 3500)
         }
     }, [preferenceData])
 
@@ -43,6 +54,15 @@ export default function Survey() {
     useEffect(() => {
         if (updatedPreferenceData) {
             context.updatePreferences(updatedPreferenceData.updatePreferences)
+            setMessage('Your preferences is updated')
+            setSnackbarSuccess(true)
+
+            setTimeout(() => {
+                props.history.push({
+                    pathname: "/profile",
+
+                });
+            }, 3500)
         }
     }, [updatedPreferenceData])
 
@@ -105,9 +125,14 @@ export default function Survey() {
                 }
             })
         }
-
-
     }
+
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbarSuccess(false)
+    };
 
     const survays = [
         <Gender handleGender={handleGender} gender={gender} />,
@@ -126,6 +151,7 @@ export default function Survey() {
 
         )
     })
+
     return (
         <div className='survay'>
             <Slider data={survays} comp='survey' title='' />
@@ -134,6 +160,16 @@ export default function Survey() {
                     Send
                 </Button>
             </div>
+            <section className='snackbarOnSuccess'>
+                <Snackbar
+                    message={message}
+                    key={'top' + 'center'}
+                    open={snackbarSuccess}
+                    autoHideDuration={3000}
+                    onClose={handleCloseSnackbar}
+                >
+                </Snackbar>
+            </section>
         </div>
     )
 
