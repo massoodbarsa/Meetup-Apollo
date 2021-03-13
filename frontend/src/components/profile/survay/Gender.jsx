@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFemale, faMale } from '@fortawesome/free-solid-svg-icons'
 
-export default function Gender({handleGender}) {
-    const [state, setState] = useState('')
+export default function Gender({handleGender,gender}) {
+    const [state, setState] = useState(gender)
 
     const handleClick = (item) => {
         setState(item)

@@ -23,6 +23,10 @@ mutation login($email : String! , $password:String!){
             startDate
             days
           }
+          preferences{
+            gender,
+            location
+          }
     }
 }
 `
@@ -107,13 +111,31 @@ mutation addAbonnement($email : String! , $type:String, $price:Int , $days:Int){
 `
 
 //preferences
-// export const ADD_ABONNEMENT = gql`
-// mutation addAbonnement($email : String! , $type:String, $price:Int , $days:Int){
-//     addAbonnement(email:$email, type:$type, price:$price, days:$days){
-//         email
-//         type
-//         price
-//         days
-//       }
-// }
-// `
+export const ADD_PREFERENCES = gql`
+# mutation addPreferences($email : String! , $gender:String, $location:String , $height:Int,$age:Int){
+#   addPreferences(email:$email, gender:$gender, location:$location, height:$height,age:$age){
+  mutation addPreferences($email : String! , $gender:String, $location:String ){
+  addPreferences(email:$email, gender:$gender, location:$location){
+        email
+        gender
+        location
+        # height
+        # age
+      }
+}
+`
+
+export const UPDATE_PREFERENCES = gql`
+# mutation updatePreferences($email : String! , $gender:String, $location:String , $height:Int,$age:Int){
+#   updatePreferences(email:$email, gender:$gender, location:$location, height:$height,age:$age){
+
+    mutation updatePreferences($email : String! , $gender:String, $location:String ){
+  updatePreferences(email:$email, gender:$gender, location:$location){
+        email
+        gender
+        location
+        # height
+        # age
+      }
+}
+`

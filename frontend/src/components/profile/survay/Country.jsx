@@ -3,10 +3,10 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 
 
-export default function Country({ handleLocation }) {
+export default function Country({ handleLocation, location }) {
 
     const [all, setAll] = useState([])
-    const [country, setCountry] = React.useState('');
+    const [country, setCountry] = React.useState(location);
 
 
     const handleChange = (value) => {

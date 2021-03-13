@@ -19,12 +19,13 @@ export default class UserContextProvider extends Component {
         height: null,
         photos: [],
         abonnement: null,
+        preferences: null,
         usersData: [],
         payPal: null
     }
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
-    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement, gender, aboutMe, place, height }) => {
+    setUserState = ({ email, name, surename, age, photos, ticket, profilePhoto, abonnement, gender, aboutMe, place, height, preferences }) => {
         this.setState({
             // userId: _id,
             email,
@@ -38,7 +39,8 @@ export default class UserContextProvider extends Component {
             gender,
             aboutMe,
             place,
-            height
+            height,
+            preferences:preferences[0]
         })
     }
     //whole update methodes should be use updateuser?
@@ -112,6 +114,13 @@ export default class UserContextProvider extends Component {
         })
     }
 
+    updatePreferences = (preferences) => {
+        console.log(preferences);
+        this.setState({
+            preferences
+        })
+    }
+
     updateUser = (data) => {
         console.log(data);
         this.setState({
@@ -131,7 +140,8 @@ export default class UserContextProvider extends Component {
         setPayPal: this.setPayPal,
         updateTicketAmount: this.updateTicketAmount,
         updateAbonnement: this.updateAbonnement,
-        updateUser: this.updateUser
+        updateUser: this.updateUser,
+        updatePreferences:this.updatePreferences
     }
 
     render() {
