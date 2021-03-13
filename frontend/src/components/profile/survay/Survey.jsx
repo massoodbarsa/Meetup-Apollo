@@ -18,12 +18,14 @@ export default function Survey() {
 
 
     const context = useContext(UserContext)
-    console.log(context.preferences.gender);
+
+    const loc = context.preferences ? context.preferences.location : null
+    const gen = context.preferences ? context.preferences.gender : null
 
     const [age, setAge] = useState(null)
-    const [location, setLocation] = useState(context.preferences.location)
+    const [location, setLocation] = useState(loc)
     const [height, setHeight] = useState(null)
-    const [gender, setGender] = useState(context.preferences.gender)
+    const [gender, setGender] = useState(gen)
     const [close, setClose] = useState(true)
     const [preferenceExist, setPreferenceExist] = useState(true)
 
@@ -33,11 +35,18 @@ export default function Survey() {
 
     useEffect(() => {
         if (preferenceData) {
-            console.log(preferenceData.addPreferences);
-            const { preferences } = preferenceData.addPreferences
-            updatePreferences(preferences)
+            context.updatePreferences(preferenceData.addPreferences)
         }
     }, [preferenceData])
+
+
+    useEffect(() => {
+        if (updatedPreferenceData) {
+            context.updatePreferences(updatedPreferenceData.updatePreferences)
+        }
+    }, [updatedPreferenceData])
+
+
 
 
     useEffect(() => {
@@ -72,10 +81,22 @@ export default function Survey() {
 
 
     const handleClick = () => {
-        if (age || location || height || gender) {
+        if (context.preferences) {
+            console.log('update');
             updatePreferences({
                 variables: {
-                    // user: context.userId,
+                    email: context.email,
+                    // age: age,
+                    gender: gender,
+                    location: location,
+                    // height: height
+                }
+            })
+        } else {
+            console.log('add');
+
+            addPreferences({
+                variables: {
                     email: context.email,
                     // age: age,
                     gender: gender,
@@ -85,23 +106,14 @@ export default function Survey() {
             })
         }
 
-        addPreferences({
-            variables: {
-                // user: context.userId,
-                email: context.email,
-                // age: age,
-                gender: gender,
-                location: location,
-                // height: height
-            }
-        })
+
     }
 
     const survays = [
-        <Gender handleGender={handleGender} gender={gender}/>,
+        <Gender handleGender={handleGender} gender={gender} />,
         <Age handleAgeOrGender={handleAgeOrGender} name='age' />,
         <Height handleAgeOrGender={handleAgeOrGender} name='height' />,
-        <Country handleLocation={handleLocation} location={location}/>
+        <Country handleLocation={handleLocation} location={location} />
     ]
     // const survays = [ <Country />]
 

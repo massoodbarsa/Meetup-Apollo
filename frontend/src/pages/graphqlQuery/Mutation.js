@@ -24,7 +24,7 @@ mutation login($email : String! , $password:String!){
             days
           }
           preferences{
-            gender,
+            gender
             location
           }
     }
@@ -119,8 +119,7 @@ export const ADD_PREFERENCES = gql`
         email
         gender
         location
-        # height
-        # age
+       
       }
 }
 `
@@ -134,8 +133,7 @@ export const UPDATE_PREFERENCES = gql`
         email
         gender
         location
-        # height
-        # age
+       
       }
 }
 `

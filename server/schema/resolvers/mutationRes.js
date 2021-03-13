@@ -295,6 +295,7 @@ const Mutation = new GraphQLObjectType({
     },
 
     //preferences
+
     addPreferences: {
       type: PreferencesType,
       args: {
@@ -310,22 +311,31 @@ const Mutation = new GraphQLObjectType({
 
       },
       async resolve(parent, args) {
+        const existPreference = await Preferences.findOne({
+          email: args.email
+        })
 
+        let newPreference
         try {
-            let preference = new Preferences({
+          if (!existPreference) {
+            newPreference = new Preferences({
               email: args.email,
               gender: args.gender,
               location: args.location,
 
             });
-            return preference.save()
 
+          }
+          if (newPreference) {
+            return newPreference.save()
+          }
         } catch (error) {
-          throw new Error('ridi')
-          console.log(error);
+          throw new Error('preference exist')
+          console.log('sishmian');
         }
       }
     },
+
 
     updatePreferences: {
       type: PreferencesType,
@@ -352,6 +362,8 @@ const Mutation = new GraphQLObjectType({
         }, {
           new: true
         });
+
+        console.log(updatedPrefernce);
         return updatedPrefernce
       }
     },

@@ -40,7 +40,7 @@ export default class UserContextProvider extends Component {
             aboutMe,
             place,
             height,
-            preferences:preferences[0]
+            preferences: preferences[0]
         })
     }
     //whole update methodes should be use updateuser?
@@ -108,14 +108,12 @@ export default class UserContextProvider extends Component {
     //whole update methodes should be use updateuser?
 
     updateAbonnement = (abonnement) => {
-        console.log(abonnement);
         this.setState({
             abonnement
         })
     }
 
     updatePreferences = (preferences) => {
-        console.log(preferences);
         this.setState({
             preferences
         })
@@ -141,7 +139,7 @@ export default class UserContextProvider extends Component {
         updateTicketAmount: this.updateTicketAmount,
         updateAbonnement: this.updateAbonnement,
         updateUser: this.updateUser,
-        updatePreferences:this.updatePreferences
+        updatePreferences: this.updatePreferences
     }
 
     render() {
