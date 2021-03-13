@@ -3,10 +3,16 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { FormControl, Select, MenuItem, InputLabel } from '@material-ui/core';
 
 
-export default function Country() {
+export default function Country({ handleLocation }) {
 
     const [all, setAll] = useState([])
     const [country, setCountry] = React.useState('');
+
+
+    const handleChange = (value) => {
+        setCountry(value)
+        handleLocation(value)
+    }
 
     useEffect(() => {
         fetchCountriesData()
@@ -24,7 +30,6 @@ export default function Country() {
         )
     })
 
-    console.log(country);
     return (
         <>
             <h2>Where do you live? </h2>
@@ -35,7 +40,7 @@ export default function Country() {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={country}
-                        onChange={(e) => setCountry(e.target.value)}
+                        onChange={(e) => handleChange(e.target.value)}
                         variant='filled'
                         autoWidth
                     >

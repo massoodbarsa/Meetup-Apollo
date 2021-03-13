@@ -105,3 +105,15 @@ mutation addAbonnement($email : String! , $type:String, $price:Int , $days:Int){
       }
 }
 `
+
+//preferences
+// export const ADD_ABONNEMENT = gql`
+// mutation addAbonnement($email : String! , $type:String, $price:Int , $days:Int){
+//     addAbonnement(email:$email, type:$type, price:$price, days:$days){
+//         email
+//         type
+//         price
+//         days
+//       }
+// }
+// `

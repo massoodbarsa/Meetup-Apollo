@@ -71,11 +71,13 @@ const AirbnbSlider = withStyles({
 })(Slider);
 
 
-export default function SurveySlider({ title, minimum, maximum, marks, defaultValue }) {
-
-    const [value, setvalue] = useState('')
+export default function SurveySlider({ title, minimum, maximum, marks, defaultValue, handleAgeOrGender, name }) {
 
     const classes = useStyles();
+
+    const handleChange = (value) => {
+        handleAgeOrGender(value, name)
+    }
 
     return (
         <>
@@ -85,13 +87,13 @@ export default function SurveySlider({ title, minimum, maximum, marks, defaultVa
                 <section className='slide-container__slider'>
                     <div className={classes.root}>
                         <AirbnbSlider
-                            getAriaLabel={(index) => (index === 0 ? 'Minimum price' : 'Maximum price')}
+                            getAriaLabel={(index) => (index === 0 ? 'Minimum ' : 'Maximum ')}
                             defaultValue={defaultValue}
                             valueLabelDisplay="on"
                             marks={marks}
                             min={minimum}
                             max={maximum}
-
+                            onChange={(e, value) => handleChange(value)}
                         />
                         <div className={classes.margin} />
                     </div>

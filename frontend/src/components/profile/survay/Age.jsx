@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import AirbnbSlider from "./SurveySlider";
+import React, { useEffect, useState } from 'react'
+import SurveySlider from "./SurveySlider";
 
-export default function Age() {
+export default function Age({ handleAgeOrGender, name }) {
 
     const ageMarks = [
         {
@@ -14,12 +14,15 @@ export default function Age() {
 
     return (
         <>
-            <AirbnbSlider
+            <SurveySlider
                 title='Preferd Age Range? '
                 marks={ageMarks}
                 defaultValue={defaultValue}
                 minimum={18}
-                maximum={100} />
+                maximum={100}
+                handleAgeOrGender={handleAgeOrGender}
+                name={name}
+            />
         </>
     )
 }

@@ -1,3 +1,16 @@
+.survay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    &__button {
+        position: relative;
+        right: 100px;
+        bottom: 20px;
+    }
+}
+
 .survey-container {
     display: flex;
     flex-direction: column;
