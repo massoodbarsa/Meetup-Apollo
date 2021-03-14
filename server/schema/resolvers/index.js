@@ -1,5 +1,7 @@
 const RootQuery = require('./queryRes')
-const Mutation = require('./mutationRes')
+// const Mutation = require('./mutationRes')
+
+const Mutation = require('./mutations/index.js')
 const graphql = require('graphql')
 
 

@@ -9,8 +9,6 @@ const AgeRange = require('../../models/age')
 const HeightRange = require('../../models/height')
 
 
-
-
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -373,8 +371,7 @@ const Mutation = new GraphQLObjectType({
           }
           if (newAgeRange) {
             return newAgeRange.save()
-          }
-        } catch (error) {
+          }} catch (error) {
           throw new Error('preference exist')
           console.log('sishmian');
         }

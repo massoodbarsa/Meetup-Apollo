@@ -105,6 +105,7 @@ const UserType = new GraphQLObjectType({
   })
 })
 
+//PreferencesType
 
 const PreferencesType = new GraphQLObjectType({
   name: 'Preference',
@@ -139,7 +140,7 @@ const PreferencesType = new GraphQLObjectType({
 })
 
 const AgeRangeType = new GraphQLObjectType({
-  name: 'ageRange',
+  name: 'AgeRange',
   fields: () => ({
     email: {
       type: GraphQLString
@@ -155,7 +156,7 @@ const AgeRangeType = new GraphQLObjectType({
 })
 
 const HeightRangeType = new GraphQLObjectType({
-  name: 'heightRange',
+  name: 'HeightRange',
   fields: () => ({
     email: {
       type: GraphQLString
@@ -170,7 +171,7 @@ const HeightRangeType = new GraphQLObjectType({
   })
 })
 
-
+//AbonnementType
 
 const AbonnementType = new GraphQLObjectType({
   name: 'Abonnement',
@@ -194,6 +195,9 @@ const AbonnementType = new GraphQLObjectType({
   })
 })
 
+//PhotoType
+
+
 const PhotoType = new GraphQLObjectType({
   name: 'Photo',
   fields: () => ({
@@ -205,6 +209,8 @@ const PhotoType = new GraphQLObjectType({
     },
   })
 })
+
+//FavoriteType
 
 const FavoriteType = new GraphQLObjectType({
   name: 'Favorite',
