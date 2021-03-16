@@ -2,6 +2,7 @@
 const graphql = require('graphql')
 const schema = require('../../schema')
 const Images = require('../../../models/image')
+const User = require('../../../models/user')
 
 const {
     GraphQLString,

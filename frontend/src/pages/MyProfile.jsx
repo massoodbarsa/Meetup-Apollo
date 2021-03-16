@@ -84,7 +84,7 @@ function MyProfile() {
 
         let img = event.target.files[0];
 
-        const url = 'https://i.pinimg.com/originals/3c/90/19/3c9019de88f4d6b6d7ce74cdb3f548a6.jpg'
+        const url = 'https://i1.sndcdn.com/artworks-000073403402-fo1jga-t500x500.jpg'
 
         addPhoto({
             variables: {
