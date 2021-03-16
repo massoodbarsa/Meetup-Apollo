@@ -1,23 +1,11 @@
-const {
-  UserType,
-  AbonnementType,
-  PhotoType,
-  FavoriteType,
-  GoldenMatchType
-} = require('../schema')
+const { UserType } = require('../schema')
 const graphql = require('graphql')
 const User = require('../../models/user')
-
-
 
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
-  GraphQLSchema,
   GraphQLList,
-  GraphQLNonNull
-
 } = graphql
 
 
@@ -41,8 +29,6 @@ const RootQuery = new GraphQLObjectType({
         return User.find()
       }
     },
-
-
   })
 })
 

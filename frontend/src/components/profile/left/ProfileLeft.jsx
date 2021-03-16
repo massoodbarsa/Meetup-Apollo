@@ -28,8 +28,8 @@ export default function ProfileLeft() {
 
         if (updateUserData) {
             console.log(updateUserData.updateUser);
-            const { name, surename, age, aboutMe, place } = updateUserData.updateUser
-            context.updateUser({ name, surename, age, aboutMe, place })
+            const { name, surename, age, aboutMe, place, height } = updateUserData.updateUser
+            context.updateUser({ name, surename, age, aboutMe, place, height })
         }
     }, [updateUserData])
 

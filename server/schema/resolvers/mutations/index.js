@@ -6,8 +6,6 @@ const photoMutation = require('./photoMutation')
 const preferenceMutation = require('./preferenceMutation')
 const abonnementMutation = require('./abonnementmutation')
 const graphql = require('graphql')
-const schema = require('../../schema')
-
 
 const {
   GraphQLObjectType,
@@ -24,7 +22,6 @@ const Mutation = new GraphQLObjectType({
     ...preferenceMutation,
     ...photoMutation,
     ...abonnementMutation
-
   })
 })
 module.exports = Mutation
