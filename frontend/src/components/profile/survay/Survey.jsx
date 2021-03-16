@@ -53,7 +53,7 @@ export default function Survey(props) {
 
 
     useEffect(() => {
-        if (preferenceData && addAgeRangeData && addHeightRangeData) {
+        if (preferenceData) {
             context.updatePreferences(preferenceData.addPreferences)
             setMessage('Your preferences is added')
             setSnackbarSuccess(true)
@@ -70,6 +70,7 @@ export default function Survey(props) {
 
     useEffect(() => {
         if (updatedPreferenceData) {
+
             context.updatePreferences(updatedPreferenceData.updatePreferences)
             setMessage('Your preferences is updated')
             setSnackbarSuccess(true)
@@ -122,21 +123,48 @@ export default function Survey(props) {
         if (context.preferences) {
             console.log('update');
 
-            updateAgeRange({
-                variables: {
-                    email: context.email,
-                    minAge: minAge,
-                    maxAge: maxAge,
-                }
-            })
 
-            updateHeightRange({
-                variables: {
-                    email: context.email,
-                    minHeight: minHeight,
-                    maxHeight: maxHeight,
-                }
-            })
+
+            if (context.preferences.ageRange.length > 0) {
+
+                updateAgeRange({
+                    variables: {
+                        email: context.email,
+                        minAge: minAge,
+                        maxAge: maxAge,
+                    }
+                })
+            }
+            else {
+
+                addAgeRange({
+                    variables: {
+                        email: context.email,
+                        minAge: minAge,
+                        maxAge: maxAge,
+                    }
+                })
+            }
+            if (context.preferences.heightRange.length > 0) {
+
+                updateHeightRange({
+                    variables: {
+                        email: context.email,
+                        minHeight: minHeight,
+                        maxHeight: maxHeight,
+                    }
+                })
+            } else {
+
+                addHeightRange({
+                    variables: {
+                        email: context.email,
+                        minHeight: minHeight,
+                        maxHeight: maxHeight,
+                    }
+                })
+            }
+
             updatePreferences({
                 variables: {
                     email: context.email,
@@ -144,7 +172,7 @@ export default function Survey(props) {
                     location: location,
                 }
             })
-          
+
         } else {
             console.log('add');
 
@@ -181,12 +209,12 @@ export default function Survey(props) {
         setSnackbarSuccess(false)
     };
 
-    
+
 
     const survays = [
         <Gender handleGender={handleGender} gender={gender} />,
-        <Age handleAgeOrGender={handleAgeOrGender} name='age' ageRange={context.preferences?context.preferences.ageRange:[]} />,
-        <Height handleAgeOrGender={handleAgeOrGender} name='height' heightRange={context.preferences?context.preferences.heightRange:[]} />,
+        <Age handleAgeOrGender={handleAgeOrGender} name='age' ageRange={context.preferences ? context.preferences.ageRange : []} />,
+        <Height handleAgeOrGender={handleAgeOrGender} name='height' heightRange={context.preferences ? context.preferences.heightRange : []} />,
         <Country handleLocation={handleLocation} location={location} />
     ]
     // const survays = [ <Country />]

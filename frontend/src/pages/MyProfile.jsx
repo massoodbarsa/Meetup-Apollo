@@ -51,9 +51,32 @@ function MyProfile() {
         }
     }, [profilePhotoData])
 
+    useEffect(() => {
+        let survayProcent = 0
+        let preferencesLength = 0
+        for (const key in context.preferences) {
+            if (Object.hasOwnProperty.call(context.preferences, key)) {
+
+                ++preferencesLength
+            }
+        }
+
+        for (const key in context.preferences) {
+            if (Object.hasOwnProperty.call(context.preferences, key)) {
+                const element = context.preferences[key];
+
+                if (element.length > 0 && element !== 'Preference') {
+                    console.log(element);
+                    let elementProcent = 100 / (preferencesLength - 1);
+                    survayProcent += elementProcent
+                }
+            }
+        }
+        setProgress(survayProcent)
+    }, [])
 
     const [anchorEl, setAnchorEl] = useState(null)
-    const [progress, setProgress] = useState(20)
+    const [progress, setProgress] = useState()
     const [buyPrem, setBuyPrem] = useState(false)
     const [ticket, setTicket] = useState(false)
 

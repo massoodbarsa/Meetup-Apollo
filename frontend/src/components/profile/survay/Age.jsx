@@ -4,6 +4,7 @@ import SurveySlider from "./SurveySlider";
 export default function Age({ handleAgeOrGender, name, ageRange }) {
 
 
+    console.log(ageRange);
     const ageMarks = [
         {
             value: 18,
