@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import SurveySlider from "./SurveySlider";
 
-export default function Age({ handleAgeOrGender, name }) {
+export default function Age({ handleAgeOrGender, name, ageRange }) {
+
 
     const ageMarks = [
         {
@@ -10,7 +11,7 @@ export default function Age({ handleAgeOrGender, name }) {
         }
     ];
 
-    const defaultValue = [18, 40]
+    const defaultValue = ageRange[0] ? [ageRange[0].minAge, ageRange[0].maxAge] : [18, 40]
 
     return (
         <>

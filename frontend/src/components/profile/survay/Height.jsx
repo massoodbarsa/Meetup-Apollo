@@ -1,7 +1,7 @@
 import React from 'react'
 import AirbnbSlider from "./SurveySlider";
 
-export default function Height({ handleAgeOrGender, name }) {
+export default function Height({ handleAgeOrGender, name, heightRange }) {
 
     const heightMarks = [
         {
@@ -10,7 +10,7 @@ export default function Height({ handleAgeOrGender, name }) {
         },
     ];
 
-    const defaultValue = [150, 190]
+    const defaultValue = heightRange[0] ? [heightRange[0].minHeight, heightRange[0].maxHeight] : [150, 190]
 
     return (
         <>

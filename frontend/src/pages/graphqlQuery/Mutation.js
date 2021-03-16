@@ -26,6 +26,14 @@ mutation login($email : String! , $password:String!){
           preferences{
             gender
             location
+            ageRange{
+              minAge
+              maxAge
+            }
+            heightRange{
+              minHeight
+              maxHeight
+            }
           }
     }
 }
@@ -119,11 +127,17 @@ export const ADD_PREFERENCES = gql`
         email
         gender
         location
-       
+        ageRange{
+          minAge
+          maxAge
+        }
+        heightRange{
+          minHeight
+          maxHeight
+        }
       }
 }
 `
-
 export const UPDATE_PREFERENCES = gql`
 # mutation updatePreferences($email : String! , $gender:String, $location:String , $height:Int,$age:Int){
 #   updatePreferences(email:$email, gender:$gender, location:$location, height:$height,age:$age){
@@ -133,7 +147,64 @@ export const UPDATE_PREFERENCES = gql`
         email
         gender
         location
+        ageRange{
+          minAge
+          maxAge
+        }
+        heightRange{
+          minHeight
+          maxHeight
+        }
        
+      }
+}
+`
+
+export const ADD_AGE_RANGE = gql`
+mutation addAgeRange($email : String!, $minAge:Int, $maxAge:Int){
+  addAgeRange(email:$email,  minAge:$minAge, maxAge:$maxAge){
+
+        email
+        minAge
+        maxAge
+
+      }
+}
+`
+
+export const ADD_HEIGHT_RANGE = gql`
+mutation addHeightRange($email : String!, $minHeight:Int, $maxHeight:Int){
+  addHeightRange(email:$email, minHeight:$minHeight, maxHeight:$maxHeight){
+
+        email
+        minHeight
+        maxHeight
+    
+      }
+}
+`
+
+export const UPDATE_AGE_RANGE = gql`
+mutation updateAgeRange($email : String!, $minAge:Int, $maxAge:Int){
+  updateAgeRange(email:$email,  minAge:$minAge, maxAge:$maxAge){
+
+        email
+        minAge
+        maxAge
+
+      }
+}
+`
+
+
+export const UPDATE_HEIGHT_RANGE = gql`
+mutation updateHeightRange($email : String!, $minHeight:Int, $maxHeight:Int){
+  updateHeightRange(email:$email, minHeight:$minHeight, maxHeight:$maxHeight){
+
+        email
+        minHeight
+        maxHeight
+
       }
 }
 `

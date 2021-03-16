@@ -8,10 +8,17 @@ import Age from './Age'
 import Slider from '../../dashboard/Slider'
 import Height from './Height'
 import Country from './Country'
-import { ADD_PREFERENCES, UPDATE_PREFERENCES } from '../../../pages/graphqlQuery/Mutation'
 import { Button, Snackbar } from '@material-ui/core/';
 import Carousel from 'react-bootstrap/Carousel'
 
+import {
+    ADD_PREFERENCES,
+    UPDATE_PREFERENCES,
+    ADD_AGE_RANGE,
+    ADD_HEIGHT_RANGE,
+    UPDATE_HEIGHT_RANGE,
+    UPDATE_AGE_RANGE
+} from '../../../pages/graphqlQuery/Mutation'
 
 
 
@@ -23,9 +30,12 @@ export default function Survey(props) {
     const loc = context.preferences ? context.preferences.location : null
     const gen = context.preferences ? context.preferences.gender : null
 
-    const [age, setAge] = useState(null)
+    const [minAge, setMinAge] = useState(null)
+    const [minHeight, setMinHeight] = useState(null)
+    const [maxAge, setMaxAge] = useState(null)
+    const [maxHeight, setMaxHeight] = useState(null)
     const [location, setLocation] = useState(loc)
-    const [height, setHeight] = useState(null)
+
     const [gender, setGender] = useState(gen)
     const [close, setClose] = useState(true)
     const [snackbarSuccess, setSnackbarSuccess] = useState(false)
@@ -35,8 +45,15 @@ export default function Survey(props) {
     const [addPreferences, { data: preferenceData }] = useMutation(ADD_PREFERENCES);
     const [updatePreferences, { data: updatedPreferenceData }] = useMutation(UPDATE_PREFERENCES);
 
+    const [addAgeRange, { data: addAgeRangeData }] = useMutation(ADD_AGE_RANGE);
+    const [updateAgeRange, { data: updateAgeRangeData }] = useMutation(UPDATE_AGE_RANGE);
+
+    const [addHeightRange, { data: addHeightRangeData }] = useMutation(ADD_HEIGHT_RANGE);
+    const [updateHeightRange, { data: updateHeightRangeData }] = useMutation(UPDATE_HEIGHT_RANGE);
+
+
     useEffect(() => {
-        if (preferenceData) {
+        if (preferenceData && addAgeRangeData && addHeightRangeData) {
             context.updatePreferences(preferenceData.addPreferences)
             setMessage('Your preferences is added')
             setSnackbarSuccess(true)
@@ -67,13 +84,11 @@ export default function Survey(props) {
     }, [updatedPreferenceData])
 
 
-
-
     useEffect(() => {
-        if (gender && age && location && height) {
+        if (gender && minAge && maxAge && minHeight && maxHeight) {
             setClose(false)
         }
-    }, [gender, height, location, age])
+    }, [gender, location, maxAge, minAge, minHeight, maxHeight])
 
 
     const handleGender = (value) => {
@@ -84,10 +99,12 @@ export default function Survey(props) {
 
         switch (name) {
             case 'age':
-                setAge(value)
+                setMinAge(value[0])
+                setMaxAge(value[1])
                 break;
             case 'height':
-                setHeight(value)
+                setMinHeight(value[0])
+                setMaxHeight(value[1])
                 break;
             default:
                 break;
@@ -101,27 +118,57 @@ export default function Survey(props) {
 
 
     const handleClick = () => {
+
         if (context.preferences) {
             console.log('update');
+
+            updateAgeRange({
+                variables: {
+                    email: context.email,
+                    minAge: minAge,
+                    maxAge: maxAge,
+                }
+            })
+
+            updateHeightRange({
+                variables: {
+                    email: context.email,
+                    minHeight: minHeight,
+                    maxHeight: maxHeight,
+                }
+            })
             updatePreferences({
                 variables: {
                     email: context.email,
-                    // age: age,
                     gender: gender,
                     location: location,
-                    // height: height
                 }
             })
+          
         } else {
             console.log('add');
 
             addPreferences({
                 variables: {
                     email: context.email,
-                    // age: age,
                     gender: gender,
                     location: location,
-                    // height: height
+                }
+            })
+
+            addAgeRange({
+                variables: {
+                    email: context.email,
+                    minAge: minAge,
+                    maxAge: maxAge,
+                }
+            })
+
+            addHeightRange({
+                variables: {
+                    email: context.email,
+                    minHeight: minHeight,
+                    maxHeight: maxHeight,
                 }
             })
         }
@@ -134,10 +181,12 @@ export default function Survey(props) {
         setSnackbarSuccess(false)
     };
 
+    
+
     const survays = [
         <Gender handleGender={handleGender} gender={gender} />,
-        <Age handleAgeOrGender={handleAgeOrGender} name='age' />,
-        <Height handleAgeOrGender={handleAgeOrGender} name='height' />,
+        <Age handleAgeOrGender={handleAgeOrGender} name='age' ageRange={context.preferences?context.preferences.ageRange:[]} />,
+        <Height handleAgeOrGender={handleAgeOrGender} name='height' heightRange={context.preferences?context.preferences.heightRange:[]} />,
         <Country handleLocation={handleLocation} location={location} />
     ]
     // const survays = [ <Country />]

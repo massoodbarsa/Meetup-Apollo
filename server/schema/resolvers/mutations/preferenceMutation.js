@@ -113,6 +113,7 @@ const preferenceMutation = {
 
     },
     async resolve(parent, args) {
+      console.log(args);
       const existAgeRange = await HeightRange.findOne({
         email: args.email
       })
@@ -164,10 +165,71 @@ const preferenceMutation = {
         new: true
       });
 
-      console.log(updatedPrefernce);
       return updatedPrefernce
     }
   },
+
+
+  updateAgeRange: {
+    type: AgeRangeType,
+    args: {
+      email: {
+        type: new GraphQLNonNull(GraphQLString)
+      },
+      minAge: {
+        type: GraphQLInt
+      },
+      maxAge: {
+        type: GraphQLInt
+      },
+
+    },
+    async resolve(parent, args) {
+
+      const age = await AgeRange.findOneAndUpdate({
+        email: args.email
+      }, {
+        $set: {
+          ...args
+        }
+      }, {
+        new: true
+      });
+      console.log(age);
+      return age
+    }
+  },
+
+  updateHeightRange: {
+    type: HeightRangeType,
+    args: {
+      email: {
+        type: new GraphQLNonNull(GraphQLString)
+      },
+      minHeight: {
+        type: GraphQLInt
+      },
+      maxHeight: {
+        type: GraphQLInt
+      },
+
+    },
+    async resolve(parent, args) {
+
+      const height = await HeightRange.findOneAndUpdate({
+        email: args.email
+      }, {
+        $set: {
+          ...args
+        }
+      }, {
+        new: true
+      });
+      console.log(height);
+      return height
+    }
+  },
+
 
 }
 
