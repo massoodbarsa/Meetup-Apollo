@@ -160,12 +160,30 @@
 
         &__survey {
             border: 2px solid var(--clr-grey-8);
-            padding: 1rem;
+            padding: 2rem;
             margin-top: 1rem;
             border-radius: 5px;
             background-color: var(--bck-color-3);
 
+            &__btn {
+                margin-bottom: 20px;
+            }
 
+            &__progress {
+                .MuiLinearProgress-root {
+                    background-color: var(--clr-red);
+                }
+
+                .MuiTypography-colorTextSecondary {
+                    color: var(--clr-grey-10);
+                    font-size: 1rem;
+                }
+
+                .MuiLinearProgress-bar {
+                    background-color: var(--clr-green-light);
+                }
+
+            }
         }
 
     }

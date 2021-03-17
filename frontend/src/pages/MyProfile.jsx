@@ -244,22 +244,26 @@ function MyProfile() {
                 </section>
 
                 <section className='profile__middel__survey'>
-                    <Tooltip
-                        title="Compelete survey below for optimal friend suggestions"
-                        aria-label="add"
-                        enterDelay={500}
-                        leaveDelay={200}
-                    >
-                        <Link to='/survey'>
-                            <Button
-                                variant="contained"
-                                onClick={handleSurvey}
-                            >
-                                Survey
+                    <div className='profile__middel__survey__btn'>
+                        <Tooltip
+                            title="Compelete survey below for optimal friend suggestions"
+                            aria-label="add"
+                            enterDelay={500}
+                            leaveDelay={200}
+                        >
+                            <Link to='/survey'>
+                                <Button
+                                    variant="contained"
+                                    onClick={handleSurvey}
+                                >
+                                    Survey
                          </Button>
-                        </Link>
-                    </Tooltip>
-                    <LinearProgressWithLabel value={progress} />
+                            </Link>
+                        </Tooltip>
+                    </div>
+                    <div className='profile__middel__survey__progress'>
+                        <LinearProgressWithLabel value={progress} />
+                    </div>
 
                     {/* <Survey/> */}
                 </section>
