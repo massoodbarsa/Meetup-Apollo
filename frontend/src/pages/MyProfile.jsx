@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
 
-import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography } from '@material-ui/core/';
+import { Grid, Chip, Button, Tooltip, FormLabel, Box, LinearProgress, Typography } from '@material-ui/core/';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';

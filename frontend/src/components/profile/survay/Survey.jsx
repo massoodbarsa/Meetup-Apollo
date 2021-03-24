@@ -21,9 +21,7 @@ import {
 } from '../../../pages/graphqlQuery/Mutation'
 
 
-
 export default function Survey(props) {
-
 
     const context = useContext(UserContext)
 
@@ -117,13 +115,10 @@ export default function Survey(props) {
         setLocation(value)
     }
 
-
     const handleClick = () => {
 
         if (context.preferences) {
             console.log('update');
-
-
 
             if (context.preferences.ageRange.length > 0) {
 
@@ -209,23 +204,18 @@ export default function Survey(props) {
         setSnackbarSuccess(false)
     };
 
-
-
     const survays = [
         <Gender handleGender={handleGender} gender={gender} />,
         <Age handleAgeOrGender={handleAgeOrGender} name='age' ageRange={context.preferences ? context.preferences.ageRange : []} />,
         <Height handleAgeOrGender={handleAgeOrGender} name='height' heightRange={context.preferences ? context.preferences.heightRange : []} />,
         <Country handleLocation={handleLocation} location={location} />
     ]
-    // const survays = [ <Country />]
-
 
     const survay = survays.map((item, index) => {
         return (
             <Carousel.Item className='carousel-container'>
                 {item}
             </Carousel.Item>
-
         )
     })
 
@@ -237,7 +227,7 @@ export default function Survey(props) {
                     variant="outlined"
                     color="primary"
                     onClick={handleClick}
-                    // disabled={close}
+                // disabled={close}
                 >
                     Send
                 </Button>
