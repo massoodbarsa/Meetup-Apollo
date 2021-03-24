@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
-import Cards from '../components/dashboard/Cards'
+import Cards from '../components/common/Cards'
 import './Dashboard.scss'
 import { Grid, Chip, Slider, Button, RadioGroup, FormControlLabel, FormLabel, Radio, Popover, Divider, Avatar } from '@material-ui/core/';
 import { NavLink } from 'react-router-dom'
 import { UserContext } from '../context/UserContextProvider'
-import ImageSlider from '../components/dashboard/Slider'
+import ImageSlider from '../components/common/Slider'
 
 import { useQuery, gql } from '@apollo/client'
 import { GET_USERS } from './graphqlQuery/Queries'

@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client'
 import './Survey.scss'
 import Gender from './Gender'
 import Age from './Age'
-import Slider from '../../dashboard/Slider'
+import Slider from '../../common/Slider'
 import Height from './Height'
 import Country from './Country'
 import { Button, Snackbar } from '@material-ui/core/';

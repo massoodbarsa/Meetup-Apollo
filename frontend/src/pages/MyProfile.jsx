@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserContextProvider'
 import ProfileRight from '../components/profile/right/ProfileRight';
 import ProfileLeft from '../components/profile/left/ProfileLeft';
-import Cards from '../components/dashboard/Cards'
+import Cards from '../components/common/Cards'
 import './Profile.scss'
 import { Link } from 'react-router-dom'
 
