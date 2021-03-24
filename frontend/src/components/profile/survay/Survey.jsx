@@ -37,7 +37,7 @@ export default function Survey(props) {
     const [location, setLocation] = useState(loc)
 
     const [gender, setGender] = useState(gen)
-    const [close, setClose] = useState(true)
+    // const [close, setClose] = useState(true)
     const [snackbarSuccess, setSnackbarSuccess] = useState(false)
     const [message, setMessage] = useState('')
 
@@ -85,11 +85,11 @@ export default function Survey(props) {
     }, [updatedPreferenceData])
 
 
-    useEffect(() => {
-        if (gender && minAge && maxAge && minHeight && maxHeight) {
-            setClose(false)
-        }
-    }, [gender, location, maxAge, minAge, minHeight, maxHeight])
+    // useEffect(() => {
+    //     if (gender && minAge && maxAge && minHeight && maxHeight) {
+    //         setClose(false)
+    //     }
+    // }, [gender, location, maxAge, minAge, minHeight, maxHeight])
 
 
     const handleGender = (value) => {
@@ -233,7 +233,12 @@ export default function Survey(props) {
         <div className='survay'>
             <Slider data={survays} comp='survey' title='' />
             <div className=' button-white survay__button'>
-                <Button variant="outlined" color="primary" onClick={handleClick} disabled={close}>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    onClick={handleClick}
+                    // disabled={close}
+                >
                     Send
                 </Button>
             </div>

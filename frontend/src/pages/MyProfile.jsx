@@ -1,15 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from '../context/UserContextProvider'
+import ProfileRight from '../components/profile/right/ProfileRight';
+import ProfileLeft from '../components/profile/left/ProfileLeft';
+import Cards from '../components/dashboard/Cards'
 import './Profile.scss'
 import { Link } from 'react-router-dom'
-
-import BuyPrem from '../components/profile/BuyPrem';
-import BuyTicket from '../components/profile/BuyTicket';
-import FadeBackground from '../components/modal/fadeBackground'
-import Modal from '../components/modal/modal'
-import Cards from '../components/dashboard/Cards'
-import GoogleMapContainer from '../components/profile/GoogleMapContainer';
-import ProfileLeft from '../components/profile/left/ProfileLeft';
 
 import { ADD_PHOTO, DEL_PHOTO, SET_PROFILE_PHOTO } from './graphqlQuery/Mutation'
 import { useMutation } from '@apollo/client'
@@ -17,16 +12,11 @@ import { useMutation } from '@apollo/client'
 import { Grid, Chip, Button, Tooltip, FormLabel, Divider, Box, LinearProgress, Paper, Typography } from '@material-ui/core/';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
-import FaceIcon from '@material-ui/icons/Face';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMars, faVenus } from '@fortawesome/free-solid-svg-icons'
-
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-
-
+// import { Map, GoogleApiWrapper } from 'google-maps-react';
+// import GoogleMapContainer from '../components/profile/right/GoogleMapContainer';
 
 
 function MyProfile() {
@@ -77,13 +67,9 @@ function MyProfile() {
 
     const [anchorEl, setAnchorEl] = useState(null)
     const [progress, setProgress] = useState()
-    const [buyPrem, setBuyPrem] = useState(false)
-    const [ticket, setTicket] = useState(false)
-
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
-
 
     const handleSurvey = () => {
         console.log('survey');
@@ -103,9 +89,20 @@ function MyProfile() {
 
     //search how to add image file and get url back 
 
-    function onImageChange(event) {
+    async function onImageChange(event) {
 
         let img = event.target.files[0];
+
+        // const response = await fetch('http://localhost:4000/public/upload',)
+
+        fetch('http://localhost:4000/public/upload', {
+            method: 'post',
+            body: JSON.stringify()
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data);
+        });
 
         const url = 'https://i1.sndcdn.com/artworks-000073403402-fo1jga-t500x500.jpg'
 
@@ -143,8 +140,7 @@ function MyProfile() {
         );
     }
 
-    const { name, surename, photos, abonnement, profilePhoto, gender } = context
-
+    const { photos, abonnement } = context
 
     return (
         <Grid container spacing={3} className='profile'>
@@ -192,6 +188,7 @@ function MyProfile() {
                         <input
                             type="file"
                             hidden
+                            name='myImage'
                         />
                     </Button>
 
@@ -264,80 +261,11 @@ function MyProfile() {
                     <div className='profile__middel__survey__progress'>
                         <LinearProgressWithLabel value={progress} />
                     </div>
-
-                    {/* <Survey/> */}
                 </section>
-
             </Grid>
 
-            <Grid item xs={3} sm={3} className='profile__right'>
-                <div className='profile__right__title'>
-                    {context.gender === 'female' &&
-                        < section className='profile__right__gender-icon'>
-                            <FontAwesomeIcon icon={faVenus} size='3x' />
-                        </section>
-                    }
-                    {context.gender === 'male' &&
-                        < section className='profile__right__gender-icon'>
-                            <FontAwesomeIcon icon={faMars} size='3x' />
-                        </section>
-                    }
-                    <Chip
-                        icon={!context.gender && <FaceIcon />}
-                        label={`${name} ${surename} `}
-                        color="secondary"
-                        variant="outlined"
-                        size='medium'
-                    />
-                </div>
-                <div className='profile__right__buttons'>
-                    <div className=' button-white'>
-                        <Button variant="outlined" color="primary" onClick={() => { setBuyPrem(true) }}>
-                            Buy Premium
-                    </Button>
-                    </div>
-
-                    {buyPrem && <FadeBackground />}
-
-                    {buyPrem && <Modal
-                        title="Buy Premium"
-                        isCancel
-                        onCancel={() => setBuyPrem(false)}
-                    >
-                        <BuyPrem />
-                    </Modal>}
-
-                    <div className=' button-white'>
-                        <Button variant="outlined" color="primary" onClick={() => { setTicket(true) }}>
-                            Buy Ticket
-                        </Button>
-                    </div>
-                    {ticket && <FadeBackground />}
-
-                    {ticket && <Modal
-                        title="Buy Premium"
-                        isCancel
-                        onCancel={() => setTicket(false)}
-                    >
-                        <BuyTicket />
-                    </Modal>}
-                </div>
-
-                <Divider className='divider' />
-
-                <div className='profile__right__ads'>
-                    <Paper elevation={3} variant="outlined" className='profile__right__ads__paper'>
-                        ads
-                    </Paper>
-                </div>
-
-                <div className='profile__right__dashboard-button'>
-                    <Link to='/dashboard' style={{ textDecoration: 'none' }}>
-                        <Button variant="outlined" >
-                            Dashboard
-                         </Button>
-                    </Link>
-                </div>
+            <Grid item xs={3} sm={3}>
+                <ProfileRight />
             </Grid>
         </Grid >
 

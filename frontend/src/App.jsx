@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard'
 import MyProfile from './pages/MyProfile'
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error'
-import PayPal from './components/profile/PayPal';
+import PayPal from './components/profile/right/PayPal';
 import Survey from './components/profile/survay/Survey';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'

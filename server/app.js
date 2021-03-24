@@ -31,7 +31,33 @@ app.use('/graphql', graphqlHTTP(req => {
   })
 }));
 
+//////////photo
+const multer = require('multer')
+const path = require('path')
+const router = express.Router()
 
+
+const storage = multer.diskStorage({
+  destination: './public/uploads/',
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage: storage
+}).single('myImage')
+
+//public folder
+app.use(express.static('./public'))
+app.get('/', (req, res) => {
+  console.log('ridi');
+})
+
+router.post('/upload',(req,res,next)=>{
+
+})
+////////////
 mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.rkikv.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true

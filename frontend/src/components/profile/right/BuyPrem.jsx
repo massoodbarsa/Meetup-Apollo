@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardActionArea, CardActions, CardMedia, Button, CardContent, Typography } from '@material-ui/core';
 import './BuyTicket.scss'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/UserContextProvider'
+import { UserContext } from '../../../context/UserContextProvider'
 import { Snackbar } from '@material-ui/core';
-
 
 
 const useStyles = makeStyles({
