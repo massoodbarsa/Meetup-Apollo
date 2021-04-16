@@ -29,7 +29,7 @@ export default function Slider({ data, comp }) {
                                             </Carousel.Caption>
                                             <img
                                                 className="section-center__img"
-                                                src={profilePhoto}
+                                                src={`http://localhost:4000${profilePhoto} `}
                                                 alt="First slide"
                                             />
                                             <h5>{email}</h5>

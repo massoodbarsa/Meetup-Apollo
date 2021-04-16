@@ -17,6 +17,7 @@ const navigation = (props) => (
             return (
                 <header className='navigation'>
                     <div className='navigation__logo'>
+                       
                         <img src={Logo} alt="React Logo" />
 
                     </div>

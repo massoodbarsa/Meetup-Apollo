@@ -15,9 +15,10 @@ import ClearIcon from '@material-ui/icons/Clear';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import HourglassFullIcon from '@material-ui/icons/HourglassFull';
 
+
 // import { Map, GoogleApiWrapper } from 'google-maps-react';
 // import GoogleMapContainer from '../components/profile/right/GoogleMapContainer';
-
+import axios from 'axios'
 
 function MyProfile() {
 
@@ -87,33 +88,41 @@ function MyProfile() {
         context.deletePhoto(url)
     }
 
-    //search how to add image file and get url back 
-
     async function onImageChange(event) {
 
         let img = event.target.files[0];
 
-        // const response = await fetch('http://localhost:4000/public/upload',)
+        const formData = new FormData()
+        formData.append('file', img)
 
-        fetch('http://localhost:4000/public/upload', {
-            method: 'post',
-            body: JSON.stringify()
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data);
-        });
+        try {
+            const response = await axios.post('http://localhost:4000/uploads', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
 
-        const url = 'https://i1.sndcdn.com/artworks-000073403402-fo1jga-t500x500.jpg'
+            const { fileName, filePath } = response.data
+            // setUploadedFile({ fileName, filePath })
 
-        addPhoto({
-            variables: {
-                email: context.email,
-                url: url
+            addPhoto({
+                variables: {
+                    email: context.email,
+                    url: filePath
+                }
+            })
+
+        } catch (error) {
+            if (error.response.status === 500) {
+                console.log('problem with');
+
+            } else {
+                console.log(error.response.data.msg);
             }
-        })
+        }
 
     };
+
 
     function handleProfilePic(url) {
 
@@ -191,7 +200,6 @@ function MyProfile() {
                             name='myImage'
                         />
                     </Button>
-
                 </section>
 
                 <section className='profile__middel__account'>
@@ -229,6 +237,8 @@ function MyProfile() {
                     }
 
                     <section className='profile__middel__account__section'>
+                        <img src="/Users/amirshakiba/Desktop/Meetup-Apollo2/server/public/uploads/Hamid.Shakiba.jpg" alt="" />
+
                         <FormLabel htmlFor="" >Tickets</FormLabel>
                         <Chip
                             icon={<ConfirmationNumberIcon />}

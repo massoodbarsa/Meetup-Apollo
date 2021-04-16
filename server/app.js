@@ -4,6 +4,9 @@ const schema = require('./schema/resolvers/index')
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const mongoose = require('mongoose')
+const fileUpload = require('express-fileupload');
+const { GraphQLInputObjectType } = require('graphql');
+
 const app = express()
 
 mongoose.set('useFindAndModify', false);
@@ -22,7 +25,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-
+app.use(express.json())
 
 app.use('/graphql', graphqlHTTP(req => {
   return ({
@@ -31,33 +34,28 @@ app.use('/graphql', graphqlHTTP(req => {
   })
 }));
 
-//////////photo
-const multer = require('multer')
-const path = require('path')
-const router = express.Router()
+//////////photoUpload
 
-
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-  }
-})
-
-const upload = multer({
-  storage: storage
-}).single('myImage')
-
-//public folder
+app.use(fileUpload())
 app.use(express.static('./public'))
-app.get('/', (req, res) => {
-  console.log('ridi');
+
+app.post('/uploads', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'no file uploaded' })
+  }
+
+  console.log(req.files.file);
+
+  const file = req.files.file
+  file.mv(`${__dirname}/public/uploads/${file.name}`, err => {
+    if (err) {
+      console.log(err)
+      return res.status(500).send(err);
+    }
+    res.json({ fileName: file.name, filePath: `/uploads/${ file.name}` })
+  })
 })
 
-router.post('/upload',(req,res,next)=>{
-
-})
-////////////
 mongoose.connect(`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.rkikv.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useUnifiedTopology: true

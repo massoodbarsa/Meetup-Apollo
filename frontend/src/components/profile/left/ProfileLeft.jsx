@@ -98,7 +98,8 @@ export default function ProfileLeft() {
                     size='medium'
                     color="secondary"
                 />
-                <img src={context.profilePhoto ? context.profilePhoto : avatar} className='profile__left__img' />
+
+                <img src={context.profilePhoto ? `http://localhost:4000${context.profilePhoto} ` : avatar} className='profile__left__img' />
 
             </div>
             <section className='profile__left__info'>

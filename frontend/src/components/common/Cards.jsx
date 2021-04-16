@@ -23,12 +23,12 @@ export default function Cards({ favTitle, delTitle, url, handleProfilePic, handl
 
         <Card variant="outlined" className='card-container' style={{ backgroundColor: '#121212' }}>
             <CardContent>
-                <img src={url} className='card-container__image' />
+                <img src={`http://localhost:4000${url}`} className='card-container__image' />
             </CardContent>
             <section className="icon-container">
                 <CardActions>
                     <Tooltip
-                        title={favTitle||"Favorite"}
+                        title={favTitle || "Favorite"}
                         aria-label="add"
                         enterDelay={200}
                         leaveDelay={300}
@@ -41,7 +41,7 @@ export default function Cards({ favTitle, delTitle, url, handleProfilePic, handl
 
                 <CardActions>
                     <Tooltip
-                        title={delTitle||'Delete'}
+                        title={delTitle || 'Delete'}
                         aria-label="add"
                         enterDelay={200}
                         leaveDelay={300}

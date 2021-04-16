@@ -95,7 +95,7 @@ function Dashboard() {
                     <Avatar
                         variant='square'
                         alt='Profile'
-                        src={context.profilePhoto}
+                        src={`http://localhost:4000${context.profilePhoto} `}
                     >
                     </Avatar>
                 </Button>
