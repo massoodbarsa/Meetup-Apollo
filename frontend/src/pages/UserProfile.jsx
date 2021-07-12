@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../context/UserContextProvider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,7 +6,12 @@ import { faBirthdayCake, faTextHeight, faAddressCard, faVenusMars, faLocationArr
 import './UserProfile.scss'
 import Carousel from 'react-bootstrap/Carousel';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { Tooltip ,Fab} from '@material-ui/core';
+import { Tooltip, Fab } from '@material-ui/core';
+
+import { ADD_FAVORITES } from './graphqlQuery/Mutation'
+
+import { useMutation } from '@apollo/client'
+
 
 export default function UserProfile() {
 
@@ -14,17 +19,50 @@ export default function UserProfile() {
 
     const { email } = useParams()
 
+    const [addFavorites, { data: favoritesData }] = useMutation(ADD_FAVORITES);
+
+
+
+    useEffect(() => {
+        console.log(favoritesData);
+        if (favoritesData) {
+
+            const { favoriteEmail } = favoritesData.addFavorites
+
+            context.addFavorites(favoriteEmail)
+        }
+    }, [favoritesData])
+
     const user = context.usersData.filter((item, index) => {
         return item.email === email
     })
 
     const { age, aboutMe, gender, height, place, photos, profilePhoto, surename, name } = user[0]
 
+    const handleAddFavorite = () => {
+        addFavorites({
+            variables: {
+                email: context.email,
+                favoriteEmail: email
+            }
+        })
+    }
+
+
+    // function handleProfilePic(url) {
+
+    //     addProfilePhoto({
+    //         variables: {
+    //             email: context.email,
+    //             profilePhoto: url
+    //         }
+    //     })
+    // }
     return (
         <div className='userProfile-container'>
             <div className='userProfile-container__favorite' >
                 <Tooltip title="Add to favorites" aria-label="add">
-                    <Fab color="secondary" >
+                    <Fab color="secondary" onClick={handleAddFavorite}>
                         <FavoriteIcon />
                     </Fab>
                 </Tooltip>

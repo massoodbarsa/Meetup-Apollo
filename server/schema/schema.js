@@ -88,7 +88,7 @@ const UserType = new GraphQLObjectType({
       type: GraphQLList(FavoriteType),
       resolve(parent, args) {
         return Favorites.find({
-          userId: parent.id
+          email: parent.email
         })
       }
     },
@@ -215,22 +215,12 @@ const PhotoType = new GraphQLObjectType({
 const FavoriteType = new GraphQLObjectType({
   name: 'Favorite',
   fields: () => ({
-
-    userId: {
+    email: {
       type: GraphQLString
     },
-    favoriteId: {
+    favoriteEmail: {
       type: GraphQLString
-    },
-    user: {
-      type: GraphQLList(UserType),
-      resolve(parent, args) {
-        return User.find({
-          _id: parent.favoriteId,
-        })
-      }
-    },
-
+    }
   })
 })
 

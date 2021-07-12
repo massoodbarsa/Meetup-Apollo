@@ -1,4 +1,3 @@
-
 const graphql = require('graphql')
 const schema = require('../../schema')
 const Images = require('../../../models/image')
@@ -14,8 +13,6 @@ const {
     PhotoType,
 } = schema
 
-
-// const userMutation = new GraphQLObjectType({
 const photoMutation = {
     addPhoto: {
         type: PhotoType,

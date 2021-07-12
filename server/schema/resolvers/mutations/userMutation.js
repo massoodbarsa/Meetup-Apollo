@@ -27,6 +27,8 @@ const userMutation = {
       }
     },
     resolve(parent, args) {
+      console.log(args);
+
       return User.findOne({
         email: args.email,
         password: args.password
@@ -61,7 +63,6 @@ const userMutation = {
 
     },
     async resolve(parent, args) {
-
       const existUser = await User.findOne({
         email: args.email
       })

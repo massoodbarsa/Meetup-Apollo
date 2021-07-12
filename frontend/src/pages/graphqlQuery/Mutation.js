@@ -103,7 +103,17 @@ mutation addProfilePhoto($email : String! , $profilePhoto:String!){
       profilePhoto
       }
 }
+`
 
+//favorites
+
+export const ADD_FAVORITES = gql`
+mutation addFavorites($email : String!, $favoriteEmail : String!){
+  addFavorites(email:$email, favoriteEmail:$favoriteEmail){
+      email,
+      favoriteEmail
+      }
+}
 `
 
 //abonnement

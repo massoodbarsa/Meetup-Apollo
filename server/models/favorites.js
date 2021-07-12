@@ -2,8 +2,10 @@ const mongoose = require('mongoose')
 const MongoSchema = mongoose.Schema
 
 const favoriteSchema = MongoSchema({
-    favoriteId:String,
-    userId: String
+
+    email: String,
+    favoriteEmail: String
+
 })
 
 module.exports = mongoose.model('Favorite', favoriteSchema)
