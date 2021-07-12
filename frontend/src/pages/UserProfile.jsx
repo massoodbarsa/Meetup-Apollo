@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from '../context/UserContextProvider'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBirthdayCake } from '@fortawesome/free-solid-svg-icons'
+import { faBirthdayCake, faTextHeight, faAddressCard, faVenusMars, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 import './UserProfile.scss'
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -13,13 +13,10 @@ export default function UserProfile() {
     const { email } = useParams()
 
     const user = context.usersData.filter((item, index) => {
-
         return item.email === email
-
     })
 
     const { age, aboutMe, gender, height, place, photos, profilePhoto, surename, name } = user[0]
-
 
     return (
         <div className='userProfile-container'>
@@ -36,12 +33,12 @@ export default function UserProfile() {
                                         <Carousel.Caption>
                                             <h1>{name}</h1>
                                         </Carousel.Caption>
-                                            <img
-                                                className="section-center__img"
-                                                src={`http://localhost:4000${url} `}
-                                                alt="First slide"
+                                        <img
+                                            className="section-center__img"
+                                            src={`http://localhost:4000${url} `}
+                                            alt="First slide"
 
-                                            />
+                                        />
                                     </Carousel.Item>
                                 )
                             })
@@ -50,28 +47,30 @@ export default function UserProfile() {
                 }
             </div>
             <div className='userProfile-container__info'>
-                <section className='userProfile-container__info__section'>
-                    <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
-                    <p>{age}</p>
+                <div  className='userProfile-container__info__sections'>
+                    <section className='userProfile-container__info__sections__item'>
+                        <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
+                        <p>{age}</p>
+                    </section>
+                    <section className='userProfile-container__info__sections__item'>
+                        <FontAwesomeIcon icon={faTextHeight} size='3x' />
+                        <p>{height}</p>
+                    </section>
+                    <section className='userProfile-container__info__sections__item'>
+                        <FontAwesomeIcon icon={faVenusMars} size='3x' />
+                        <p>{gender}</p>
+                    </section>
+                    <section className='userProfile-container__info__sections__item'>
+                        <FontAwesomeIcon icon={faLocationArrow} size='3x' />
+                        <p>{place}</p>
+                    </section>
+                </div>
+                <section className='userProfile-container__info__aboutme'>
+                    <FontAwesomeIcon icon={faAddressCard} size='3x' />
+                    <p>{aboutMe}</p>
                 </section>
-                <section className='userProfile-container__info__section'>
-                    <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
-                    <p>{age}</p>
-                </section>
-                <section className='userProfile-container__info__section'>
-                    <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
-                    <p>{age}</p>
-                </section>
-                <section className='userProfile-container__info__section'>
-                    <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
-                    <p>{age}</p>
-                </section>
-                <section className='userProfile-container__info__section'>
-                    <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
-                    <p>{age}</p>
-                </section>
-            </div>
 
+            </div>
         </div>
     )
 }

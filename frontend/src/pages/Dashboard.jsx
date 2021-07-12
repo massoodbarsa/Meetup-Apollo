@@ -26,10 +26,8 @@ function Dashboard() {
     return (
         <Grid container spacing={3} className='dashboard'>
             <Grid item xs={3} sm={3} className='dashboard__left'>
-
                 <h2>Messenger</h2>
             </Grid>
-
 
             <Grid item xs={3} sm={6} className='dashboard__middel'>
 
