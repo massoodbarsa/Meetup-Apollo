@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBirthdayCake, faTextHeight, faAddressCard, faVenusMars, faLocationArrow } from '@fortawesome/free-solid-svg-icons'
 import './UserProfile.scss'
 import Carousel from 'react-bootstrap/Carousel';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { Tooltip ,Fab} from '@material-ui/core';
 
 export default function UserProfile() {
 
@@ -20,6 +22,13 @@ export default function UserProfile() {
 
     return (
         <div className='userProfile-container'>
+            <div className='userProfile-container__favorite' >
+                <Tooltip title="Add to favorites" aria-label="add">
+                    <Fab color="secondary" >
+                        <FavoriteIcon />
+                    </Fab>
+                </Tooltip>
+            </div>
             <div className='userProfile-container__images'>
                 {
                     <Carousel slide={true}>
@@ -37,7 +46,6 @@ export default function UserProfile() {
                                             className="section-center__img"
                                             src={`http://localhost:4000${url} `}
                                             alt="First slide"
-
                                         />
                                     </Carousel.Item>
                                 )
@@ -47,7 +55,7 @@ export default function UserProfile() {
                 }
             </div>
             <div className='userProfile-container__info'>
-                <div  className='userProfile-container__info__sections'>
+                <div className='userProfile-container__info__sections'>
                     <section className='userProfile-container__info__sections__item'>
                         <FontAwesomeIcon icon={faBirthdayCake} size='3x' />
                         <p>{age}</p>

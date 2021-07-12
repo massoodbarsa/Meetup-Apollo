@@ -4,6 +4,16 @@
     padding: 2rem;
     align-items: center;
 
+    &__favorite{
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        
+        :focus{
+            outline: none;
+        }
+    }
+
     &__images {
         position: relative;
         text-align: center;
