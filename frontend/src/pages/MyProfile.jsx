@@ -57,7 +57,6 @@ function MyProfile() {
                 const element = context.preferences[key];
 
                 if (element.length > 0 && element !== 'Preference') {
-                    console.log(element);
                     let elementProcent = 100 / (preferencesLength - 1);
                     survayProcent += elementProcent
                 }

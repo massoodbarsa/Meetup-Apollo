@@ -7,7 +7,12 @@ export const GET_USERS = gql`
                 email
                 profilePhoto
                 name
+                surename
                 gender
+                aboutMe
+                height
+                place
+                age
                 photos {
                     email
                     url

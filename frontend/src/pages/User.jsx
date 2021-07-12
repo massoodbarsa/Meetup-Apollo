@@ -34,8 +34,6 @@ function User(props) {
     useEffect(() => {
         if (data) {
             if (data.login === null) {
-                console.log(data.login === null)
-
                 setMessageInfo("Username or Password is not correct !")
                 setSnackbar(true)
             } else {

@@ -6,6 +6,7 @@ import Navigation from './components/navigation/navigation'
 import { UserContext } from './context/UserContextProvider'
 import Dashboard from './pages/Dashboard'
 import MyProfile from './pages/MyProfile'
+import UserProfile from './pages/UserProfile';
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
 import { onError } from '@apollo/client/link/error'
 import PayPal from './components/profile/right/PayPal';
@@ -31,6 +32,7 @@ export default function App() {
     new HttpLink({ uri: "http://localhost:4000/graphql" })
   ])
   const client = new ApolloClient({
+    //This enables your client to respond to future queries for the same data without sending unnecessary network requests.
     cache: new InMemoryCache(),
     link: link
   })
@@ -51,7 +53,9 @@ export default function App() {
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/paypal' component={PayPal} />
               <Route path='/survey' component={Survey} />
-
+              <Route path='/userProfile/:email'>
+                <UserProfile />
+              </Route>
               {/* {context.token && <Route path='/profile' component={Profile} />} */}
             </Switch>
           </main>

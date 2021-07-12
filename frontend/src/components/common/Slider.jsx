@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../context/UserContextProvider'
 import Carousel from 'react-bootstrap/Carousel';
 import './Slider.scss';
+import { Link } from 'react-router-dom'
+
 
 
 export default function Slider({ data, comp }) {
+
 
     return (
         <div>
@@ -12,7 +14,7 @@ export default function Slider({ data, comp }) {
                 {comp === 'dashboard' && <div className="title">
                     <h2>
                         <span>/</span>Happy Sliding ...
-                     </h2>
+                    </h2>
                 </div>}
                 <div className="section-center">
                     {
@@ -27,11 +29,14 @@ export default function Slider({ data, comp }) {
                                             <Carousel.Caption>
                                                 <h1>{name}</h1>
                                             </Carousel.Caption>
-                                            <img
-                                                className="section-center__img"
-                                                src={`http://localhost:4000${profilePhoto} `}
-                                                alt="First slide"
-                                            />
+                                            <Link to={'/userProfile/' + email}>
+                                                <img
+                                                    className="section-center__img"
+                                                    src={`http://localhost:4000${profilePhoto} `}
+                                                    alt="First slide"
+
+                                                />
+                                            </Link>
                                             <h5>{email}</h5>
                                         </Carousel.Item>
                                     )
@@ -58,7 +63,7 @@ export default function Slider({ data, comp }) {
                 </div>
             </section>
 
-        </div>
+        </div >
     )
 }
 
