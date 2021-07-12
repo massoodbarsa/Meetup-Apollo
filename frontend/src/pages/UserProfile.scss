@@ -1,0 +1,29 @@
+.userProfile-container {
+    display: grid;
+    padding: 2rem;
+    grid-template-rows: 1fr 1fr;
+
+    &__images {
+        width: 50vw;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    &__info {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 1rem;
+        max-height: 200px;
+
+        &__section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+
+        }
+    }
+
+}
