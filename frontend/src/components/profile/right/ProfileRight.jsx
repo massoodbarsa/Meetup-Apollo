@@ -14,7 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMars, faVenus } from '@fortawesome/free-solid-svg-icons'
 
 
-export default function ProfileRight() {
+ function ProfileRight() {
+
     const context = useContext(UserContext);
 
     const [buyPrem, setBuyPrem] = useState(false)
@@ -94,3 +95,6 @@ export default function ProfileRight() {
         </div>
     )
 }
+// export default React.memo(ProfileRight)
+
+export default ProfileRight

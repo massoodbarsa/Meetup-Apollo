@@ -1,4 +1,3 @@
-
 const graphql = require('graphql')
 const schema = require('../../schema')
 const User = require('../../../models/user')
@@ -13,7 +12,6 @@ const {
   UserType,
 } = schema
 
-
 const userMutation = {
 
   login: {
@@ -27,8 +25,6 @@ const userMutation = {
       }
     },
     resolve(parent, args) {
-      console.log(args);
-
       return User.findOne({
         email: args.email,
         password: args.password
@@ -145,7 +141,5 @@ const userMutation = {
     }
   },
 }
-// })
-// })
 
 module.exports = userMutation

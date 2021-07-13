@@ -281,5 +281,6 @@ function MyProfile() {
     )
 }
 
+// export default React.memo(MyProfile)
 
 export default MyProfile

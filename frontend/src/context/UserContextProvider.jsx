@@ -22,7 +22,7 @@ export default class UserContextProvider extends Component {
         preferences: null,
         usersData: [],
         payPal: null,
-        favorites:[]
+        favorites: []
     }
 
     // setUserState = ({ _id,email, name, surename, age, photos, profilePhoto, abonnement }) => {
@@ -69,7 +69,7 @@ export default class UserContextProvider extends Component {
             photos: [...this.state.photos, photos]
         })
     }
-    
+
 
     deletePhoto = (url) => {
         //now if you have 2 pic with same url delete both because of knowing it by url .later use imageId from database
@@ -122,10 +122,15 @@ export default class UserContextProvider extends Component {
         })
     }
 
-    updateUser = (data) => {
-        console.log(data);
+    updateUser = ({ name, surename, age, aboutMe, place, height }) => {
+        console.log(name, surename, age, aboutMe, place, height);
         this.setState({
-            ...this.state = { ...data }
+            name,
+            surename,
+            age,
+            aboutMe,
+            place,
+            height
         })
     }
 
@@ -136,7 +141,7 @@ export default class UserContextProvider extends Component {
         const favorites = {
             favorite: favorite
         }
-        
+
         this.setState({
             favorites: [...this.state.favorites, favorites]
         })
@@ -155,7 +160,7 @@ export default class UserContextProvider extends Component {
         updateAbonnement: this.updateAbonnement,
         updateUser: this.updateUser,
         updatePreferences: this.updatePreferences,
-        addFavorites:this.addFavorites
+        addFavorites: this.addFavorites
     }
 
     render() {

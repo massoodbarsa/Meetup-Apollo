@@ -1,4 +1,3 @@
-
 const Favorite = require('../../../models/favorites')
 const schema = require('../../schema')
 const { FavoriteType } = schema

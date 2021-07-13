@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Chip, Slider, Button, RadioGroup, FormControlLabel, FormLabel, Radio, Popover, Divider, Avatar } from '@material-ui/core/';
 import { UserContext } from '../../../context/UserContextProvider'
 
-export default function DashboardRight() {
+function DashboardRight() {
 
     const context = useContext(UserContext);
     const [anchorEl, setAnchorEl] = useState(null)
@@ -154,3 +154,8 @@ export default function DashboardRight() {
         </>
     )
 }
+
+
+export default DashboardRight
+
+// export default React.memo(DashboardRight)

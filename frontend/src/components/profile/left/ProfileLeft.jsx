@@ -10,7 +10,7 @@ import FemaleAvatar from '../../../assets/femAvatar.jpeg'
 import MaleAvatar from '../../../assets/maleAvatar.jpeg'
 
 
-export default function ProfileLeft() {
+function ProfileLeft() {
 
     const context = useContext(UserContext);
 
@@ -27,7 +27,6 @@ export default function ProfileLeft() {
     useEffect(() => {
 
         if (updateUserData) {
-            console.log(updateUserData.updateUser);
             const { name, surename, age, aboutMe, place, height } = updateUserData.updateUser
             context.updateUser({ name, surename, age, aboutMe, place, height })
         }
@@ -189,3 +188,7 @@ export default function ProfileLeft() {
         </div>
     )
 }
+
+// export default React.memo(ProfileLeft)
+
+export default ProfileLeft
