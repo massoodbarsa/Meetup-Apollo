@@ -14,6 +14,9 @@ mutation login($email : String! , $password:String!){
         aboutMe
         place
         height
+        favorites{
+          favoriteEmail
+        }
         photos{
             url
           }

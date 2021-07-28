@@ -26,6 +26,7 @@ const photoMutation = {
 
         },
         resolve(parent, args) {
+            console.log(parent);
             let photo = new Images({
                 email: args.email,
                 url: args.url,

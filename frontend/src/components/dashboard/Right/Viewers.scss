@@ -1,0 +1,11 @@
+.MuiButton-root {
+    margin-right: 30px;
+    color: var(--clr-red);
+    border-color: var(--clr-red);
+  }
+
+  .MuiButton-root:hover {
+    color: var(--clr-grey-9);
+    border-color: var(--clr-grey-9);
+    background-color: var(--clr-red);
+  }

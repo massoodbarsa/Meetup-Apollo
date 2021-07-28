@@ -37,7 +37,6 @@ function User(props) {
                 setMessageInfo("Username or Password is not correct !")
                 setSnackbar(true)
             } else {
-                console.log("login Data ");
                 console.log(data.login);
                 context.login(data.login)
                 context.setUserState(data.login)

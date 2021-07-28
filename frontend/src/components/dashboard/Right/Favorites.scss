@@ -1,0 +1,21 @@
+.favorites {
+
+    &__container {
+        display: flex;
+        padding: 2rem;
+        flex-direction: column;
+
+        &__items {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            h3 {
+                color: #ffffff;
+                :hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
