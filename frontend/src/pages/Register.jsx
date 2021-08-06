@@ -7,8 +7,7 @@ import { useMutation } from '@apollo/client'
 import LogIn from '../components/register/LogIn';
 import SignUp from '../components/register/SignUp';
 
-
-function Register() {
+function User(props) {
 
     const context = useContext(UserContext);
 
@@ -26,7 +25,6 @@ function Register() {
     const [messageInfo, setMessageInfo] = useState(null);
     const [name, setName] = useState(null)
     const [surename, setSurename] = useState(null)
-
 
     useEffect(() => {
         if (data) {
@@ -100,6 +98,11 @@ function Register() {
         setTextField(false)
     }
 
+    const modalCancelHandler = () => {
+        setSignUp(false)
+        setTextField(false)
+    }
+
     const modalOpenHandler = () => {
         setSignUp(true)
     }
@@ -121,8 +124,10 @@ function Register() {
                     setGender={setGender}
                     gender={gender}
                     submitHandler={submitHandler}
+                    modalCancelHandler={modalCancelHandler}
                 />
                 }
+
                 <div className='button-gray signup-btn'>
                     <Button
                         variant="contained"
@@ -147,4 +152,4 @@ function Register() {
     )
 }
 
-export default Register
+export default User
