@@ -140,7 +140,6 @@ export default class UserContextProvider extends Component {
 
     addFavorites = (favorite) => {
 
-        console.log(favorite);
         const favorites = {
             favorite: favorite
         }

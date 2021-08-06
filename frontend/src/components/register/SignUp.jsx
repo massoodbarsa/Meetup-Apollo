@@ -4,12 +4,7 @@ import Modal from '../../components/modal/modal'
 
 import { Button, TextField, FormLabel, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 
-export default function SignUp({ submitHandler,setSignUp, textField, setPass, setPassRep, setSurename, setEmai, setName, setGender, gender }) {
-
-
-    const modalCancelHandler = () => {
-        setSignUp(false)
-    }
+export default function SignUp({ submitHandler, textField, setPass, setPassRep, setSurename, setEmai, setName, setGender, gender,modalCancelHandler}) {
 
     return (
         <>
