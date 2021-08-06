@@ -34,7 +34,7 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-          
+
 
             &__item {
                 display: flex;
@@ -42,6 +42,8 @@
                 align-items: center;
                 justify-content: center;
                 gap: 1rem;
+                min-width: 200px
+
             }
         }
 

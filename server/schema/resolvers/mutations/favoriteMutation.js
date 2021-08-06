@@ -20,7 +20,6 @@ const favoriteMutation = {
 
     },
     resolve(parent, args) {
-      console.log(parent);
       let favorite = new Favorite({
         email: args.email,
         favoriteEmail: args.favoriteEmail,

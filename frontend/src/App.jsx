@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import userPage from './pages/User'
+import Register from './pages/Register'
 import Navigation from './components/navigation/navigation'
 import { UserContext } from './context/UserContextProvider'
 import Dashboard from './pages/Dashboard'
@@ -45,9 +45,9 @@ export default function App() {
           <main className='main'>
             <Switch>
               {context.email && <Redirect from='/' to='/profile' exact />}
-              {context.email && <Redirect from='/users' to='/profile' exact />}
-              {!context.email && <Route path='/users' component={userPage} />}
-              {!context.email && <Redirect to='/users' exact />}
+              {context.email && <Redirect from='/register' to='/profile' exact />}
+              {!context.email && <Route path='/register' component={Register} />}
+              {!context.email && <Redirect to='/register' exact />}
 
               <Route path='/profile' component={MyProfile} />
               <Route path='/dashboard' component={Dashboard} />

@@ -74,14 +74,6 @@ mutation updateUser($email:String!, $name:String, $surename:String, $age:Int, $t
 
 //photo
 export const ADD_PHOTO = gql`
-# mutation addPhoto($user : ID! , $url:String!){
-
-
-#     addPhoto(user:$user,url:$url){
-#       user,
-#       url
-#       }
-
 mutation addPhoto($email : String! , $url:String!){
 addPhoto(email:$email,url:$url){
   email,

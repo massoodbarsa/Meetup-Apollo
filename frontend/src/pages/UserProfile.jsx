@@ -43,7 +43,7 @@ export default function UserProfile() {
         addFavorites({
             variables: {
                 email: context.email,
-                favoriteEmail: 'salam'
+                favoriteEmail: email
             }
         })
     }
