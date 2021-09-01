@@ -25,7 +25,7 @@ export default function SignUp({ submitHandler, textField, setPass, setPassRep, 
                             error={textField}
                             onChange={(e) => setEmai(e.target.value)}
                             required
-                            placeholder='email'
+                            placeholder='Email'
                         />
                         <TextField
                             id="textfield"
